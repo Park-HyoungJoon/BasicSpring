@@ -8,31 +8,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import kr.inhatc.spring.user.dto.UserDto;
-import kr.inhatc.spring.user.entity.User;
-import kr.inhatc.spring.user.repository.UserRepository;
+import kr.inhatc.spring.user.dto.BasicDto;
+import kr.inhatc.spring.user.entity.Basic;
+import kr.inhatc.spring.user.repository.BasicRepository;
 
 @Service
 //@Transactional(readOnly = true)
-public class UserServiceImpl implements UserService {
+public class BasicServiceImpl implements BasicService {
 	
 	@Autowired
-	UserRepository userRepository;
+	BasicRepository userRepository;
 	
 	/**
 	 * 게시글 조회
 	 */
 	@Override
-	public List<UserDto> userList() {
-		List<User> list = userRepository.findAllByOrderByIdDesc();
-		return list.stream().map(UserDto::new).collect(Collectors.toList());
+	public List<BasicDto> userList() {
+		List<Basic> list = userRepository.findAllByOrderByIdDesc();
+		return list.stream().map(BasicDto::new).collect(Collectors.toList());
 	}
 	
 	/**
 	 * 게시글 저장
 	 */
 	@Override
-	public void saveUser(UserDto user) {
+	public void saveUser(BasicDto user) {
 		userRepository.save(user.toEntity());
 	}
 	
@@ -41,12 +41,12 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	@Transactional
-	public UserDto userDetail(Long id) {
-		Optional<User> optional = userRepository.findById(id);
+	public BasicDto userDetail(Long id) {
+		Optional<Basic> optional = userRepository.findById(id);
 		if(optional.isPresent()) {
-			User user = optional.get();
+			Basic user = optional.get();
 			user.increaseHits();
-			return new UserDto(user);
+			return new BasicDto(user);
 		} else {
 			throw new NullPointerException();
 		}

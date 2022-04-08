@@ -3,15 +3,14 @@ package kr.inhatc.spring.user.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import kr.inhatc.spring.user.entity.User;
+import kr.inhatc.spring.user.entity.Basic;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long>{
+public interface BasicRepository extends JpaRepository<Basic, Long>{
 	
-	List<User> findAllByOrderByIdDesc();
+	List<Basic> findAllByOrderByIdDesc();
 
 
 

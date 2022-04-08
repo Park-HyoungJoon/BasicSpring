@@ -3,7 +3,7 @@ package kr.inhatc.spring.user.dto;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import kr.inhatc.spring.user.entity.User;
+import kr.inhatc.spring.user.entity.Basic;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +13,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserDto {
+public class BasicDto {
 	private Long id;
 	private String title;
 	private String contents;
@@ -22,7 +22,7 @@ public class UserDto {
 	private String creator;
 	
 	
-	public UserDto(final User entity) {
+	public BasicDto(final Basic entity) {
 		this.id = entity.getId();
 		this.title = entity.getTitle();
 		this.contents = entity.getContents();
@@ -31,8 +31,8 @@ public class UserDto {
 		this.creator = entity.getCreator();
 	}
 	
-	public User toEntity() {
-		return User.builder()
+	public Basic toEntity() {
+		return Basic.builder()
 				.title(title)
 				.contents(contents)
 				.hitCnt(0)

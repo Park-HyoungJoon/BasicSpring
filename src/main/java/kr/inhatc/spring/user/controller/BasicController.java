@@ -2,8 +2,6 @@ package kr.inhatc.spring.user.controller;
 
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,18 +11,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import kr.inhatc.spring.user.dto.UserDto;
-import kr.inhatc.spring.user.entity.User;
-import kr.inhatc.spring.user.service.UserService;
+import kr.inhatc.spring.user.dto.BasicDto;
+import kr.inhatc.spring.user.service.BasicService;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 @Controller
-public class UserController {
+public class BasicController {
 	
 	
 	@Autowired
-	private UserService userService;
+	private BasicService userService;
 	
 	@RequestMapping("/")
 	public String hello() {
@@ -34,7 +31,7 @@ public class UserController {
 	// GET(read), POST(create), PUT(update), DELETE(delete)
 	@RequestMapping(value="/user/userList", method=RequestMethod.GET)
 	public String userList(Model model) {
-		List<UserDto> list = userService.userList();
+		List<BasicDto> list = userService.userList();
 		model.addAttribute("list", list);
 		return "user/userList";
 	}
@@ -46,7 +43,7 @@ public class UserController {
 	
 	// 원래 엔티티 클래스는 요청이나 응답에 사용되면 안되는데 일단은 영상 그대로 따라하고 나중에 Request, Response 만들어보자
 	@PostMapping("/user/userInsert")
-	public String userInsert(UserDto user) {
+	public String userInsert(BasicDto user) {
 		userService.saveUser(user);
 		return "redirect:/user/userList";
 	}
@@ -55,7 +52,7 @@ public class UserController {
 	//  Rest방식 /user/Detail/13 이렇게 경로처럼 받으면 Pathvariable 써야함,,
 	//  그냥 일반 파라미터 값 /board/Detail?boardIdx=3 이런식으로 받으면 @RequestPram으로 쓰고
 	public String userDetail(@PathVariable("id") Long id, Model model) {
-		UserDto user = userService.userDetail(id);
+		BasicDto user = userService.userDetail(id);
 		model.addAttribute("user", user);
 		return "user/userDetail";
 	}

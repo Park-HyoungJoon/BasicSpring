@@ -1,22 +1,12 @@
 package kr.inhatc.spring.user.entity;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-import org.hibernate.annotations.ColumnDefault;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,7 +17,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User {
+public class Basic {
 	
 	@Id
 	@GeneratedValue
@@ -44,10 +34,10 @@ public class User {
 	private int hitCnt;
 	
 	@Column(name = "user_uploadDate")
-	private String uploadDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+	private String uploadDate;
 	
 	@Column(name = "user_creator")
-	private String creator = "admin";
+	private String creator;
 	
 
 	
