@@ -1,11 +1,18 @@
 package kr.inhatc.spring.user.dto;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import kr.inhatc.spring.user.entity.User;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class UserDto {
 	private Long id;
 	private String title;
@@ -29,8 +36,8 @@ public class UserDto {
 				.title(title)
 				.contents(contents)
 				.hitCnt(0)
-				.uploadDate(uploadDate)
-				.creator(creator)
+				.uploadDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
+				.creator("admin")
 				.build();
 	}
 }
