@@ -22,7 +22,7 @@ public class BasicDto {
 	private String creator;
 	
 	
-	public BasicDto(final Basic entity) {
+	public BasicDto(Basic entity) {
 		this.id = entity.getId();
 		this.title = entity.getTitle();
 		this.contents = entity.getContents();
