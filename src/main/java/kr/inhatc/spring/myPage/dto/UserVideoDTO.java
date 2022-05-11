@@ -1,0 +1,38 @@
+package kr.inhatc.spring.myPage.dto;
+
+import java.time.LocalDateTime;
+import java.util.Date;
+
+import kr.inhatc.spring.myPage.entity.UserVideo;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Builder
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class UserVideoDTO {
+	
+	private int UVId;
+	private String UVTitle;
+	private LocalDateTime UVTime;
+	private Date UVUpload;
+
+	public UserVideoDTO(final UserVideo entity) {
+		this.UVId = entity.getUVId();
+		this.UVTime = entity.getUVTime();
+		this.UVTitle = entity.getUVTitle();
+		this.UVUpload = entity.getUVUpload();
+	}
+	public static UserVideo toEntity(final UserVideoDTO dto) {
+		return UserVideo.builder()
+				.UVId(dto.getUVId())
+				.UVTime(dto.getUVTime())
+				.UVUpload(dto.getUVUpload())
+				.build();
+	}
+}
