@@ -1,5 +1,9 @@
-package kr.inhatc.spring.user_video.entity;
+package kr.inhatc.spring.myPage.entity;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -9,17 +13,17 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Builder
+@Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity
-public class user {
+@Builder
+public class UserLecture {
 	@Id
-	private int id;
-	private String mm;
-	private String password;
-	private String role;
-	private String username;
+	private int ULPId;
+	@Column
+	private int LPId;
+	@Column
+	private int UId;
 }
