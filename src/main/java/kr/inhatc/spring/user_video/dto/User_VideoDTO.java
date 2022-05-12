@@ -26,7 +26,7 @@ public class User_VideoDTO {
 	private int Overlap;
 	private Date PlayOn;
 	private Date PlayOff;
-
+  
 	public User_VideoDTO(final User_Video entity) {
 		this.uvPNum = entity.getUvPNum();
 		this.user = entity.getUser();
