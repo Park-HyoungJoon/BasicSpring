@@ -26,7 +26,7 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @Controller
 public class Video_BoardController {
-	
+	 
 	@Autowired
 	private Video_BoardService video_BoardService;
 	
