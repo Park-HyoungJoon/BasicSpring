@@ -19,7 +19,7 @@ import kr.inhatc.spring.login.repository.UserRepositoy;
 public class LoginController {
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
-
+//	test
 	@Autowired
 	private UserRepositoy userRepositoy;
 	
