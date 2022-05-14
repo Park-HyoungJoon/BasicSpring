@@ -50,6 +50,14 @@ public class UserService {
 			throw new NullPointerException();
 		}
 	}
+	public UserDto findByUserId(int userId) {
+		List<User> user = UserRepository.findUser(userId); // 유저아이디로 유저찾음
+		
+		List<UserDto> udt = user.stream().map(UserDto::new).collect(Collectors.toList());
+		
+		return udt.get(0);
+		
+	}
 
 	/**
 	 * 게시글 삭제
@@ -57,5 +65,22 @@ public class UserService {
 	public void userDelete(Long id) {
 		UserRepository.deleteById(id);
 	}
+	public List<UserDto> findMe(int id){
+		List<User> user = UserRepository.findUser(id);
+		System.out.println(user.get(0).getNick());
+		return user.stream().map(UserDto::new).collect(Collectors.toList());
+		
+	}
+	public void img_update(int userId, String profile_photo) {
+		List<User> user = UserRepository.findUser(userId); // 유저아이디로 유저찾음
+		System.out.println(user.get(0).getNick()+"//////////////////////////////////////////////////");
+		user.get(0).setProfile_Photo(profile_photo);
+		UserDto udt = new UserDto(user.get(0));
+			
+		saveUser(udt);
+	}
 
+	public void updateProfile(String nick, String self, String pW, long id) {
+		int up = UserRepository.setProfile(nick,self,pW,id);
+	}
 }
