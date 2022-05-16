@@ -30,10 +30,10 @@ public class Video_BoardController {
 	@Autowired
 	private Video_BoardService video_BoardService;
 	
-//	@RequestMapping("/")
-//	public String hello() {
-//		return "redirect:/user/userList";
-//	}
+	@RequestMapping("/")
+	public String hello() {
+		return "user/main";
+	}
 	  
 	@GetMapping("/video/videoList")
 	public String videoList(@RequestParam(required = false, defaultValue = "") String search, Model model, @PageableDefault(size = 8, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
