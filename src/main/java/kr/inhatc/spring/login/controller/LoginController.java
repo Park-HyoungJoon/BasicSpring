@@ -82,7 +82,7 @@ public class LoginController {
 			System.out.println("실패");
 		}
 		
-		return "redirect:/user/userList";
+		return "user/main";
 	}
 
 	@GetMapping("/loginForm")
