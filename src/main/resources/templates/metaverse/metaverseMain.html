@@ -21,14 +21,16 @@
 	<div th:replace="/fragments/header.html :: fragment-nav"></div>
 	<!-- Page Content -->
 	<div class="container">
-		<div class="row">
+		<div class="실시간 강의 버튼">
 
-			<button onclick="location.href='https://app.gather.town/app/8OszbTq17NSx5AiF/YGMPG'">실시간 강의 참여하기</button>
-			<button name="testAction">일단 테스트 이건 활성화</button>
-			<button name="testNonAction">이건 비활성화</burron>
-
+			<button name="goGather" onclick="window.open('https://app.gather.town/app/8OszbTq17NSx5AiF/YGMPG');">실시간 강의 참여하기</button>
+			<div class="test-Do">
+				<button name="testAction" >일단 테스트 이건 활성화</button>
+			</div>
+			<div class="test-None">
+				<button name="testNonAction" disabled="disabled">이건 비활성화</button>			
+			</div>
 			
-				
 
 
 		</div>
@@ -40,3 +42,4 @@
 
 </body>
 </html>
+

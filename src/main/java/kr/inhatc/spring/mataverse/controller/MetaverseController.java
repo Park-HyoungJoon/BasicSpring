@@ -1,4 +1,4 @@
-package kr.inhatc.spring.matabus.controller;
+package kr.inhatc.spring.mataverse.controller;
 
 import java.security.Principal;
 
@@ -16,13 +16,13 @@ import kr.inhatc.spring.login.entity.Member;
 import kr.inhatc.spring.login.repository.UserRepositoy;
 
 @Controller
-public class MetabusController{
+public class MetaverseController{
 
 	
 //	메타버스 메인 창
-	@RequestMapping("/metabus")
+	@RequestMapping("/metaverse")
 	public String metabusMain() {
-		return "metabus/metabusMain";
+		return "metaverse/metaverseMain";
 	}
 	
 
