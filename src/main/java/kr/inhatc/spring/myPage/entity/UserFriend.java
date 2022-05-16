@@ -1,14 +1,18 @@
 package kr.inhatc.spring.myPage.entity;
 
-import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
+import kr.inhatc.spring.user.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,13 +25,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserLecture {
+public class UserFriend {
 	@Id
-	private int ULPId;
+	private int UFPId;
+
 	@Column
-	private int LPId;
+	private int OtherUId;
+	
 	@Column
 	private int UId;
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date ULUpload;
 }

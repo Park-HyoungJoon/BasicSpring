@@ -84,7 +84,7 @@
   data-toggle="table"
   data-search="true"
   data-show-columns="true"
-  data-url="json/data1.json">
+  data-url="${result}">
   <thead>
     <tr>
       <th colspan="2">친구정보</th>
@@ -115,6 +115,11 @@
 			</main>
 		</div>
 	</div>
+	<script>
+	var person_str1 = "${result}";
+	var jso = JSON.parse(person_str1);
+	console.log(jso);
+	</script>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
