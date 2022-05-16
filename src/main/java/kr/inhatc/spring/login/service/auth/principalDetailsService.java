@@ -6,8 +6,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import kr.inhatc.spring.login.entity.Member;
+
 import kr.inhatc.spring.login.repository.UserRepositoy;
+import kr.inhatc.spring.user.entity.User;
 
 
 
@@ -20,7 +21,7 @@ public class principalDetailsService implements UserDetailsService{
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		System.out.println("==================> email: " + email);
-		Member userEntity = userRepository.findByEmail(email);
+		User userEntity = userRepository.findByEmail(email);
 		if(userEntity != null) {
 			return new PrincipalDatails(userEntity);
 		}

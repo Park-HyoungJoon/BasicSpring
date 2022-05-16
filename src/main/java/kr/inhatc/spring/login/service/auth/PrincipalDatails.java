@@ -6,16 +6,16 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import kr.inhatc.spring.login.entity.Member;
+import kr.inhatc.spring.user.entity.User;
 import lombok.Data;
 
 //시큐리티가 /login 주소요청이 오면 낚아쳐서 로그인을 진행
 @Data
 public class PrincipalDatails implements UserDetails{
 		
-	private Member user;				
+	private User user;				
 	
-	public PrincipalDatails(Member user) {
+	public PrincipalDatails(User user) {
 		this.user = user;
 	}
 	
@@ -35,7 +35,7 @@ public class PrincipalDatails implements UserDetails{
 	
 	@Override
 	public String getPassword() {
-		return user.getPassword();
+		return user.getPW();
 	}
 
 	@Override
