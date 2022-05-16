@@ -12,6 +12,7 @@ import kr.inhatc.spring.myPage.dto.UserLectureDTO;
 import kr.inhatc.spring.myPage.dto.UserVideoDTO;
 import kr.inhatc.spring.myPage.entity.UserLecture;
 import kr.inhatc.spring.myPage.entity.UserVideo;
+import kr.inhatc.spring.myPage.repository.UserFriendRepository;
 import kr.inhatc.spring.myPage.repository.UserLectureRepository;
 import kr.inhatc.spring.myPage.repository.UserVideoRepository;
 
@@ -28,15 +29,23 @@ public class UserVideoService {
 		/**
 		 * 게시글 조회
 		 */
-		public List<UserVideoDTO> videoList() {
-			List<UserVideo> list = uvRepository.findAll();	
+		public List<UserVideoDTO> videoList(int id) {
+			List<UserVideo> list = uvRepository.findallVideo(id);
 			System.out.println(list.get(0).getUVId());
 			return list.stream().map(UserVideoDTO::new).collect(Collectors.toList());
 		}
-		public List<UserLectureDTO> uLectureList() {
-			List<UserLecture> list = uLRepository.findAll();	
+		public List<UserLectureDTO> uLectureList(int id) {
+			List<UserLecture> list = uLRepository.findallLectures(id);	
 			System.out.println(list.get(0).getULPId());
 			return list.stream().map(UserLectureDTO::new).collect(Collectors.toList());
+		}
+		public List<UserLectureDTO> latestuLectureList(Long long1) {
+			List<UserLecture> list = uLRepository.latestLecture(long1);	
+			return list.stream().map(UserLectureDTO::new).collect(Collectors.toList());
+		}
+		public List<UserVideoDTO> latestuVideoList(Long long1) {
+			List<UserVideo> list = uvRepository.latestVideo(long1);	
+			return list.stream().map(UserVideoDTO::new).collect(Collectors.toList());
 		}
 
 }

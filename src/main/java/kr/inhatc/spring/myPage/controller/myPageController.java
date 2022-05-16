@@ -7,10 +7,14 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.simple.parser.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.Resource;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,8 +26,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.inhatc.spring.login.entity.Member;
 import kr.inhatc.spring.myPage.dto.UserLectureDTO;
 import kr.inhatc.spring.myPage.dto.UserVideoDTO;
+import kr.inhatc.spring.myPage.service.UserFriendService;
 import kr.inhatc.spring.myPage.service.UserVideoService;
 import kr.inhatc.spring.user.dto.UserDto;
 import kr.inhatc.spring.user.entity.User;
@@ -37,22 +43,40 @@ public class myPageController {
 	UserVideoService service;
 	@Autowired
 	UserService userService;
+	@Autowired
+	UserFriendService ufservice;
 	
 	@RequestMapping("/mypage")
-	public String myPage() {
+	public String myPage(Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String path = auth.getName();
+		List<UserDto> udt = userService.findAllData(path);
+		log.info(udt.get(0).getId());
+		List<UserLectureDTO> ulDTO = service.latestuLectureList(udt.get(0).getId());
+		List<UserVideoDTO> uvDTO = service.latestuVideoList(udt.get(0).getId());
+		model.addAttribute("data",udt);
+		model.addAttribute("ulList",ulDTO);
+		model.addAttribute("uvList",uvDTO);
+		
 		return "myPage/mypage";
 	}
 
 	@RequestMapping(value="/myLecture",method=RequestMethod.GET)
 	public String myLecture(Model model) {
-		List<UserLectureDTO> list = service.uLectureList();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String path = auth.getName();
+		int id = userService.findUserId(path);
+		List<UserLectureDTO> list = service.uLectureList(id);
 		model.addAttribute("list",list);
 		return "myPage/myLecture";
 	}
 
 	@RequestMapping(value="/myVideo", method=RequestMethod.GET)
 	public String myVideo(Model model) {
-		List<UserVideoDTO> list = service.videoList();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String path = auth.getName();
+		int id = userService.findUserId(path);
+		List<UserVideoDTO> list = service.videoList(id);
 		model.addAttribute("list",list);
 		return "myPage/myVideo";
 	}
@@ -64,15 +88,32 @@ public class myPageController {
 	 */
 	
 	@RequestMapping("/friendList")
-	public String friendList() {
+	public String friendList(Model model) {
+
+		try {
+		  Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		  String path = auth.getName(); 
+		  int id = userService.findUserId(path);
+		  String result = ufservice.findMyFriend(id);
+		  System.out.println(result);
+		  JSONParser parser = new JSONParser();
+			  JSONObject jsonobj = (JSONObject) parser.parse(result); 
+			  model.addAttribute("result",jsonobj);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return "myPage/friendList";
 	}
 
 
-	@RequestMapping("/myprofile/{id}")
-	public String profile(@PathVariable("id") int id,Model model) {
-		List<UserDto> user = userService.findMe(id);
-		model.addAttribute("user",user);
+	@RequestMapping("/myprofile")
+	public String profile(Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String path = auth.getName();
+		int id = userService.findUserId(path);
+		List<UserDto> dto = userService.findMe(id);
+		model.addAttribute("user",dto);
 		return "myPage/myprofile";
 	}
 	
@@ -109,11 +150,11 @@ public class myPageController {
 		UserDto user = userService.findByUserId(id);
 		
 		if(PW.equals("") || PW==null) {
-			String redirect_url = "redirect:/myprofile/" + user.getId();
+			String redirect_url = "redirect:/myprofile/";
 			return redirect_url;
 		}else {
 			userService.updateProfile(Nick,self,PW,user.getId());
-			String redirect_url = "redirect:/myprofile/" + user.getId();
+			String redirect_url = "redirect:/myprofile/";
 			return redirect_url;
 			
 		}
