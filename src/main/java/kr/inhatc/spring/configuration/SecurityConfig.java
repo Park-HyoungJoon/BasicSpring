@@ -32,10 +32,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.and()
 			.formLogin()
 
-			.loginPage("/user/userList")
+			.loginPage("/")
 //			.usernameParameter("email")
 			.loginProcessingUrl("/login")
-			.defaultSuccessUrl("/user/userList");
+			.defaultSuccessUrl("/");
 	}
 	
 	@Bean
