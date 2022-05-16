@@ -20,18 +20,20 @@ public class UserLectureDTO {
 	private int ULPId;
 	private int LPId;
 	private int UId;
-	
+	private Date ULUpload;
 
 	public UserLectureDTO(final UserLecture entity) {
 		this.ULPId = entity.getULPId();
 		this.LPId = entity.getLPId();
 		this.UId = entity.getUId();
+		this.ULUpload = entity.getULUpload();
 	}
 	public static UserLecture toEntity(final UserLectureDTO dto) {
 		return UserLecture.builder()
 				.ULPId(dto.getULPId())
 				.LPId(dto.getLPId())
 				.UId(dto.getUId())
+				.ULUpload(dto.getULUpload())
 				.build();
 	}
 }
