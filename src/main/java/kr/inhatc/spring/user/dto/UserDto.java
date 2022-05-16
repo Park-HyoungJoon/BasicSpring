@@ -24,6 +24,7 @@ public class UserDto {
 	private String Nick;
 	private String Self;
 	private String Role;
+	private String Profile_Photo;
 	
 	
 	public UserDto(final User entity) {
@@ -33,10 +34,12 @@ public class UserDto {
 		this.Nick = entity.getNick();
 		this.Self = entity.getSelf();
 		this.Role = entity.getRole();
+		this.Profile_Photo = entity.getProfile_Photo();
 	}
 	
 	public User toEntity() {
 		return User.builder()
+				.Profile_Photo(Profile_Photo)
 				.id(id)
 				.Email(Email)
 				.PW(PW)

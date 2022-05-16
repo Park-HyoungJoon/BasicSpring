@@ -38,4 +38,6 @@ public class User {
 	
 	@Column
 	private String Role;
+	@Column
+	private String Profile_Photo;
 }
