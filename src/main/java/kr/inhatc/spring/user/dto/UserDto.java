@@ -19,7 +19,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class UserDto {
 	private Long id;
-	private String Email;
+	private String email;
 	private String PW;
 	private String Nick;
 	private String Self;
@@ -29,7 +29,7 @@ public class UserDto {
 	
 	public UserDto(final User entity) {
 		this.id = entity.getId();
-		this.Email = entity.getEmail();
+		this.email = entity.getEmail();
 		this.PW = entity.getPW();
 		this.Nick = entity.getNick();
 		this.Self = entity.getSelf();
@@ -41,7 +41,7 @@ public class UserDto {
 		return User.builder()
 				.Profile_Photo(Profile_Photo)
 				.id(id)
-				.Email(Email)
+				.email(email)
 				.PW(PW)
 				.Role(Role)
 				.Self(Self)
