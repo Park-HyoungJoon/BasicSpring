@@ -10,6 +10,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ import kr.inhatc.spring.user.service.BasicService;
 import kr.inhatc.spring.video_board.dto.Video_BoardDto;
 import kr.inhatc.spring.video_board.entity.Video_Board;
 import kr.inhatc.spring.video_board.service.Video_BoardService;
+import kr.inhatc.spring.video_board.util.PageRequestDto;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -35,13 +37,19 @@ public class Video_BoardController {
 		return "user/main";
 	}
 	  
-	@GetMapping("/video/videoList")
-	public String videoList(@RequestParam(required = false, defaultValue = "") String search, Model model, @PageableDefault(size = 8, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
-		Page<Video_BoardDto> list = video_BoardService.search(search, pageable);
-		int totalPage = list.getTotalPages();
+//	@GetMapping("/video/videoList")
+//	public String videoList(@RequestParam(required = false, defaultValue = "") String search, Model model, @PageableDefault(size = 8, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
+//		Page<Video_BoardDto> list = video_BoardService.search(search, pageable);
+//		int totalPage = list.getTotalPages();
+//	
+//		model.addAttribute("list", list);
+//		model.addAttribute("totalPage", totalPage);
+//		return "video/videoList";
+//	}
 	
-		model.addAttribute("list", list);
-		model.addAttribute("totalPage", totalPage);
+	@GetMapping("/video/videoList")
+	public String videoList(PageRequestDto pageRequestDto, Model model) {
+		model.addAttribute("list", video_BoardService.getList(pageRequestDto));
 		return "video/videoList";
 	}
 	
@@ -57,10 +65,10 @@ public class Video_BoardController {
 		return "redirect:/video/videoList";
 	}
 	
-	@GetMapping("/video/videoDetail/{id}")
+	@GetMapping("/video/videoDetail")
 	//  Rest방식 /user/Detail/13 이렇게 경로처럼 받으면 Pathvariable 써야함,,
 	//  그냥 일반 파라미터 값 /board/Detail?boardIdx=3 이런식으로 받으면 @RequestPram으로 쓰고
-	public String videoDetail(@PathVariable("id") Long id, Model model) {
+	public String videoDetail(Long id, @ModelAttribute("requestDto") PageRequestDto requestDto, Model model) {
 		Video_BoardDto video = video_BoardService.videoDetail(id);
 		model.addAttribute("video", video);
 		return "video/videoDetail";

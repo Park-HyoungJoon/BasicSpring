@@ -20,8 +20,11 @@
 
 </head>
 <body>
+
+
 	<div th:replace="/fragments/header.html :: fragment-nav"></div>
-	
+
+
 
 
 	<!-- 
@@ -262,17 +265,17 @@
 							</div>
 						</div>
 					</div>
-				</div>
 
+				</div>
 
 
 			</div>
 
-		
 
 
 
-		<!-- 
+
+			<!-- 
  
  
  -->
@@ -283,75 +286,103 @@
 
 
 
-		<!-- /.col-lg-3 -->
+			<!-- /.col-lg-3 -->
 
-		<div class="col-lg-9 my-3 mb-4">
-			<form th:action="@{/video/videoList}" method="GET"
-				class="form-inline p-2 bd-highlight">
-				<div class="input-group mb-2" style="width: 200px; float: right;">
-					<input name="search" type="text" class="form-control"
-						placeholder="강의 검색하기">
-					<button style="background-color: #00bc8c; border-color: #00bc8c;"
-						class="btn btn-primary">검색</button>
+			<div class="col-lg-9 my-3 mb-4">
+				<form th:action="@{/video/videoList}" method="GET"
+					class="form-inline p-2 bd-highlight" id="searchForm">
+
+					<div class="input_group">
+						<input type="hidden" name="page" value="1">
+
+					</div>
+
+
+					<div class="input-group mb-2" style="width: 400px; float: right;">
+
+						<select class="form-select" id="exampleSelect1" name="type">
+							<option th:selected="${pageRequestDto.type == null}">----------</option>
+							<option value="t" th:selected="${pageRequestDto.type == 't'}">제목</option>
+							<option value="c" th:selected="${pageRequestDto.type == 'c'}">내용</option>
+							<option value="o" th:selected="${pageRequestDto.type == 'o'}">작성자</option>
+							<option value="tc" th:selected="${pageRequestDto.type == 'tc'}">제목
+								+ 내용</option>
+							<option value="tco" th:selected="${pageRequestDto.type == 'tco'}">제목
+								+ 내용 + 작성자</option>
+						</select> <input name="keyword" type="text" class="form-control"
+							th:value="${pageRequestDto.keyword}" placeholder="강의 검색하기">
+						<button style="background-color: #00bc8c; border-color: #00bc8c;"
+							class="btn btn-primary" id="searchBtn">검색</button>
+					</div>
+
+
+
+				</form>
+
+				<br> <br> <br>
+				<hr>
+				<div>
+					<button style="background-color: #00bc8c; float: right;"
+						type="button" class="btn btn-secondary"
+						onclick="location.href='/video/videoInsert' ">테스트 강의등록</button>
+
+					<button style="background-color: #00bc8c;" type="button"
+						class="btn btn-secondary"
+						onclick="location.href='/video/videoDetail2' ">테스트 상세보기</button>
 				</div>
-			</form>
 
-			<br> <br> <br>
-			<hr>
-			<div>
-				<button style="background-color: #00bc8c; float: right;"
-					type="button" class="btn btn-secondary"
-					onclick="location.href='/video/videoInsert' ">테스트 강의등록</button>
 
-				<button style="background-color: #00bc8c;" type="button"
-					class="btn btn-secondary"
-					onclick="location.href='/video/videoDetail2' ">테스트 상세보기</button>
-			</div>
 
-			<div class="row row-cols-1 row-cols-md-4 g-4"
-				style="max-width: 900px; float: none; margin: 0 auto;">
-				<div class="col" th:if="${#lists.size(list)} > 0"
-					th:each="vo : ${list}">
-					<div class="card h-100">
-						<img th:src="@{/img/java.png}" class="card-img-top" alt="...">
-						<div class="card-body">
-							<h5 class="title" th:text="${vo.title}"></h5>
-							<a href="/video/videoDetail/" th:attrappend="href=${vo.id}"
-								class="btn btn-secondary" style="background-color: #00bc8c;">학습하기</a>
-						</div>
-						<div class="card-footer">
-							<small class="text-muted" th:text="${vo.uploadDate}"></small>
+				<div class="row row-cols-1 row-cols-md-4 g-4"
+					style="max-width: 900px; float: none; margin: 0 auto;">
+					<div class="col" th:each="vo : ${list.dtoList}">
+						<div class="card h-100">
+							<img th:src="@{/img/java.png}" class="card-img-top" alt="...">
+							<div class="card-body">
+								<h5 class="title" th:text="${vo.title}"></h5>
+								<a th:href="@{/video/videoDetail(id=${vo.id},page=${list.page}, type=${pageRequestDto.type}, keyword=${pageRequestDto.keyword})}"
+									class="btn btn-secondary" style="background-color: #00bc8c;">학습하기</a>
+							</div>
+							<div class="card-footer">
+								<small class="text-muted" th:text="${vo.uploadDate}"></small>
+							</div>
 						</div>
 					</div>
 				</div>
+
+				<br>
+
+
+
+
+				<div>
+					<ul class="pagination" style="justify-content: center;">
+
+						<li class="page-item"><a class="page-link"
+							th:if="${list.prev}"
+							th:href="@{/video/videoList(page= ${list.start -1}, type=${pageRequestDto.type}, keyword =${pageRequestDto.keyword})}"
+							tabindex="-1">&laquo;</a></li>
+
+						<li class="page-item" th:each="page : ${list.pageList}"><a
+							class="page-link"
+							th:href="@{/video/videoList(page=${page}, type=${pageRequestDto.type}, keyword=${pageRequestDto.keyword})}"
+							th:text="${page}"></a></li>
+
+						<li class="page-item"><a class="page-link"
+							th:if="${list.next}"
+							th:href="@{/video/videoList(page=${list.end + 1}, type=${pageRequestDto.type},keyword=${pageRequestDto.keyword})}">&raquo;</a>
+						</li>
+					</ul>
+				</div>
+
+
+
+
 			</div>
 
-			<br>
-
-
-			<div>
-				<ul class="pagination" style="justify-content: center;">
-
-					<li class="page-item"><a class="page-link"
-						th:href="@{/video/videoList(page=0, search=${param.search})}">&laquo;</a></li>
-
-					<li class="page-item" th:if="${totalPage} > 0"
-						th:each="page : ${#numbers.sequence(0, totalPage - 1)}"><a
-						class="page-link"
-						th:href="@{/video/videoList(page=${pageStat.index}, search=${param.search})}"
-						th:text="${pageStat.index + 1}"></a></li>
-					<li class="page-item"><a class="page-link"
-						th:href="@{/video/videoList(page=${totalPage - 1}, search=${param.search})}">&raquo;</a>
-					</li>
-				</ul>
-			</div>
 
 
 		</div>
-
-
-
-	</div>
 	</div>
 	<!-- 여기서부터 본문내용, 이후 코드는 bottomLayout에서 마무리 -->
 
@@ -362,11 +393,24 @@
 		</button> 
 		-->
 
+	<script th:inline="javascript">
+	
+	
+	
+	
+		var searchForm = $("#searchForm");
+
+		$('#searchBtn').click(function(e) {
+			searchForm.submit();
+		});
+	</script>
 
 
 
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+
 
 </body>
 </html>
