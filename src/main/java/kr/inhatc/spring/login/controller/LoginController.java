@@ -99,4 +99,6 @@ public class LoginController {
 	public String joinForm() {
 		return "login/joinForm";
 	}
+	
+//	@Re
 }

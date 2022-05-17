@@ -12,22 +12,8 @@
 
 </head>
 <body>
-<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-  <symbol id="github" viewBox="0 0 16 16">
-    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-  </symbol>
-
-  <symbol id="twitter" viewBox="0 0 16 16">
-    <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
-  </symbol>
-
-  <symbol id="facebook" viewBox="0 0 16 16">
-    <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
-  </symbol>
-</svg>
-
 <form>
-<h1>&nbsp</h1>
+&nbsp
 </form>
 <style type="text/css">
 #floatingInput {   
@@ -58,28 +44,30 @@
       </div>
 
       <div class="modal-body p-5 pt-0">
-        <form th:action="@{/join}" method="post">
+        <form th:action="@{/join}" method="post" onsubmit="return btnSubmit();">
           <div class="form-floating mb-3">
           	
-            <input type="email" class="form-control rounded-4" id="floatingInput" placeholder="name@example.com" name="email">
-            <input type="button" value="Check" class="btt" id="btt">
+            <input type="email" class="form-control rounded-4" id="email" placeholder="name@example.com" name="email">
+            <!-- <input type="button" value="Check" class="btt" id="btt">-->
             
             <label for="floatingInput">Email</label>
+            <div id="mes" style="margin: 8px 0 -5px 5px; display: none; color: #FA4F5A; display: none">이미 존재하는 이메일 입니다.</div>
           </div>
           <div class="form-floating mb-3">
-            <input type="text" class="form-control rounded-4" id="floatingInput" placeholder="ppp" name="Nick">
+            <input type="text" class="form-control rounded-4" id="nick" placeholder="ppp" name="Nick">
             <label for="floatingPassword">name</label>
           </div>
           
           <div class="form-floating mb-3">
-            <input type="password" class="form-control rounded-4" id="floatingPassword" placeholder="Password" name="PW">
+            <input type="password" class="form-control rounded-4" id="pw1" placeholder="Password" name="PW">
             <label for="floatingPassword">Password</label>
           </div>
           
           <div class="form-floating mb-3">
-            <input type="password" class="form-control rounded-4" id="floatingPassword" placeholder="Password">
+            <input type="password" class="form-control rounded-4" id="pw2" placeholder="Password">
             <label for="floatingPassword">Password check</label>
-          </div>
+            <div id="mes2" style="margin: 8px 0 -5px 5px; display: flex; color: #FA4F5A; display: none">비밀번호가 일치하지 않습니다.</div>
+          </div> 
           
           <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit" 
           	style="background-color: #FFFFFF; border-color: #94EBA7; color: #94EBA7; ">Sign up</button>
@@ -93,6 +81,70 @@ const btn = document.getElementById("btt")
 btn.addEventListener("click", e => {
 	
 })
+</script>
+<script type="text/javascript">
+var emailconfirm = document.getElementById("email");
+var mes = document.getElementById("mes");
+//mes.style.display = 'flex';
+emailconfirm.addEventListener('keyup',function(){
+	var xhr = new XMLHttpRequest();
+	var value='email=' + emailconfirm.value;
+
+	xhr.open('POST', '/emailconfirim',true);
+	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+	xhr.send(value); /// ajax data부분
+	xhr.onload = function() {
+		if(xhr.status==200) {
+			//alert(xhr.response);
+			if(xhr.response == 'false') {
+				mes.style.display = 'none';
+			} else {
+				mes.style.display = 'flex';
+			}
+		}
+	}
+})
+
+var pw1 = document.getElementById("pw1");
+var pw2 = document.getElementById("pw2");
+pw2.addEventListener('keyup',function(){
+	//alert(pw2.value);
+	if(pw1.value == pw2.value) {
+		mes2.style.display = 'none';
+	} else {
+		mes2.style.display = 'flex';
+	}
+})
+
+pw1.addEventListener('keyup',function(){
+	//alert(pw2.value);
+	if(pw1.value == pw2.value) {
+		mes2.style.display = 'none';
+	} else {
+		mes2.style.display = 'flex';
+	}
+})
+
+function btnSubmit() {
+  var p1 = document.getElementById( 'email' ).value;
+  var p2 = document.getElementById( 'nick' ).value;
+  var p3 = document.getElementById( 'pw1' ).value;
+  var p4 = document.getElementById( 'pw2' ).value;
+  
+  if (p1 == "" || p2 == "" || p3 == "" || p4 =='') {
+    alert( '빈칸 없이 입력해 주세요!' );
+    return false;
+  }
+  
+  var mes1 = document.getElementById("mes");
+  var mes2 = document.getElementById("mes2");
+  //alert(mes.style.display)
+ 
+  if(mes.style.display == 'flex' || mes2.style.display == 'flex') {
+	  alert( '입력한 내용을 확인해 주세요!' );
+	  return false;
+  }
+}
 </script>
 </body>
 </html>
