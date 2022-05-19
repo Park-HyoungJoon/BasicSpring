@@ -72,7 +72,12 @@ public class UserService {
 		
 	}
 	public int findUserId(String email){
-		int user = UserRepository.findEmailtoUser(email);
+		int user = 0;
+		try {
+		user = UserRepository.findEmailtoUser(email);
+		}catch (Exception e) {
+			user=0;
+		}
 		return user;
 		
 	}
