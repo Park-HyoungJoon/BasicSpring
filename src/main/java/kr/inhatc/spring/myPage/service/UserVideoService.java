@@ -31,12 +31,11 @@ public class UserVideoService {
 		 */
 		public List<UserVideoDTO> videoList(int id) {
 			List<UserVideo> list = uvRepository.findallVideo(id);
-			System.out.println(list.get(0).getUVId());
 			return list.stream().map(UserVideoDTO::new).collect(Collectors.toList());
 		}
 		public List<UserLectureDTO> uLectureList(int id) {
 			List<UserLecture> list = uLRepository.findallLectures(id);	
-			System.out.println(list.get(0).getULPId());
+
 			return list.stream().map(UserLectureDTO::new).collect(Collectors.toList());
 		}
 		public List<UserLectureDTO> latestuLectureList(Long long1) {
