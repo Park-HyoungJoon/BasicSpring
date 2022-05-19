@@ -100,7 +100,7 @@ class="navbar navbar-expand-lg navbar-light">
 
  -->
  
- <div id="modal" class="modal">
+ <div id="modal" class="modal fade">
    <div class="modal-dialog" role="document">
     <div class="modal-content rounded-5 shadow">
       <div class="modal-header p-5 pb-4 border-bottom-0">
@@ -112,15 +112,21 @@ class="navbar navbar-expand-lg navbar-light">
       <div class="modal-body p-5 pt-0">
         <form th:action="@{/login}" method="post">
           <div class="form-floating mb-3">
-            <input type="email" class="form-control rounded-4" id="floatingInput" placeholder="name@example.com" name="username">
-            <label for="floatingInput">Email address</label>
+            <input type="email" class="form-control rounded-4" id="floatingInput" placeholder="name@example.com" name="username"
+            style="width: 400px; margin: -90px 0 0 -100px;">
+            <label for="floatingInput" style="margin: 0 0 0 -100px;">Email address</label>
           </div>
           <div class="form-floating mb-3">
-            <input type="password" class="form-control rounded-4" id="floatingPassword" placeholder="Password" name="password">
-            <label for="floatingPassword">Password</label>
+            <input type="password" class="form-control rounded-4" id="floatingPassword" placeholder="Password" name="password"
+            style="width: 400px; margin: 0 0 0 -100px;">
+            <label for="floatingPassword" style="margin: 0 0 0 -100px;">Password</label>
           </div>
-          <button class="w-100 mb-2 btn btn-lg rounded-4 btn-primary" type="submit">Sign up</button>
-          <small class="text-muted"> <a href="/joinFrom">회원가입</a> | <a href="aa">비밀번호 찾기</a></small>
+          <button class="w-100 mb-2 btn btn-lg rounded-4" type="submit"
+          style="color: #2E8E46; border-color: #2E8E46;">Sign up</button>
+          </form>
+          
+          <small class="text-muted"> <a href="/joinFrom">회원가입</a> | <a data-bs-toggle="modal" href="#modal2">비밀번호 찾기</a></small>
+          <!-- <button data-bs-toggle="modal" data-bs-target="#modal2" data-bs-dismiss="modal">dddd</button> -->
           <hr class="my-4">
           <h2 class="fs-5 fw-bold mb-3">Or</h2>
           <button class="w-100 py-2 mb-2 btn btn-outline-dark rounded-4" type="submit">
@@ -136,7 +142,6 @@ class="navbar navbar-expand-lg navbar-light">
             <svg class="bi me-1" width="16" height="16"><use xlink:href="#github"/></svg>
             Sign up with GitHub
           </button>-->
-        </form>
       </div>
     </div>
   </div>
@@ -146,15 +151,67 @@ class="navbar navbar-expand-lg navbar-light">
 
 
  -->
+ <div class="modal fade" id="modal2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1"  data-backdrop="static">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalToggleLabel2">비밀번호 변경</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="">
+      <div class="modal-body">
+      
+          <div class="form-floating mb-3">
+            <input type="email" class="form-control rounded-4" id="floatingInput" placeholder="name@example.com" name="username"
+            style="width: 400px; margin: -15px 0 0 -100px;">
+            <label for="floatingInput" style="margin: 0 0 0 -100px;">Email address</label>
+          </div>
+          
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control rounded-4" id="floatingInput" placeholder="ppp" name="Nick"
+            style="width: 400px; margin: -10px 0 0 -100px;">
+            <label for="floatingInput" style="margin: 0 0 0 -100px;">Nick name</label>
+          </div>
+          
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control rounded-4" id="floatingInput" placeholder="ppp" name="PW"
+            style="width: 400px; margin: -10px 0 0 -100px;">
+            <label for="floatingInput" style="margin: 0 0 0 -100px;">Password</label>
+          </div>
+          
+          <div class="form-floating mb-3">
+            <input type="password" class="form-control rounded-4" id="floatingInput" placeholder="ppp" name=""
+            style="width: 400px; margin: -10px 0 0 -100px;">
+            <label for="floatingInput" style="margin: 0 0 0 -100px;">Password check</label>
+          </div>
+          
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" type="submit">Back to first</button>
+      </div>
+     </form>
+    </div>
+  </div>
+ 
  <script type="text/javascript">
  const myDropdown = document.getElementById('drop')
 	myDropdown.addEventListener('show.bs.dropdown', event => {
 })
  
- const myModal = document.getElementById('modal')
- 	myModal.addEventListener('shown.bs.modal', () => {
-
- })
+ //const myModal = document.getElementById('modal')
+ 	//myModal.addEventListener('shown.bs.modal', () => {
+	
+ //})
+ 
+ 
+ 
+ //const myModal2 = document.getElementById('modal2')
+	//myModal2.addEventListener('shown.bs.modal2', () => {
+		
+		//$("#Modal2").on('show.bs.modal', function (e) {
+		  //  $("#Modal").modal("hide");
+		//});
+//})
  
  </script>
 </div>
