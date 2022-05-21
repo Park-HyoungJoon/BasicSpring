@@ -32,7 +32,7 @@
 		<h2>강의 등록</h2>
 		<!-- submit 버튼을 통한 데이터를 post방식으로 /board/boardInsert로 보낸다 -->
 		<!-- file 보내기 위한 enctype 설정! -->
-		<form id="frm" name="frm" method="post" action="/myPage/UVwrite">
+			<form th:action="@{/myPage/UVtoss}" class="needs-validation" method="post" novalidate>		
 			<table class="board_detail">
 				<!-- tr안에 2개의 td로 나눔  -->
 				<tr>

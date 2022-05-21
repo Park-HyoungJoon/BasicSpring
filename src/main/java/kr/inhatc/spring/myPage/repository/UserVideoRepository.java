@@ -2,7 +2,10 @@ package kr.inhatc.spring.myPage.repository;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -17,4 +20,9 @@ public interface UserVideoRepository extends JpaRepository<UserVideo, Integer>{
 
 	@Query(value="select v.* from UserVideo v where v.UId=?1 and v.UVUpload = (select MAX(UVUpload) from UserVideo where UId=?1)",nativeQuery = true)
 	public List<UserVideo> latestVideo(Long long1);
+	
+	@Transactional
+	@Modifying(clearAutomatically = true)
+	@Query(value="INSERT INTO UserVideo (UVTitle,UVContents,UId,UVHitCnt,UVUpload) values (?1,?2,?3,0,now())", nativeQuery = true)
+	int addUserVideo(String title, String contents, int id);
 }

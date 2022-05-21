@@ -21,6 +21,8 @@ public class UserVideoDTO {
 	private String UVTitle;
 	private LocalDateTime UVTime;
 	private Date UVUpload;
+	private String UVContents;
+	private int UVHitCnt;
 	private int UId;
 
 	public UserVideoDTO(final UserVideo entity) {
@@ -29,6 +31,8 @@ public class UserVideoDTO {
 		this.UVTitle = entity.getUVTitle();
 		this.UVUpload = entity.getUVUpload();
 		this.UId = entity.getUId();
+		this.UVContents = entity.getUVContents();
+		this.UVHitCnt = entity.getUVHitCnt();
 	}
 	public static UserVideo toEntity(final UserVideoDTO dto) {
 		return UserVideo.builder()
@@ -36,6 +40,8 @@ public class UserVideoDTO {
 				.UVId(dto.getUVId())
 				.UVTime(dto.getUVTime())
 				.UVUpload(dto.getUVUpload())
+				.UVContents(dto.getUVContents())
+				.UVHitCnt(dto.getUVHitCnt())
 				.build();
 	}
 }

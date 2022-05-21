@@ -76,6 +76,7 @@ public class myPageController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String path = auth.getName();
 		int id = userService.findUserId(path);
+		System.out.println(id);
 		List<UserVideoDTO> list = service.videoList(id);
 		model.addAttribute("list",list);
 		return "myPage/myVideo";
@@ -160,8 +161,24 @@ public class myPageController {
 		}
 	}
 	@GetMapping("/myPage/UVwrite")
-	public String videoWrite() {
+	public String videoWrite(Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String path = auth.getName();
+		int id = userService.findUserId(path);
+		List<UserVideoDTO> list = service.videoList(id);
+		model.addAttribute("list",list);
 		return "myPage/UVwrite";
+	}
+	
+	@PostMapping("/myPage/UVtoss")
+	public String videoToss(@RequestParam(value = "title",required = false) String title,@RequestParam(value = "contents",required = false) String contents,
+			Model model) {
+		System.out.println(title+",,,"+contents);
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String path = auth.getName();
+		int id = userService.findUserId(path);
+		service.saveVideo(title, contents, id);
+		return "redirect:/myVideo";
 	}
 
 	

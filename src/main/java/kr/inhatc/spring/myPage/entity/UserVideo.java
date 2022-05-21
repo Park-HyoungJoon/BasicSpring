@@ -32,5 +32,11 @@ public class UserVideo {
 	private Date UVUpload;
 	@Column
 	private int UId;
+	
+	@Column(columnDefinition = "TEXT")
+	private String UVContents;
+	
+	@Column
+	private int UVHitCnt;
 
 }
