@@ -2,10 +2,10 @@ package kr.inhatc.spring.login.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import kr.inhatc.spring.login.entity.Member;
+import kr.inhatc.spring.user.entity.User;
 
-public interface UserRepositoy extends JpaRepository<Member, Integer>{
+public interface UserRepositoy extends JpaRepository<User, Long>{
 
-	public Member findByUsername(String username);
-	public Member findByEmail(String email);
+	public User findByEmail(String email);
+	public boolean existsByEmail(String email);
 }

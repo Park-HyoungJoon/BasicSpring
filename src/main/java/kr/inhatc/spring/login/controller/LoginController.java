@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kr.inhatc.spring.login.entity.Member;
 import kr.inhatc.spring.login.repository.UserRepositoy;
+import kr.inhatc.spring.user.entity.User;
 
 @Controller
 public class LoginController {
@@ -68,21 +68,26 @@ public class LoginController {
 	public String login() {
 		return "login";
 	}
+	
+	@RequestMapping("/tt")
+	public String test() {
+		return "login/test";
+	}
 
 	@PostMapping("/join")
-	public String join(Member user) {
+	public String join(User user) {
 		System.out.println(user);
 		user.setRole("ROLE_USER");
-		String rawpass = user.getPassword();
+		String rawpass = user.getPW();
 		String encpass = bCryptPasswordEncoder.encode(rawpass);
-		user.setPassword(encpass);
+		user.setPW(encpass);
 		try {
 		userRepositoy.save(user);
 		} catch (Exception sqlException) {
 			System.out.println("실패");
 		}
 		
-		return "redirect:/user/userList";
+		return "redirect:/";
 	}
 
 	@GetMapping("/loginForm")
@@ -90,8 +95,10 @@ public class LoginController {
 		return "login/loginForm";
 	}
 
-	@GetMapping("/user/login/joinFrom")
+	@GetMapping("/joinFrom")
 	public String joinForm() {
 		return "login/joinForm";
 	}
+	
+//	@Re
 }

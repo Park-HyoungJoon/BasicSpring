@@ -51,15 +51,20 @@
 			<input type="hidden" name="id" th:value="${video.id}">
 		</form>
 		
+ 
+		<a th:href="@{/video/videoList(page=${requestDto.page}, type=${requestDto.type}, keyword=${requestDto.keyword})}">
+		<button class="btn btn-primary">
+		목록으로
+		</button>
+		</a>
+		
+		<a href="/video/videoDelete/" th:attrappend="href=${video.id}">
+		<button class="btn btn-primary">
+		삭제하기
+		</button>
+		</a>
 
-		
-		<button>
-		<a href="/video/videoList">목록으로</a>
-		</button>
-		
-		<button>
-		<a href="/video/videoDelete/" th:attrappend="href=${video.id}" color:#fff !important>삭제하기</a>
-		</button>
+
 			
 	</div>
 	

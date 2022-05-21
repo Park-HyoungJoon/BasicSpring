@@ -34,6 +34,7 @@ import kr.inhatc.spring.myPage.service.UserVideoService;
 import kr.inhatc.spring.user.dto.UserDto;
 import kr.inhatc.spring.user.entity.User;
 import kr.inhatc.spring.user.service.UserService;
+import kr.inhatc.spring.video_board.util.PageRequestDto;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -51,7 +52,6 @@ public class myPageController {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String path = auth.getName();
 		List<UserDto> udt = userService.findAllData(path);
-		log.info(udt.get(0).getId());
 		List<UserLectureDTO> ulDTO = service.latestuLectureList(udt.get(0).getId());
 		List<UserVideoDTO> uvDTO = service.latestuVideoList(udt.get(0).getId());
 		model.addAttribute("data",udt);
@@ -159,40 +159,10 @@ public class myPageController {
 			
 		}
 	}
-//	// GET(read), POST(create), PUT(update), DELETE(delete)
-//	@RequestMapping(value="/user/userList", method=RequestMethod.GET)
-//	public String userList(Model model) {
-//		List<BasicDto> list = userService.userList();
-//		model.addAttribute("list", list);
-//		return "user/userList";
-//	}
-//	
-//	@GetMapping("/user/userInsert")
-//	public String userWrite() {
-//		return "user/userWrite";
-//	}
-//	
-//	// 원래 엔티티 클래스는 요청이나 응답에 사용되면 안되는데 일단은 영상 그대로 따라하고 나중에 Request, Response 만들어보자
-//	@PostMapping("/user/userInsert")
-//	public String userInsert(BasicDto user) {
-//		userService.saveUser(user);
-//		return "redirect:/user/userList";
-//	}
-//	
-//	@GetMapping("/user/userDetail/{id}")
-//	//  Rest방식 /user/Detail/13 이렇게 경로처럼 받으면 Pathvariable 써야함,,
-//	//  그냥 일반 파라미터 값 /board/Detail?boardIdx=3 이런식으로 받으면 @RequestPram으로 쓰고
-//	public String userDetail(@PathVariable("id") Long id, Model model) {
-//		BasicDto user = userService.userDetail(id);
-//		model.addAttribute("user", user);
-//		return "user/userDetail";
-//	}
-//	
-//	
-//	@GetMapping("/user/userDelete/{id}")
-//	public String userDelete(@PathVariable("id") Long id) {
-//		userService.userDelete(id);
-//		return "redirect:/user/userList";
-//	}
+	@GetMapping("/myPage/UVwrite")
+	public String videoWrite() {
+		return "myPage/UVwrite";
+	}
+
 	
 }
