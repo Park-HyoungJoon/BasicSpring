@@ -15,6 +15,7 @@ import kr.inhatc.spring.myPage.entity.UserVideo;
 import kr.inhatc.spring.myPage.repository.UserFriendRepository;
 import kr.inhatc.spring.myPage.repository.UserLectureRepository;
 import kr.inhatc.spring.myPage.repository.UserVideoRepository;
+import kr.inhatc.spring.video_board.dto.Video_BoardDto;
 
 @Service
 public class UserVideoService {
@@ -24,7 +25,10 @@ public class UserVideoService {
 		
 		@Autowired
 		UserLectureRepository uLRepository;
-		
+
+		public void saveVideo(String title,String contents,int id) {
+			uvRepository.addUserVideo(title, contents, id);
+		}
 		
 		/**
 		 * 게시글 조회
@@ -46,5 +50,6 @@ public class UserVideoService {
 			List<UserVideo> list = uvRepository.latestVideo(long1);	
 			return list.stream().map(UserVideoDTO::new).collect(Collectors.toList());
 		}
+		
 
 }
