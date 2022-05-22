@@ -24,13 +24,13 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	@Query(value="Update User u set u.Nick=?1,u.self=?2,u.PW=?3 where u.UId=?4", nativeQuery = true)
 	int setProfile(String nick, String self, String pW, long id);
 	
-	@Query(value="SELECT u.* from user u where email=?1", nativeQuery = true)
+	@Query(value="SELECT u.* from User u where email=?1", nativeQuery = true)
 	List<User> findAllData(String email);
 
-	@Query(value="SELECT u.UId from user u where email=?1", nativeQuery = true)
+	@Query(value="SELECT u.UId from User u where email=?1", nativeQuery = true)
 	int findEmailtoUser(String email);
 	
-	@Query(value="SELECT json_arrayagg(json_object('id',UId,'name',Nick,'price', self)) FROM user where UId=?1", nativeQuery=true)
+	@Query(value="SELECT json_arrayagg(json_object('id',UId,'name',Nick,'price', self)) FROM User where UId=?1", nativeQuery=true)
 	String jsonUser(int i);
 	
 }

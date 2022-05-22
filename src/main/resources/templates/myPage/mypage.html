@@ -141,7 +141,11 @@
 									<img th:src="@{/img/java.png}" class="card-img-top" alt="...">
 									<div class="card-body">
 									<h5 class="title" th:text="${vo.UVTitle}"></h5>
-									<p class="card-text" th:text="${vo.UVContents}"></p>
+									
+										<!-- @{/video/videoDetail(id=${vo.id},page=${list.page}, type=${pageRequestDto.type}, keyword=${pageRequestDto.keyword})} -->
+										<a
+											
+											class="btn btn-secondary" style="height:35px;width:90px;background-color: #00bc8c;">학습하기</a>
 									</div>
 									<div class="card-footer">
 										<small class="text-muted" th:text="${vo.UVUpload}"></small>
