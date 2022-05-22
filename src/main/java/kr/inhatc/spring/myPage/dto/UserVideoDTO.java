@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 import kr.inhatc.spring.myPage.entity.UserVideo;
+import kr.inhatc.spring.video_board.dto.Video_BoardDto;
+import kr.inhatc.spring.video_board.entity.Video_Board;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
