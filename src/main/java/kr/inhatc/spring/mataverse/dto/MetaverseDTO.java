@@ -17,6 +17,7 @@ import kr.inhatc.spring.mataverse.entity.Metaverse;
 @AllArgsConstructor
 public class MetaverseDTO {
 	private int MId;
+	private int UId;
 	private String Title;
 	private Date StartDate;
 	private Date EndDate;
