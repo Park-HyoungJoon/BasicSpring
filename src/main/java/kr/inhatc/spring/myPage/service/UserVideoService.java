@@ -16,6 +16,7 @@ import kr.inhatc.spring.myPage.repository.UserFriendRepository;
 import kr.inhatc.spring.myPage.repository.UserLectureRepository;
 import kr.inhatc.spring.myPage.repository.UserVideoRepository;
 import kr.inhatc.spring.video_board.dto.Video_BoardDto;
+import kr.inhatc.spring.video_board.entity.Video_Board;
 
 @Service
 public class UserVideoService {
@@ -54,6 +55,17 @@ public class UserVideoService {
 		public void deleteUV(int uId, Long uVId) {
 			uvRepository.deleteUserVideo(uId, uVId);
 		}
+//		@Transactional
+//		public UserVideoDTO uvDetail(Long id) {
+//			Optional<UserVideo> optional = uvRepository.findById(id);
+//			if(optional.isPresent()) {
+//				UserVideo user_video = optional.get();
+//				user_video.increaseHits();
+//				return new UserVideoDTO(user_video);
+//			} else {
+//				throw new NullPointerException();
+//			}
+//		}
 		
 
 }
