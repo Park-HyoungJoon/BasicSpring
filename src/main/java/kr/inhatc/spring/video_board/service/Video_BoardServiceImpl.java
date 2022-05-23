@@ -1,5 +1,6 @@
 package kr.inhatc.spring.video_board.service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -16,6 +17,7 @@ import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 
 import kr.inhatc.spring.video_board.dto.Video_BoardDto;
+import kr.inhatc.spring.video_board.entity.Attachment;
 import kr.inhatc.spring.video_board.entity.QVideo_Board;
 import kr.inhatc.spring.video_board.entity.Video_Board;
 import kr.inhatc.spring.video_board.repository.Video_BoardRepository;
@@ -28,6 +30,8 @@ public class Video_BoardServiceImpl implements Video_BoardService {
 	
 	@Autowired
 	Video_BoardRepository video_BoardRepository;
+	@Autowired
+	AttachmentService attachmentService;
 	
 	/**
 	 * 게시글 조회
@@ -117,7 +121,7 @@ public class Video_BoardServiceImpl implements Video_BoardService {
 	 * 게시글 저장
 	 */
 	@Override
-	public void saveVideo(Video_BoardDto video) {
+	public void saveVideo(Video_BoardDto video)  {
 		video_BoardRepository.save(video.toEntity());
 	}
 	

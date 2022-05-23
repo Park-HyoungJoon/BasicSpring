@@ -12,7 +12,6 @@ import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 
 import kr.inhatc.spring.myPage.dto.UserVideoDTO;
-import kr.inhatc.spring.myPage.entity.QUserVideo;
 import kr.inhatc.spring.myPage.entity.UserVideo;
 import kr.inhatc.spring.myPage.repository.UserVideoRepository;
 import kr.inhatc.spring.video_board.util.PageRequestDto;
@@ -35,7 +34,7 @@ public class CommunityService {
 		
 		BooleanBuilder booleanBuilder = new BooleanBuilder();
 		
-		QUserVideo qVideo_Board = QUserVideo.userVideo;
+		kr.inhatc.spring.community.entity.QUserVideo qVideo_Board = kr.inhatc.spring.community.entity.QUserVideo.userVideo;
 		
 		String keyword = requestDto.getKeyword();
 		

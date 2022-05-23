@@ -68,10 +68,10 @@ public class Video_BoardController {
 	@GetMapping("/video/videoDetail")
 	//  Rest방식 /user/Detail/13 이렇게 경로처럼 받으면 Pathvariable 써야함,,
 	//  그냥 일반 파라미터 값 /board/Detail?boardIdx=3 이런식으로 받으면 @RequestPram으로 쓰고
-	public String videoDetail(Long id, @ModelAttribute("requestDto") PageRequestDto requestDto, Model model) {
+	public String videoDetail(Long id, String url2,@ModelAttribute("requestDto") PageRequestDto requestDto, Model model) {
 		Video_BoardDto video = video_BoardService.videoDetail(id);
 		model.addAttribute("video", video);
-		return "video/videoDetail";
+		return "video/videoDetail3";
 	}
 	
 	@GetMapping("/video/videoDelete/{id}")
@@ -81,7 +81,9 @@ public class Video_BoardController {
 	}
 	 
 	@GetMapping("/video/videoDetail2")
-	public String videoDetail2_test() {
+	public String videoDetail2_test(Long id,@ModelAttribute("requestDto") PageRequestDto requestDto, Model model ) {
+		Video_BoardDto video = video_BoardService.videoDetail(id);
+		model.addAttribute("video", video);
 		return "video/videoDetail2";
 	}
 	
