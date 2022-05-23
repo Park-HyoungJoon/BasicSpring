@@ -6,6 +6,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -19,4 +20,8 @@ public interface UserLectureRepository extends JpaRepository<UserLecture, Intege
 	@Query(value="select v.* from UserLecture v where v.UId=?1 and v.ULUpload = (select MAX(ULUpload) from UserLecture where UId=?1)",nativeQuery = true)
 	public List<UserLecture> latestLecture(Long long1);
 
+	@Transactional
+	@Modifying(clearAutomatically = true)
+	@Query(value= "DELETE from UserLecture where UId=?1",nativeQuery = true)
+	void deleteUserLecture(long id);
 }

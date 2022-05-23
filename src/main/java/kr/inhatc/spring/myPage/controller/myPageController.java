@@ -18,7 +18,9 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,6 +36,7 @@ import kr.inhatc.spring.myPage.service.UserVideoService;
 import kr.inhatc.spring.user.dto.UserDto;
 import kr.inhatc.spring.user.entity.User;
 import kr.inhatc.spring.user.service.UserService;
+import kr.inhatc.spring.video_board.dto.Video_BoardDto;
 import kr.inhatc.spring.video_board.util.PageRequestDto;
 import lombok.extern.log4j.Log4j2;
 
@@ -145,20 +148,21 @@ public class myPageController {
 	}
 	@PostMapping("/profile/update")
 	public String ProfileUpdate(@RequestParam(value = "Nick",required = false) String Nick,@RequestParam(value = "self",required = false) String self,
-			@RequestParam(value = "PW",required = false) String PW,Model model) throws Exception {
-		System.out.println(Nick+"/"+self+"/"+PW);
-		int id = 2;
-		UserDto user = userService.findByUserId(id);
-		
-		if(PW.equals("") || PW==null) {
-			String redirect_url = "redirect:/myprofile/";
-			return redirect_url;
-		}else {
-			userService.updateProfile(Nick,self,PW,user.getId());
-			String redirect_url = "redirect:/myprofile/";
-			return redirect_url;
-			
-		}
+			Model model) throws Exception {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String path = auth.getName();
+		int UId = userService.findUserId(path);
+		userService.updateProfile(Nick,self,UId);
+		String redirect_url = "redirect:/myprofile/";
+		return redirect_url;
+	}
+	@PostMapping("/profile/delete")
+	public String ProfileDelete()  {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String path = auth.getName();
+		int id = userService.findUserId(path);
+		userService.deleteUser(id);
+		return "redirect:/";
 	}
 	@GetMapping("/myPage/UVwrite")
 	public String videoWrite(Model model) {
@@ -180,6 +184,16 @@ public class myPageController {
 		service.saveVideo(title, contents, id);
 		return "redirect:/myVideo";
 	}
-
+	@GetMapping("/videoDelete/{id}")
+	//  Rest방식 /user/Detail/13 이렇게 경로처럼 받으면 Pathvariable 써야함,,
+	//  그냥 일반 파라미터 값 /board/Detail?boardIdx=3 이런식으로 받으면 @RequestPram으로 쓰고
+	public String videoDetail(@PathVariable("id") Long id) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String path = auth.getName();
+		int UId = userService.findUserId(path);
+		Long UVId = id;
+		service.deleteUV(UId,UVId);
+		return "redirect:/myVideo";
+	}
 	
 }

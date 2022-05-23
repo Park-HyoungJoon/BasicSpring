@@ -50,6 +50,10 @@ public class UserVideoService {
 			List<UserVideo> list = uvRepository.latestVideo(long1);	
 			return list.stream().map(UserVideoDTO::new).collect(Collectors.toList());
 		}
+
+		public void deleteUV(int uId, Long uVId) {
+			uvRepository.deleteUserVideo(uId, uVId);
+		}
 		
 
 }
