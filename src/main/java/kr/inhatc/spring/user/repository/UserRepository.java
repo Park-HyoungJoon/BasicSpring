@@ -21,8 +21,8 @@ public interface UserRepository extends JpaRepository<User, Long>{
 
 	@Transactional
 	@Modifying(clearAutomatically = true)
-	@Query(value="Update User u set u.Nick=?1,u.self=?2,u.PW=?3 where u.UId=?4", nativeQuery = true)
-	int setProfile(String nick, String self, String pW, long id);
+	@Query(value="Update User u set u.Nick=?1,u.self=?2 where u.UId=?3", nativeQuery = true)
+	int setProfile(String nick, String self, long id);
 	
 	@Query(value="SELECT u.* from User u where email=?1", nativeQuery = true)
 	List<User> findAllData(String email);
@@ -32,5 +32,10 @@ public interface UserRepository extends JpaRepository<User, Long>{
 	
 	@Query(value="SELECT json_arrayagg(json_object('id',UId,'name',Nick,'price', self)) FROM User where UId=?1", nativeQuery=true)
 	String jsonUser(int i);
+	
+	@Transactional
+	@Modifying(clearAutomatically = true)
+	@Query(value= "DELETE from User where UId=?1",nativeQuery = true)
+	void deleteUser(long id);
 	
 }
