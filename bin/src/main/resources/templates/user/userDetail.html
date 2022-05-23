@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>게시판 상세</title>
+<link rel="stylesheet" th:href="@{/css/style.css}"></link>
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="./css/sticky-footer-navbar.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<div th:replace="/fragments/header.html :: fragment-nav"></div> 
+	<div class="container">
+		<h2>게시판 상세</h2>
+		<!-- submit 버튼을 통한 데이터를 post방식으로 /board/boardInsert로 보낸다 -->
+		<form id="frm" name="frm" method="post" action="/user/userInsert">
+			<table class="board_detail">
+				<colgroup>
+					<col width="15%" />
+					<col width="35%" />
+					<col width="15%" />
+					<col width="35%" />
+				</colgroup>
+				<caption>게시글 상세내용</caption>
+				<tbody>
+					<tr>
+						<th scope="row">글번호</th>
+						<!-- th:text 사용해서 글자를 출력하는데 모델에서 받아온 board 사용함 -->
+						<td th:text="${user.id}"></td>		
+						<th scope="row">조회수</th>
+						<td th:text="${user.hitCnt}"></td>
+					</tr>
+					<tr>
+						<th scope="row">작성자</th>
+						<!-- th:text 사용해서 글자를 출력하는데 모델에서 받아온 board 사용함 -->
+						<td th:text="${user.creator}"></td>		
+						<th scope="row">작성일</th>
+						<td th:text="${user.uploadDate}"></td>
+					</tr>
+					<tr>
+						<th scope="row">제목</th>
+						<td colspan="3" th:text="${user.title}">
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4" class="view_text" id="contents" th:utext="${user.contents}" >
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<input type="hidden" name="id" th:value="${user.id}">
+		</form>
+		
+
+		
+		<button>
+		<a href="/user/userList">목록으로</a>
+		</button>
+		
+		<button>
+		<a href="/user/userDelete/" th:attrappend="href=${user.id}" color:#fff !important>삭제하기</a>
+		</button>
+			
+	</div>
+	
+	
+	
+</body>
+</html>

@@ -1,0 +1,416 @@
+
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>게시판 리스트</title>
+<!--  <link rel="stylesheet" th:href="@{/css/style.css}"></link>  -->
+
+<!-- bootstrap css -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+
+
+<link rel="stylesheet" th:href="@{/css/video_board.css}"></link>
+<!-- 
+<link rel="stylesheet" th:href="@{/css/sidebars.css}"></link>
+ -->
+
+
+</head>
+<body>
+
+
+	<div th:replace="/fragments/header.html :: fragment-nav"></div>
+
+
+
+
+	<!-- 
+
+<div class="col-lg-3">
+
+				<h3 class="my-4 text-center">Category</h3>
+				<div class="list-group mb-4">
+					<a
+						class="list-group-item list-group-item-info text-center font-weight-bold">목록</a>
+					<a href="#"
+						class="list-group-item list-group-item-action text-center font-weight-bold">IT
+					</a> <a href="#"
+						class="list-group-item list-group-item-action text-center font-weight-bold">프론트엔드
+					</a> <a href="#"
+						class="list-group-item list-group-item-action text-center font-weight-bold">백엔드
+					</a> <a href="#"
+						class="list-group-item list-group-item-action text-center font-weight-bold">자바
+					</a> <a href="#"
+						class="list-group-item list-group-item-action text-center font-weight-bold">파이썬
+					</a>
+
+				</div>
+
+			</div>
+
+ -->
+
+
+
+
+
+
+
+
+	<!-- Page Content -->
+	<div class="container">
+		<div class="row">
+
+			<div class="col-lg-2 my-4">
+				<div class="accordion" id="accordionExample">
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="headingOne">
+							<button class="accordion-button collapsed" type="button"
+								data-bs-toggle="collapse" data-bs-target="#collapseOne"
+								aria-expanded="false" aria-controls="collapseOne">전체 강의</button>
+						</h2>
+						<div id="collapseOne" class="accordion-collapse collapse"
+							aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+							<div class="accordion-body">
+								<button type="button">전체 강의</button>
+								<hr>
+								<button class="accordion-button collapsed" type="button"
+									data-bs-toggle="collapse" data-bs-target="#collapseOne1"
+									aria-expanded="false" aria-controls="collapseOne1">전체
+									강의</button>
+
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="headingTwo">
+							<button class="accordion-button collapsed" type="button"
+								data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+								aria-expanded="false" aria-controls="collapseTwo">개발 ·
+								프로그래밍</button>
+						</h2>
+						<div id="collapseTwo" class="accordion-collapse collapse"
+							aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+							<div class="accordion-body">
+								<strong>This is the second item's accordion body.</strong> It is
+								hidden by default, until the collapse plugin adds the
+								appropriate classes that we use to style each element. These
+								classes control the overall appearance, as well as the showing
+								and hiding via CSS transitions. You can modify any of this with
+								custom CSS or overriding our default variables. It's also worth
+								noting that just about any HTML can go within the
+								<code>.accordion-body</code>
+								, though the transition does limit overflow.
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="headingThree">
+							<button class="accordion-button collapsed" type="button"
+								data-bs-toggle="collapse" data-bs-target="#collapseThree"
+								aria-expanded="false" aria-controls="collapseThree">보안
+								· 네트워크</button>
+						</h2>
+						<div id="collapseThree" class="accordion-collapse collapse"
+							aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+							<div class="accordion-body">
+								<strong>This is the third item's accordion body.</strong> It is
+								hidden by default, until the collapse plugin adds the
+								appropriate classes that we use to style each element. These
+								classes control the overall appearance, as well as the showing
+								and hiding via CSS transitions. You can modify any of this with
+								custom CSS or overriding our default variables. It's also worth
+								noting that just about any HTML can go within the
+								<code>.accordion-body</code>
+								, though the transition does limit overflow.
+							</div>
+						</div>
+					</div>
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="headingfour">
+							<button class="accordion-button collapsed" type="button"
+								data-bs-toggle="collapse" data-bs-target="#collapsefour"
+								aria-expanded="false" aria-controls="collapsefour">데이터
+								사이언스</button>
+						</h2>
+						<div id="collapsefour" class="accordion-collapse collapse"
+							aria-labelledby="headingfour" data-bs-parent="#accordionExample">
+							<div class="accordion-body">
+								<strong>This is the third item's accordion body.</strong> It is
+								hidden by default, until the collapse plugin adds the
+								appropriate classes that we use to style each element. These
+								classes control the overall appearance, as well as the showing
+								and hiding via CSS transitions. You can modify any of this with
+								custom CSS or overriding our default variables. It's also worth
+								noting that just about any HTML can go within the
+								<code>.accordion-body</code>
+								, though the transition does limit overflow.
+							</div>
+						</div>
+					</div>
+
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="headingfive">
+							<button class="accordion-button collapsed" type="button"
+								data-bs-toggle="collapse" data-bs-target="#collapsefive"
+								aria-expanded="false" aria-controls="collapsefive">
+								크리에이티브</button>
+						</h2>
+						<div id="collapsefive" class="accordion-collapse collapse"
+							aria-labelledby="headingfive" data-bs-parent="#accordionExample">
+							<div class="accordion-body">
+								<strong>This is the third item's accordion body.</strong> It is
+								hidden by default, until the collapse plugin adds the
+								appropriate classes that we use to style each element. These
+								classes control the overall appearance, as well as the showing
+								and hiding via CSS transitions. You can modify any of this with
+								custom CSS or overriding our default variables. It's also worth
+								noting that just about any HTML can go within the
+								<code>.accordion-body</code>
+								, though the transition does limit overflow.
+							</div>
+						</div>
+					</div>
+
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="headingsix">
+							<button class="accordion-button collapsed" type="button"
+								data-bs-toggle="collapse" data-bs-target="#collapsesix"
+								aria-expanded="false" aria-controls="collapsesix">직무 ·
+								마케팅</button>
+						</h2>
+						<div id="collapsesix" class="accordion-collapse collapse"
+							aria-labelledby="headingsix" data-bs-parent="#accordionExample">
+							<div class="accordion-body">
+								<strong>This is the third item's accordion body.</strong> It is
+								hidden by default, until the collapse plugin adds the
+								appropriate classes that we use to style each element. These
+								classes control the overall appearance, as well as the showing
+								and hiding via CSS transitions. You can modify any of this with
+								custom CSS or overriding our default variables. It's also worth
+								noting that just about any HTML can go within the
+								<code>.accordion-body</code>
+								, though the transition does limit overflow.
+							</div>
+						</div>
+					</div>
+
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="headingseven">
+							<button class="accordion-button collapsed" type="button"
+								data-bs-toggle="collapse" data-bs-target="#collapseseven"
+								aria-expanded="false" aria-controls="collapseseven">학문
+								· 외국어</button>
+						</h2>
+						<div id="collapseseven" class="accordion-collapse collapse"
+							aria-labelledby="headingseven" data-bs-parent="#accordionExample">
+							<div class="accordion-body">
+								<strong>This is the third item's accordion body.</strong> It is
+								hidden by default, until the collapse plugin adds the
+								appropriate classes that we use to style each element. These
+								classes control the overall appearance, as well as the showing
+								and hiding via CSS transitions. You can modify any of this with
+								custom CSS or overriding our default variables. It's also worth
+								noting that just about any HTML can go within the
+								<code>.accordion-body</code>
+								, though the transition does limit overflow.
+							</div>
+						</div>
+					</div>
+
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="headingeight">
+							<button class="accordion-button collapsed" type="button"
+								data-bs-toggle="collapse" data-bs-target="#collapseeight"
+								aria-expanded="false" aria-controls="collapseeight">
+								커리어</button>
+						</h2>
+						<div id="collapseeight" class="accordion-collapse collapse"
+							aria-labelledby="headingeight" data-bs-parent="#accordionExample">
+							<div class="accordion-body">
+								<strong>This is the third item's accordion body.</strong> It is
+								hidden by default, until the collapse plugin adds the
+								appropriate classes that we use to style each element. These
+								classes control the overall appearance, as well as the showing
+								and hiding via CSS transitions. You can modify any of this with
+								custom CSS or overriding our default variables. It's also worth
+								noting that just about any HTML can go within the
+								<code>.accordion-body</code>
+								, though the transition does limit overflow.
+							</div>
+						</div>
+					</div>
+
+					<div class="accordion-item">
+						<h2 class="accordion-header" id="headingnine">
+							<button class="accordion-button collapsed" type="button"
+								data-bs-toggle="collapse" data-bs-target="#collapsenine"
+								aria-expanded="false" aria-controls="collapsenine">교양</button>
+						</h2>
+						<div id="collapsenine" class="accordion-collapse collapse"
+							aria-labelledby="headingnine" data-bs-parent="#accordionExample">
+							<div class="accordion-body">
+								<strong>This is the third item's accordion body.</strong> It is
+								hidden by default, until the collapse plugin adds the
+								appropriate classes that we use to style each element. These
+								classes control the overall appearance, as well as the showing
+								and hiding via CSS transitions. You can modify any of this with
+								custom CSS or overriding our default variables. It's also worth
+								noting that just about any HTML can go within the
+								<code>.accordion-body</code>
+								, though the transition does limit overflow.
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+
+			</div>
+
+
+
+
+
+			<!-- 
+ 
+ 
+ -->
+
+
+
+
+
+
+
+			<!-- /.col-lg-3 -->
+
+			<div class="col-lg-9 my-3 mb-4">
+				<form th:action="@{/video/videoList}" method="GET"
+					class="form-inline p-2 bd-highlight" id="searchForm">
+
+					<div class="input_group">
+						<input type="hidden" name="page" value="1">
+
+					</div>
+
+
+					<div class="input-group mb-2" style="width: 400px; float: right;">
+
+						<select class="form-select" id="exampleSelect1" name="type">
+							<option th:selected="${pageRequestDto.type == null}">----------</option>
+							<option value="t" th:selected="${pageRequestDto.type == 't'}">제목</option>
+							<option value="c" th:selected="${pageRequestDto.type == 'c'}">내용</option>
+							<option value="o" th:selected="${pageRequestDto.type == 'o'}">작성자</option>
+							<option value="tc" th:selected="${pageRequestDto.type == 'tc'}">제목
+								+ 내용</option>
+							<option value="tco" th:selected="${pageRequestDto.type == 'tco'}">제목
+								+ 내용 + 작성자</option>
+						</select> <input name="keyword" type="text" class="form-control"
+							th:value="${pageRequestDto.keyword}" placeholder="강의 검색하기">
+						<button style="background-color: #00bc8c; border-color: #00bc8c;"
+							class="btn btn-primary" id="searchBtn">검색</button>
+					</div>
+
+
+
+				</form>
+
+				<br> <br> <br>
+				<hr>
+				<div>
+					<button style="background-color: #00bc8c; float: right;"
+						type="button" class="btn btn-secondary"
+						onclick="location.href='/video/videoInsert' ">테스트 강의등록</button>
+
+					<button style="background-color: #00bc8c;" type="button"
+						class="btn btn-secondary"
+						onclick="location.href='/video/videoDetail2' ">테스트 상세보기</button>
+				</div>
+
+
+
+				<div class="row row-cols-1 row-cols-md-4 g-4"
+					style="max-width: 900px; float: none; margin: 0 auto;">
+					<div class="col" th:each="vo : ${list.dtoList}">
+						<div class="card h-100">
+							<img th:src="@{/img/java.png}" class="card-img-top" alt="...">
+							<div class="card-body">
+								<h5 class="title" th:text="${vo.title}"></h5>
+								<a th:href="@{/video/videoDetail(id=${vo.id},page=${list.page}, type=${pageRequestDto.type}, keyword=${pageRequestDto.keyword})}"
+									class="btn btn-secondary" style="background-color: #00bc8c;">학습하기</a>
+							</div>
+							<div class="card-footer">
+								<small class="text-muted" th:text="${vo.uploadDate}"></small>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<br>
+
+
+
+
+				<div>
+					<ul class="pagination" style="justify-content: center;">
+
+						<li class="page-item"><a class="page-link"
+							th:if="${list.prev}"
+							th:href="@{/video/videoList(page= ${list.start -1}, type=${pageRequestDto.type}, keyword =${pageRequestDto.keyword})}"
+							tabindex="-1">&laquo;</a></li>
+
+						<li class="page-item" th:each="page : ${list.pageList}"><a
+							class="page-link"
+							th:href="@{/video/videoList(page=${page}, type=${pageRequestDto.type}, keyword=${pageRequestDto.keyword})}"
+							th:text="${page}"></a></li>
+
+						<li class="page-item"><a class="page-link"
+							th:if="${list.next}"
+							th:href="@{/video/videoList(page=${list.end + 1}, type=${pageRequestDto.type},keyword=${pageRequestDto.keyword})}">&raquo;</a>
+						</li>
+					</ul>
+				</div>
+
+
+
+
+			</div>
+
+
+
+		</div>
+	</div>
+	<!-- 여기서부터 본문내용, 이후 코드는 bottomLayout에서 마무리 -->
+
+
+
+	<!-- <button>
+		<a href="/user/userInsert" class="btn">글쓰기</a>
+		</button> 
+		-->
+
+	<script th:inline="javascript">
+	
+	
+	
+	
+		var searchForm = $("#searchForm");
+
+		$('#searchBtn').click(function(e) {
+			searchForm.submit();
+		});
+	</script>
+
+
+
+
+
+
+
+
+</body>
+</html>
