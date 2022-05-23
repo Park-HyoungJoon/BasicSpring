@@ -25,6 +25,7 @@ public class UserDto {
 	private String Self;
 	private String Role;
 	private String Profile_Photo;
+	private String Randnum;
 	
 	
 	public UserDto(final User entity) {
@@ -35,6 +36,7 @@ public class UserDto {
 		this.Self = entity.getSelf();
 		this.Role = entity.getRole();
 		this.Profile_Photo = entity.getProfile_Photo();
+		this.Randnum = entity.getRandnum();
 	}
 	
 	public User toEntity() {
@@ -46,6 +48,7 @@ public class UserDto {
 				.Role(Role)
 				.Self(Self)
 				.Nick(Nick)
+				.Randnum(Randnum)
 				.build();
 	}
 }
