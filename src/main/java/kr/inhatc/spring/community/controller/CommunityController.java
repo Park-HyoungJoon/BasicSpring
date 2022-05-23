@@ -38,12 +38,12 @@ public class CommunityController {
 		return "community/comList";
 	}
 
-//	@GetMapping("/community/comDetail")
-//	//  Rest방식 /user/Detail/13 이렇게 경로처럼 받으면 Pathvariable 써야함,,
-//	//  그냥 일반 파라미터 값 /board/Detail?boardIdx=3 이런식으로 받으면 @RequestPram으로 쓰고
-//	public String comDetail(Long id, @ModelAttribute("requestDto") PageRequestDto requestDto, Model model) {
-//		UserVideoDTO video = uvService.uvDetail(id);
-//		model.addAttribute("video", video);
-//		return "community/comDetail";
-//	}
+	@GetMapping("/com/comDetail")
+	//  Rest방식 /user/Detail/13 이렇게 경로처럼 받으면 Pathvariable 써야함,,
+	//  그냥 일반 파라미터 값 /board/Detail?boardIdx=3 이런식으로 받으면 @RequestPram으로 쓰고
+	public String comDetail(int id, @ModelAttribute("requestDto") PageRequestDto requestDto, Model model) {
+		UserVideoDTO video = uvService.uvDetail(id);
+		model.addAttribute("video", video);
+		return "community/comDetail";
+	}
 }
