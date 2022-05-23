@@ -55,17 +55,17 @@ public class UserVideoService {
 		public void deleteUV(int uId, Long uVId) {
 			uvRepository.deleteUserVideo(uId, uVId);
 		}
-//		@Transactional
-//		public UserVideoDTO uvDetail(Long id) {
-//			Optional<UserVideo> optional = uvRepository.findById(id);
-//			if(optional.isPresent()) {
-//				UserVideo user_video = optional.get();
-//				user_video.increaseHits();
-//				return new UserVideoDTO(user_video);
-//			} else {
-//				throw new NullPointerException();
-//			}
-//		}
+		@Transactional
+		public UserVideoDTO uvDetail(int id) {
+			Optional<UserVideo> optional = uvRepository.findById(id);
+			if(optional.isPresent()) {
+				UserVideo user_video = optional.get();
+				user_video.increaseHits();
+				return new UserVideoDTO(user_video);
+			} else {
+				throw new NullPointerException();
+			}
+		}
 		
 
 }

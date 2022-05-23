@@ -123,13 +123,14 @@ public class myPageController {
 	
 	@PostMapping("/main/user/image_insert")
 	public String image_insert(HttpServletRequest request, @RequestParam("filename") MultipartFile mFile, Model model) throws Exception {
-		System.out.println("너는 실행이 되는고니??");
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String path = auth.getName();
+		int id = userService.findUserId(path);
 		ClassPathResource resource = new ClassPathResource("");
 		URL R = resource.getURL();
-		String path = R.getPath();
+		String path2 = R.getPath();
 		System.out.println(path+"패스입니당 ^^!");
 		String upload_path = request.getSession().getServletContext().getRealPath("/"); // 프로필 사진들 모아두는 폴더
-		int id = 2;
 		UserDto user = userService.findByUserId(id);
 		String redirect_url = "redirect:/myprofile/" + user.getId(); // 사진업로드 이후 redirect될 url
 
