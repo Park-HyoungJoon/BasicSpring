@@ -20,6 +20,8 @@ public class Metaverse {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int M_Id;
 	@Column
+	private int UId;
+	@Column
 	private Date StartDate;
 	@Column 
 	private Date EndDate;
