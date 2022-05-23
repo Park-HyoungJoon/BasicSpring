@@ -38,7 +38,7 @@ public class Video_BoardDto {
 	private String url5;
 	private Map<AttachmentType, List<MultipartFile>> attachmentFiles = new ConcurrentHashMap<>();
 	
-	public Video_BoardDto(Video_Board entity,Map<AttachmentType, List<MultipartFile>> attachmentFiles) {
+	public Video_BoardDto(Video_Board entity) {
 		this.id = entity.getId();
 		this.title = entity.getTitle();
 		this.contents = entity.getContents();
@@ -52,7 +52,6 @@ public class Video_BoardDto {
 		this.url3 = entity.getUrl3();
 		this.url4 = entity.getUrl4();
 		this.url5 = entity.getUrl5();
-		this.attachmentFiles = attachmentFiles;
 		
 	}
 	
