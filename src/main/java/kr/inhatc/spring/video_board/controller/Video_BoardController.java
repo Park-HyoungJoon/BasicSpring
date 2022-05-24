@@ -1,5 +1,6 @@
 package kr.inhatc.spring.video_board.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -60,7 +63,9 @@ public class Video_BoardController {
 	
 	// 원래 엔티티 클래스는 요청이나 응답에 사용되면 안되는데 일단은 영상 그대로 따라하고 나중에 Request, Response 만들어보자
 	@PostMapping("/video/videoInsert")
-	public String videoInsert(Video_BoardDto video) {
+	public String videoInsert(Video_BoardDto video) throws IOException {
+		
+		
 		video_BoardService.saveVideo(video);
 		return "redirect:/video/videoList";
 	}

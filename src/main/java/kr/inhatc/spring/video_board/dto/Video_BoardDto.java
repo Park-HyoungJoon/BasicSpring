@@ -36,7 +36,6 @@ public class Video_BoardDto {
 	private String url3;
 	private String url4;
 	private String url5;
-	private Map<AttachmentType, List<MultipartFile>> attachmentFiles = new ConcurrentHashMap<>();
 	
 	public Video_BoardDto(Video_Board entity) {
 		this.id = entity.getId();
