@@ -17,7 +17,6 @@ import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 
 import kr.inhatc.spring.video_board.dto.Video_BoardDto;
-import kr.inhatc.spring.video_board.entity.Attachment;
 import kr.inhatc.spring.video_board.entity.QVideo_Board;
 import kr.inhatc.spring.video_board.entity.Video_Board;
 import kr.inhatc.spring.video_board.repository.Video_BoardRepository;
@@ -30,8 +29,6 @@ public class Video_BoardServiceImpl implements Video_BoardService {
 	
 	@Autowired
 	Video_BoardRepository video_BoardRepository;
-	@Autowired
-	AttachmentService attachmentService;
 	
 	/**
 	 * 게시글 조회

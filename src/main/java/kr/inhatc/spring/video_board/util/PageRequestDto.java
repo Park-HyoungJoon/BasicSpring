@@ -24,10 +24,11 @@ public class PageRequestDto {
 	
 	public PageRequestDto() {
 		this.page = 1;
-		this.size = 10;
+		this.size = 2;
 	}
 	
 	public Pageable getPageable(Sort sort) {
 		return PageRequest.of(page -1, size,sort);
 	}
+	
 }

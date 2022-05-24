@@ -60,9 +60,6 @@ public class Video_Board {
 	private String url5;
 	
 	
-	// 이미지는 게시판의 온전한 소유물이기 때문에 게시판과 생명주기를 동일하게 관리함<<cascade
-	@OneToMany(mappedBy = "video_Board" , cascade = CascadeType.ALL)
-	private List<Attachment> attachedFiles = new ArrayList<>();
 	
 	
 	/**
