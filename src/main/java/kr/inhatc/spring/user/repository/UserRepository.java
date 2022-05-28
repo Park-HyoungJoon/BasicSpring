@@ -14,6 +14,10 @@ import kr.inhatc.spring.user.entity.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>{
 	
+	
+	@Query(value="select * from User u where u.UId NOT IN (SELECT OtherUId from UserFriend uf where uf.UId =?1) and u.UId != ?1" ,nativeQuery=true)
+	List<User> findFriend(int id);
+	
 	List<User> findAllByOrderByIdDesc();
 	
 	@Query(value="Select u.* from User u where UId=?1",nativeQuery = true)
