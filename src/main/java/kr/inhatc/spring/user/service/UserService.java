@@ -39,6 +39,10 @@ public class UserService {
 		List<User> list = UserRepository.findAllByOrderByIdDesc();
 		return list.stream().map(UserDto::new).collect(Collectors.toList());
 	}
+	public List<UserDto> findFriend(int id) {
+		List<User> list = UserRepository.findFriend(id);
+		return list.stream().map(UserDto::new).collect(Collectors.toList());
+	}
 
 	/**
 	 * 게시글 저장

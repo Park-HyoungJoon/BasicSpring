@@ -99,11 +99,14 @@ public class myPageController {
 		  String path = auth.getName(); 
 		  int id = userService.findUserId(path);
 		  String result = ufservice.findMyFriend(id);
-		  System.out.println(result);
-		  JSONParser parser = new JSONParser();
-			  JSONObject jsonobj = (JSONObject) parser.parse(result); 
-			  model.addAttribute("result",jsonobj);
-		} catch (ParseException e) {
+		  List<UserDto> result2 = userService.findFriend(id);
+		  System.out.println(result2.get(0).getNick());
+//		  System.out.println(result);
+//		  JSONParser parser = new JSONParser();
+//			  JSONObject jsonobj = (JSONObject) parser.parse(result); 
+//			  model.addAttribute("result",jsonobj);
+			  model.addAttribute("AllFriend",result2);
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -174,7 +177,15 @@ public class myPageController {
 		model.addAttribute("list",list);
 		return "myPage/UVwrite";
 	}
-	
+	@GetMapping("/addFriend/{id}")
+	public String addFriend(@PathVariable("id") int id,Model model) throws Exception {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String path = auth.getName();
+		int UId = userService.findUserId(path);
+		ufservice.addFriend(id,UId);
+		String redirect_url = "redirect:/friendList";
+		return redirect_url;
+	}
 	@PostMapping("/myPage/UVtoss")
 	public String videoToss(@RequestParam(value = "title",required = false) String title,@RequestParam(value = "contents",required = false) String contents,
 			Model model) {

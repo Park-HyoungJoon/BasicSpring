@@ -33,4 +33,9 @@ public class UserFriendService {
 		result = result.replace("][", ",");
 		return result;
 	}
+
+	public void addFriend(int id, int UId) {
+		ufRepository.addFriend(id,UId);
+		
+	}
 }
