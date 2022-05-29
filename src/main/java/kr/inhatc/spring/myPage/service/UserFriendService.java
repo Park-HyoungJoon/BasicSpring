@@ -31,6 +31,8 @@ public class UserFriendService {
 			result += path[i];
 		}
 		result = result.replace("][", ",");
+		result = result.replace("\"", "\'");
+		result = result.replace("null", "'x'");
 		return result;
 	}
 

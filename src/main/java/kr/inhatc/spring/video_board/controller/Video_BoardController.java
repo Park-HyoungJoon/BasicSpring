@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,8 +22,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.inhatc.spring.myPage.service.UserVideoService;
 import kr.inhatc.spring.user.dto.BasicDto;
 import kr.inhatc.spring.user.service.BasicService;
+import kr.inhatc.spring.user.service.UserService;
 import kr.inhatc.spring.video_board.dto.Video_BoardDto;
 import kr.inhatc.spring.video_board.entity.Video_Board;
 import kr.inhatc.spring.video_board.service.Video_BoardService;
@@ -31,9 +35,15 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @Controller
 public class Video_BoardController {
-	 
+
+	@Autowired
+	UserService userService;
+	
 	@Autowired
 	private Video_BoardService video_BoardService;
+	
+	@Autowired
+	UserVideoService ulService;
 	
 	@RequestMapping("/")
 	public String hello() {
@@ -87,6 +97,13 @@ public class Video_BoardController {
 	 
 	@GetMapping("/video/videoDetail2")
 	public String videoDetail2_test(Long id,@ModelAttribute("requestDto") PageRequestDto requestDto, Model model ) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String path = auth.getName();
+		long UId = userService.findUserId(path);
+		if(UId>0) {
+			int check = ulService.checkLecture(UId,id);
+			model.addAttribute("check",check);					
+		}
 		Video_BoardDto video = video_BoardService.videoDetail(id);
 		model.addAttribute("video", video);
 		return "video/videoDetail2";

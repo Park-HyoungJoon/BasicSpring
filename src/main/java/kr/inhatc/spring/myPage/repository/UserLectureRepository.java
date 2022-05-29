@@ -24,4 +24,17 @@ public interface UserLectureRepository extends JpaRepository<UserLecture, Intege
 	@Modifying(clearAutomatically = true)
 	@Query(value= "DELETE from UserLecture where UId=?1",nativeQuery = true)
 	void deleteUserLecture(long id);
+
+	@Transactional
+	@Modifying(clearAutomatically = true)
+	@Query(value="INSERT INTO UserLecture (LPId,UId,ULUpload) values(?1,?2,now())" ,nativeQuery = true)
+	public void addLectrue(long id, int uId);
+
+	@Transactional
+	@Modifying(clearAutomatically = true)
+	@Query(value= "DELETE from UserLecture where UId=?1 and ULPId=?2",nativeQuery = true)
+	public void deleteUserVideo(int uId, Long uLPId);
+	
+	@Query(value="select v.UId from UserLecture v where v.UId=?1 and v.LPId = ?2",nativeQuery = true)
+	public int selectLecture(long uId, Long id);
 }

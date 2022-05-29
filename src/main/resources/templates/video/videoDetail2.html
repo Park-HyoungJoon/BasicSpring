@@ -94,9 +94,13 @@
 				<div class="position-sticky" style="top: 2rem;">
 					<div class="p-4 mb-3 bg-light rounded d-grid gap-2">
 						<h4 class="fst-italic">강의</h4>
+						
+						<a th:if="${check}== 0" style="background-color: #00bc8c;" type="button"
+							class="btn btn-lg btn-secondary"
+							th:href="@{/addLecture/{id}(id=${video.id})}">수강신청하기</a>
 						<button style="background-color: #00bc8c;" type="button"
 							class="btn btn-lg btn-secondary"
-							onclick="location.href='/video/videoInsert' ">수강신청하기</button>
+							onclick="location.href='/video/videoInsert' ">강의등록</button>
 						<button style="background-color: #8e8c84;" type="button"
 							class="btn btn-lg btn-secondary"
 							onclick="location.href='/video/videoInsert' ">장바구니</button>

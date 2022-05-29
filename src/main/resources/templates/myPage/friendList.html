@@ -20,7 +20,6 @@
 	crossorigin="anonymous"></script>
 <!-- <link rel="stylesheet" th:href="@{/css/progress.scss}"> -->
 <!-- Bootstrap core CSS -->
-<link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 <link rel="stylesheet"
@@ -82,13 +81,15 @@
 				</div>
 			</nav>
 
+			<input type="hidden" id="data" th:value="${Friend}">
 			<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
 				<div class="container">
 					<button type="button" class="btn btn-outline-success"
 						data-bs-toggle="modal" data-bs-target="#modal3"
 						style="margin-left: 10px; margin-top: 9px; float: right;">친구추가</button>
-					<table class="bg-white" id="table" data-toggle="table"
-						data-search="true" data-show-columns="true" data-url="${result}">
+<!-- 					<table class="bg-white" id="table" data-toggle="table" -->
+<!-- 						data-search="true" data-show-columns="true" data-url="/json/data1.json" > -->
+						<table id="table">
 						<thead>
 							<tr>
 								<th colspan="2">친구정보</th>
@@ -136,41 +137,28 @@
 							</div>
 						</div>
 					</div>
-
-
-					<script>
-						$(function() {
-							$('#table').bootstrapTable({
-								formatSearch : function() {
-									return 'Search Item Price'
-								}
-							})
-						})
-
-						function customSearch(data, text) {
-							return data.filter(function(row) {
-								return row.price.indexOf(text) > -1
-							})
-						}
-					</script>
 				</div>
 			</main>
 		</div>
 	</div>
-	<script>
-		var person_str1 = "${result}";
-		var jso = JSON.parse(person_str1);
-		console.log(jso);
-	</script>
 
 	<script
 		src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
 		integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE"
 		crossorigin="anonymous"></script>
-	<script src="js/table.js"></script>
-	<script type="text/javascript" th:src="@{js/table.js}"></script>
 	<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
 	<script
 		src="https://unpkg.com/bootstrap-table@1.20.0/dist/bootstrap-table.min.js"></script>
+<script>
+  var $table = $('#table')
+
+  $(function() {
+	  var op =document.getElementById('data').value;
+	    var person = JSON.stringify(op);
+	    var data = JSON.parse(person);
+	console.log(data);	
+    $table.bootstrapTable({data: data})
+  })
+</script>
 </body>
 </html>
