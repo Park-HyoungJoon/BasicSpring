@@ -66,6 +66,27 @@ public class UserVideoService {
 				throw new NullPointerException();
 			}
 		}
+
+		@Transactional
+		public void addLecture(long id, int uId) {
+			uLRepository.addLectrue(id,uId);
+			
+		}
+
+		public void deleteUL(int uId, Long uLPId) {
+			uLRepository.deleteUserVideo(uId, uLPId);
+			
+		}
+
+		public int checkLecture(long uId, Long id) {
+			int check=0;
+			try {
+			check = uLRepository.selectLecture(uId,id);
+			}catch (Exception e) {
+				check=0;
+			}
+			return check;
+		}
 		
 
 }
