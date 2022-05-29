@@ -11,6 +11,7 @@ import kr.inhatc.spring.login.service.UtilService;
 import kr.inhatc.spring.login.service.loginService;
 import kr.inhatc.spring.login.service.auth.PrincipalDatails;
 import kr.inhatc.spring.login.service.auth.principalDetailsService;
+import lombok.extern.log4j.Log4j2;
 
 @RestController
 public class login_RestController {
@@ -30,9 +31,10 @@ public class login_RestController {
 		return loginService.confrimEail(email);
 	}
 	
-	@PostMapping("/sendMail")
-	public boolean sendEmail(@AuthenticationPrincipal PrincipalDatails datails) {
-		String email = datails.getUsername();
+	@PostMapping("/sendmail")
+	public boolean sendEmail(@RequestParam(value =  "sendemail") String sendemail) {
+		System.out.println("이메일은 " + sendemail);
+		String email = sendemail;
 		String randnum = utilService.GetRandomNum(10);
 		if(loginService.updateRendnum(email, randnum)) {
 			return sendMail.sendmail(email, "안녕하세요 E-do입니다.", "인증번호는" + randnum + "입니다.");
