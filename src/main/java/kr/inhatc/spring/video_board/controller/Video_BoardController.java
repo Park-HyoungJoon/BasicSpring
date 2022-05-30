@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.inhatc.spring.myPage.service.UserVideoService;
 import kr.inhatc.spring.user.dto.BasicDto;
@@ -66,19 +67,35 @@ public class Video_BoardController {
 		return "video/videoList";
 	}
 	
-	@GetMapping("/video/videoInsert")
-	public String videoWrite() {
+//	@GetMapping("/video/videoInsert")
+//	public String videoWrite() {
+//		return "video/videoWrite";
+//	}
+	
+//	@PostMapping("/video/videoInsert")
+//	public String videoInsert(Video_BoardDto video) throws IOException {
+//		video_BoardService.saveVideo(video);
+//		return "redirect:/video/videoList";
+//	}
+//	
+	
+	@GetMapping("/video/register")
+	public String videoRegister() {
 		return "video/videoWrite";
 	}
 	
-	// 원래 엔티티 클래스는 요청이나 응답에 사용되면 안되는데 일단은 영상 그대로 따라하고 나중에 Request, Response 만들어보자
-	@PostMapping("/video/videoInsert")
-	public String videoInsert(Video_BoardDto video) throws IOException {
+	@PostMapping("/video/register")
+	public String register(Video_BoardDto video_BoardDto, RedirectAttributes redirectAttributes) {
+		log.info("Video_BoardDto: " + video_BoardDto);
 		
+		Long id = video_BoardService.register(video_BoardDto);
 		
-		video_BoardService.saveVideo(video);
+		redirectAttributes.addFlashAttribute("msg",id);
+		
 		return "redirect:/video/videoList";
 	}
+	
+	
 	
 	@GetMapping("/video/videoDetail")
 	//  Rest방식 /user/Detail/13 이렇게 경로처럼 받으면 Pathvariable 써야함,,
