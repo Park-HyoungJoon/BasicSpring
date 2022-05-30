@@ -3,6 +3,7 @@ package kr.inhatc.spring.video_board.dto;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -13,15 +14,16 @@ import kr.inhatc.spring.video_board.constant.AttachmentType;
 import kr.inhatc.spring.video_board.entity.Video_Board;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Getter @Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+
 public class Video_BoardDto {
 	private Long id;
 	private String title;
@@ -36,6 +38,9 @@ public class Video_BoardDto {
 	private String url3;
 	private String url4;
 	private String url5;
+	
+	@Builder.Default
+	private List<Video_ImgDto> imageDtoList = new ArrayList<>();
 	
 	public Video_BoardDto(Video_Board entity) {
 		this.id = entity.getId();
@@ -53,6 +58,8 @@ public class Video_BoardDto {
 		this.url5 = entity.getUrl5();
 		
 	}
+	
+	
 	
 	//createBoard()
 	public Video_Board toEntity() {
