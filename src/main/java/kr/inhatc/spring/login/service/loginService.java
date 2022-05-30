@@ -31,7 +31,7 @@ public class loginService {
 			user.setRandnum(randnum);
 			return yes;
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("메일 이상함");
 		}
 		return no;
 	}

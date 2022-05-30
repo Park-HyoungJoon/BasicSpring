@@ -13,6 +13,7 @@ public class UtilService {
         for(int i=0;i<end;i++){
             num+=Integer.toString(random.nextInt(10));
         }
+        System.out.println("랜덤 = " + num);
         return num;
     }
 }
