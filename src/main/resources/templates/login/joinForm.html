@@ -89,7 +89,7 @@ var mes = document.getElementById("mes");
 emailconfirm.addEventListener('keyup',function(){
 	var xhr = new XMLHttpRequest();
 	var value='email=' + emailconfirm.value;
-
+	//alert("a");
 	xhr.open('POST', '/emailconfirim',true);
 	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 	xhr.send(value); /// ajax data부분

@@ -40,4 +40,7 @@ public class User {
 	private String Role;
 	@Column
 	private String Profile_Photo;
+	
+	@Column
+	private String Randnum;
 }
