@@ -3,7 +3,9 @@ package kr.inhatc.spring.myPage.controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -23,9 +25,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.inhatc.spring.login.entity.Member;
@@ -92,7 +96,7 @@ public class myPageController{
 	 * String userList(Model model) { List<BasicDto> list = userService.userList();
 	 * model.addAttribute("list", list); return "user/userList"; }
 	 */
-
+	
 	@RequestMapping("/friendList")
 	public String friendList(Model model) {
 
@@ -138,13 +142,15 @@ public class myPageController{
 		System.out.println(path + "패스입니당 ^^!");
 		String upload_path = request.getSession().getServletContext().getRealPath("/"); // 프로필 사진들 모아두는 폴더
 		UserDto user = userService.findByUserId(id);
-		String redirect_url = "redirect:/myprofile/" + user.getId(); // 사진업로드 이후 redirect될 url
+		String redirect_url = "redirect:/myprofile/"; // 사진업로드 이후 redirect될 url
 
 		try {
 			if (user.getProfile_Photo() != null) { // 이미 프로필 사진이 있을경우
 				File file = new File(upload_path + user.getProfile_Photo()); // 경로 + 유저 프로필사진 이름을 가져와서
 				file.delete(); // 원래파일 삭제
 			}
+			System.out.println("????"+upload_path );
+			System.out.println(path + mFile.getOriginalFilename());
 			mFile.transferTo(new File(path + mFile.getOriginalFilename())); // 경로에 업로드
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
@@ -171,7 +177,7 @@ public class myPageController{
 		String path = auth.getName();
 		int id = userService.findUserId(path);
 		userService.deleteUser(id);
-		return "redirect:/";
+		return "redirect:/logout";
 	}
 
 	@GetMapping("/myPage/UVwrite")
