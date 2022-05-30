@@ -1,5 +1,6 @@
 package kr.inhatc.spring.video_board.service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -117,7 +118,7 @@ public class Video_BoardServiceImpl implements Video_BoardService {
 	 * 게시글 저장
 	 */
 	@Override
-	public void saveVideo(Video_BoardDto video) {
+	public void saveVideo(Video_BoardDto video)  {
 		video_BoardRepository.save(video.toEntity());
 	}
 	

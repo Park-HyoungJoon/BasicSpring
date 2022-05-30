@@ -9,6 +9,9 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.inhatc.spring.myPage.repository.UserFriendRepository;
+import kr.inhatc.spring.myPage.repository.UserLectureRepository;
+import kr.inhatc.spring.myPage.repository.UserVideoRepository;
 import kr.inhatc.spring.user.dto.UserDto;
 import kr.inhatc.spring.user.entity.User;
 import kr.inhatc.spring.user.repository.UserRepository;
@@ -22,9 +25,22 @@ public class UserService {
 	
 	@Autowired
 	private UserRepository UserRepository;
+	
+	@Autowired
+	private UserVideoRepository uvRepository;
+	
+	@Autowired
+	private UserLectureRepository ulRepository;
+	
+	@Autowired
+	private UserFriendRepository ufRepository;
 
 	public List<UserDto> userList() {
 		List<User> list = UserRepository.findAllByOrderByIdDesc();
+		return list.stream().map(UserDto::new).collect(Collectors.toList());
+	}
+	public List<UserDto> findFriend(int id) {
+		List<User> list = UserRepository.findFriend(id);
 		return list.stream().map(UserDto::new).collect(Collectors.toList());
 	}
 
@@ -64,7 +80,11 @@ public class UserService {
 	 */
 	public void userDelete(Long id) {
 		UserRepository.deleteById(id);
+		ulRepository.deleteUserLecture(id);
+		ufRepository.deleteUserFriend(id);
+		uvRepository.deleteUserVideo(id);
 	}
+	
 	public List<UserDto> findMe(int id){
 		List<User> user = UserRepository.findUser(id);
 		System.out.println(user.get(0).getNick());
@@ -95,8 +115,13 @@ public class UserService {
 		saveUser(udt);
 	}
 
-	public void updateProfile(String nick, String self, String pW, long id) {
-		int up = UserRepository.setProfile(nick,self,pW,id);
+	public void updateProfile(String nick, String self, long id) {
+		int up = UserRepository.setProfile(nick,self,id);
 	}
-
+	public void deleteUser(long id) {
+		UserRepository.deleteById(id);
+		ulRepository.deleteUserLecture(id);
+		ufRepository.deleteUserFriend(id);
+		uvRepository.deleteUserVideo(id);
+	}
 }

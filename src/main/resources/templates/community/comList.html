@@ -142,7 +142,7 @@
 							<img th:src="@{/img/java.png}" class="card-img-top" alt="...">
 							<div class="card-body">	
 								<h5 class="title" th:text="${vo.UVTitle}"></h5>
-								<a th:href="@{/video/videoDetail(id=${vo.UVId},page=${list.page}, type=${pageRequestDto.type}, keyword=${pageRequestDto.keyword})}"
+								<a th:href="@{/com/comDetail(id=${vo.UVId},page=${list.page}, type=${pageRequestDto.type}, keyword=${pageRequestDto.keyword})}"
 									class="btn btn-secondary" style="background-color: #00bc8c;">학습하기</a>
 							</div>
 							<div class="card-footer">
@@ -162,17 +162,17 @@
 
 						<li class="page-item"><a class="page-link"
 							th:if="${list.prev}"
-							th:href="@{/video/videoList(page= ${list.start -1}, type=${pageRequestDto.type}, keyword =${pageRequestDto.keyword})}"
+							th:href="@{/community/comList(page= ${list.start -1}, type=${pageRequestDto.type}, keyword =${pageRequestDto.keyword})}"
 							tabindex="-1">&laquo;</a></li>
 
 						<li class="page-item" th:each="page : ${list.pageList}"><a
 							class="page-link"
-							th:href="@{/video/videoList(page=${page}, type=${pageRequestDto.type}, keyword=${pageRequestDto.keyword})}"
+							th:href="@{/community/comList(page=${page}, type=${pageRequestDto.type}, keyword=${pageRequestDto.keyword})}"
 							th:text="${page}"></a></li>
 
 						<li class="page-item"><a class="page-link"
 							th:if="${list.next}"
-							th:href="@{/video/videoList(page=${list.end + 1}, type=${pageRequestDto.type},keyword=${pageRequestDto.keyword})}">&raquo;</a>
+							th:href="@{/community/comList(page=${list.end + 1}, type=${pageRequestDto.type},keyword=${pageRequestDto.keyword})}">&raquo;</a>
 						</li>
 					</ul>
 				</div>

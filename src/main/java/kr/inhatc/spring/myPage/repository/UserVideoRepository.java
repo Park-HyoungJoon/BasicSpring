@@ -1,6 +1,7 @@
 package kr.inhatc.spring.myPage.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -32,4 +33,16 @@ public interface UserVideoRepository extends JpaRepository<UserVideo, Integer>, 
 	int addUserVideo(String title, String contents, int id);
 
 	Page<UserVideo> findByUVTitleContaining(String keyword, Pageable pageable);
+	
+	@Transactional
+	@Modifying(clearAutomatically = true)
+	@Query(value= "DELETE from UserVideo where UId=?1",nativeQuery = true)
+	void deleteUserVideo(long id);
+	
+	@Transactional
+	@Modifying(clearAutomatically = true)
+	@Query(value= "DELETE from UserVideo where UId=?1 and UVId=?2",nativeQuery = true)
+	void deleteUserVideo(int uId, Long uVId);
+
+
 }

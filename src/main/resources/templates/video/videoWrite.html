@@ -1,4 +1,5 @@
- <!DOCTYPE html>
+
+<!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <head>
@@ -12,7 +13,8 @@
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
 <!-- CKeditor5 CDN방식 -->
-<script src="https://cdn.ckeditor.com/ckeditor5/33.0.0/classic/ckeditor.js"></script>  
+<script
+	src="https://cdn.ckeditor.com/ckeditor5/33.0.0/classic/ckeditor.js"></script>
 <!-- CKeditor5 다운로드 방식  -->
 <!-- <script src="/ckeditor5/ckeditor.js"></script> -->
 
@@ -28,33 +30,103 @@
  -->
 </head>
 <body>
-<div th:replace="/fragments/header.html :: fragment-nav"></div> 
+	<div th:replace="/fragments/header.html :: fragment-nav"></div>
 	<div class="container">
 		<h2>강의 등록</h2>
 		<!-- submit 버튼을 통한 데이터를 post방식으로 /board/boardInsert로 보낸다 -->
 		<!-- file 보내기 위한 enctype 설정! -->
 		<form id="frm" name="frm" method="post" action="/video/videoInsert">
+
+			<!-- 
 			<table class="board_detail">
-				<!-- tr안에 2개의 td로 나눔  -->
 				<tr>
 					<td>제목</td>
-					<td><input type="text" id="title" name="title"/></td>
+					<td><input type="text" id="title" name="title" /></td>
 				</tr>
-				<!-- tr안에 colspan="2"를 사용하여 td를 합친다 -->
+
 				<tr>
-					<td colspan="2">
-						<textarea id="contents" name="contents"></textarea>
+					<td colspan="2"><textarea id="contents" name="contents"></textarea>
 					</td>
 				</tr>
+
 			</table>
-			<input type="submit" id="submit" value="저장" class="btn btn-primary">		
+ -->
+
+
+
+
+			<div class="form-group">
+				<label for="exampleInputPassword1" class="form-label mt-4">강의
+					제목</label> <input type="text" class="form-control" id="title" name="title"
+					placeholder="강의 제목">
+			</div>
+
+			<div class="form-group">
+				<label for="exampleSelect1" class="form-label mt-4">강의 종류</label> <select
+					class="form-select" id="sort" name="type">
+					<option value="개발 · 프로그래밍">개발 · 프로그래밍</option>
+					<option value="보안 · 네트워크">보안 · 네트워크</option>
+					<option value="데이터 사이언스">데이터 사이언스</option>
+					<option value="크리에이티브">크리에이티브</option>
+					<option value="직무 · 마케팅">직무 · 마케팅</option>
+					<option value="학문 · 외국어">학문 · 외국어</option>
+					<option value="커리어">커리어</option>
+					<option value="교양">교양</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="exampleInputPassword1" class="form-label mt-4">상세
+					내용</label>
+				<textarea id="contents" name="contents"></textarea>
+			</div>
+
+			<div class="form-group">
+				<label for="formFile" class="form-label mt-4">강의 이미지 </label> <input
+					class="form-control" type="file" id="formFile">
+			</div>
+
+			<div class="form-group">
+				<label for="exampleInputPassword1" class="form-label mt-4">영상 챕터1</label>
+				<textarea id="video1" name="url1" ></textarea>
+			</div>
+			
+			<div class="form-group">
+				<label for="exampleInputPassword1" class="form-label mt-4">영상 챕터2</label>
+				<textarea id="video2" name="url2" ></textarea>
+			</div>
+			
+			<div class="form-group">
+				<label for="exampleInputPassword1" class="form-label mt-4">영상 챕터3</label>
+				<textarea id="video3" name="url3"></textarea>
+			</div>
+			
+			<div class="form-group">
+				<label for="exampleInputPassword1" class="form-label mt-4">영상 챕터4</label>
+				<textarea id="video4" name="url4"></textarea>
+			</div>
+			
+			<div class="form-group">
+				<label for="exampleInputPassword1" class="form-label mt-4">영상 챕터5</label>
+				<textarea id="video5" name="url5"></textarea>
+			</div>
+
+
+
+
+
+
+			<input type="submit" id="submit" value="저장" class="btn btn-primary">
 		</form>
 	</div>
 
 
-    <script>
+	<script>
+	for(i=1;i <= 5;i++){
+		
+	
         ClassicEditor
-            .create( document.querySelector( '#contents' ), {
+            .create( document.querySelector( "#video"+i+"" ), {
             	mediaEmbed: {
     		        previewsInData: true
     		    }
@@ -62,6 +134,17 @@
             .catch( error => {
                 console.error( error );
             } );
+	}
+	ClassicEditor
+    .create( document.querySelector( "#contents" ), {
+    	mediaEmbed: {
+	        previewsInData: true
+	    }
+    })
+    .catch( error => {
+        console.error( error );
+    } )
+        
     </script>
 
 

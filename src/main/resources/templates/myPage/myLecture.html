@@ -77,9 +77,13 @@
 
 					<div class="container">
 					<div id="demo" class="carousel slide" data-ride="carousel">
+						<div class="row row-cols-1 row-cols-md-4 g-4"
+							style="max-width: 900px; float: none; margin: 0 auto;">
 							<div class="col" th:if="${#lists.size(list)} > 0"
 								th:each="vo : ${list}">
 								<div class="card h-100">
+								<a type="button" class="btn-close" aria-label="Close" th:href="@{/LectureDelete/{id}(id=${vo.ULPId})}"style="float:right;"></a>
+								
 									<img th:src="@{/img/java.png}" class="card-img-top" alt="...">
 									<div class="card-body">
 										<h5 class="title" th:text="${vo.ULPId}"></h5>
@@ -89,9 +93,8 @@
 									</div>
 								</div>
 							</div>
-							<div th:unless="${#lists.size(list)}<=0">
-
-							</div>
+						</div>
+							<div th:unless="${#lists.size(list)}">
 							<div>
 						<h4 style="margin-top: 50px; text-align: center;">
 							수강중인 강의가 없습니다.<br>강의 페이지로 이동하시겠습니까?
@@ -101,6 +104,8 @@
 								style="margin: 0 0 0 5px;" onclick="location.href='/video/videoList'">이동</button>
 						</div>
 						</div>
+
+							</div>
 						</div>
 					</div>
 			</main>

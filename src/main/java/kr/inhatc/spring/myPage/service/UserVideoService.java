@@ -16,6 +16,7 @@ import kr.inhatc.spring.myPage.repository.UserFriendRepository;
 import kr.inhatc.spring.myPage.repository.UserLectureRepository;
 import kr.inhatc.spring.myPage.repository.UserVideoRepository;
 import kr.inhatc.spring.video_board.dto.Video_BoardDto;
+import kr.inhatc.spring.video_board.entity.Video_Board;
 
 @Service
 public class UserVideoService {
@@ -49,6 +50,42 @@ public class UserVideoService {
 		public List<UserVideoDTO> latestuVideoList(Long long1) {
 			List<UserVideo> list = uvRepository.latestVideo(long1);	
 			return list.stream().map(UserVideoDTO::new).collect(Collectors.toList());
+		}
+
+		public void deleteUV(int uId, Long uVId) {
+			uvRepository.deleteUserVideo(uId, uVId);
+		}
+		@Transactional
+		public UserVideoDTO uvDetail(int id) {
+			Optional<UserVideo> optional = uvRepository.findById(id);
+			if(optional.isPresent()) {
+				UserVideo user_video = optional.get();
+				user_video.increaseHits();
+				return new UserVideoDTO(user_video);
+			} else {
+				throw new NullPointerException();
+			}
+		}
+
+		@Transactional
+		public void addLecture(long id, int uId) {
+			uLRepository.addLectrue(id,uId);
+			
+		}
+
+		public void deleteUL(int uId, Long uLPId) {
+			uLRepository.deleteUserVideo(uId, uLPId);
+			
+		}
+
+		public int checkLecture(long uId, Long id) {
+			int check=0;
+			try {
+			check = uLRepository.selectLecture(uId,id);
+			}catch (Exception e) {
+				check=0;
+			}
+			return check;
 		}
 		
 

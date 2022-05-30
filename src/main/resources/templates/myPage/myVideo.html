@@ -91,7 +91,8 @@
 							style="max-width: 900px; float: none; margin: 0 auto;">
 							<div class="col" th:if="${#lists.size(list)} > 0"
 								th:each="vo : ${list}">
-								<div class="card h-100">
+								<div class="card h-100" >
+								<a type="button" class="btn-close" aria-label="Close" th:href="@{/videoDelete/{id}(id=${vo.UVId})}"style="float:right;"></a>
 									<img th:src="@{/img/java.png}" class="card-img-top" alt="...">
 									<div class="card-body">
 										<h5 class="title" th:text="${vo.UVTitle}"></h5>

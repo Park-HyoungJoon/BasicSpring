@@ -39,4 +39,11 @@ public class UserVideo {
 	@Column
 	private int UVHitCnt;
 
+	/**
+	 * 조회수 증가
+	 */
+	public void increaseHits() {
+		this.UVHitCnt++;
+	}
+	
 }
