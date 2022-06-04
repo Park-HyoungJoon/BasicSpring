@@ -3,6 +3,7 @@ package kr.inhatc.spring.login.service;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import kr.inhatc.spring.login.repository.UserRepositoy;
@@ -22,6 +23,35 @@ public class loginService {
 		boolean vo = userRepository.existsByEmail(email);
 		System.out.println(vo);
 		return vo;
+	}
+	
+	public boolean passchange(String email, String auth) {
+		System.out.println("인증번호 확인");
+		Integer vo = userRepository.findEmailtoNum(email, auth);
+		System.out.println(vo);
+		if (vo != null) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public boolean pwchange(String email , String pw) {
+		System.out.println("비밀번호 변경");
+		
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		System.out.println("암호화전 : " + pw);
+		String s_pw = encoder.encode(pw);
+		System.out.println("암호화후 : " + s_pw);
+		Integer vo = userRepository.pwchage(email, s_pw);
+		System.out.println(vo);
+		if (vo == 1) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 	@Transactional()
