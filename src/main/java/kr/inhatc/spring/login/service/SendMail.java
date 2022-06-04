@@ -23,13 +23,13 @@ public class SendMail {
 		MimeMessageHelper helper = new MimeMessageHelper(mes);
 		
 		try {
-			System.out.println("시작!");
+//			System.out.println("시작!");
 			helper.setTo(address);
-			System.out.println("1성공");
+//			System.out.println("1성공");
 			helper.setSubject(subject);
-			System.out.println("2성공");
+//			System.out.println("2성공");
 			helper.setText(body);
-			System.out.println("3성공");
+//			System.out.println("3성공");
 			
 		} catch (MessagingException e) {
 			System.out.println("메일 전송 실패");

@@ -49,9 +49,9 @@ public class LoginController {
 //		return "index";
 //	}
 	
-	@GetMapping("/success")
+	@PostMapping("/success")
 	public String success() {
-		return "login/success";
+		return "redirect:/";
 	}
 
 	@GetMapping("/userr")
