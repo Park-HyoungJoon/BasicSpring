@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.simple.JSONArray;
 import org.json.simple.parser.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.configurationprocessor.json.JSONObject;
@@ -32,7 +33,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import kr.inhatc.spring.login.entity.Member;
+import kr.inhatc.spring.myPage.dto.FriendDTO;
 import kr.inhatc.spring.myPage.dto.UserLectureDTO;
 import kr.inhatc.spring.myPage.dto.UserVideoDTO;
 import kr.inhatc.spring.myPage.service.UserFriendService;
@@ -104,14 +108,32 @@ public class myPageController{
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			String path = auth.getName();
 			int id = userService.findUserId(path);
-			String result = ufservice.findMyFriend(id);
+//			String result = ufservice.findMyFriend(id);
+			
+			List<FriendDTO> list = ufservice.findMyFriend(id); 
+			System.out.println("list 테스트 !!!! " +list.get(0).getName());
+			ObjectMapper mapper = new ObjectMapper(); 
+			String jsonString = mapper.writeValueAsString(list);
+			System.out.println("스트링ㅇ느???"+jsonString);
 			List<UserDto> result2 = userService.findFriend(id);
-			System.out.println(result2.get(0).getNick());
-			System.out.println(result);
-//		  JSONParser parser = new JSONParser();
+			
+			JSONArray jsa = new JSONArray();
+			for (int i = 0; i < result2.size(); i++) {
+				String Nick = result2.get(i).getNick();
+				String self = result2.get(i).getSelf();
+				Long id2 = result2.get(i).getId();
+				String id3 = id2.toString();
+				HashMap<String, String> tt = new HashMap<>();
+				tt.put("Nick",Nick);
+				tt.put("self", self);
+				tt.put("id", id3);
+				JSONObject jt = new JSONObject(tt);
+				jsa.add(jt);
+			}
+			System.out.println(jsa.toJSONString());
+//	  JSONParser parser = new JSONParser();
 //			  JSONObject jsonobj = (JSONObject) parser.parse(result); 
 //			  model.addAttribute("result",jsonobj);
-			model.addAttribute("Friend", result);
 			model.addAttribute("AllFriend", result2);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
