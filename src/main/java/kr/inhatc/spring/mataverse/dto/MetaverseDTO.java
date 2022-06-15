@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import kr.inhatc.spring.mataverse.entity.Metaverse;
+import kr.inhatc.spring.video_board.entity.Video_Board;
 
 @Builder
 @Getter
@@ -22,7 +23,14 @@ public class MetaverseDTO {
 	private Date StartDate;
 	private Date EndDate;
 	
-	
+	public MetaverseDTO(Metaverse entity) {
+		this.MId = entity.getM_Id();
+		this.UId = entity.getUId();
+		this.Title = entity.getTitle();
+		this.StartDate = entity.getStartDate();
+		this.EndDate = entity.getEndDate();
+		
+	}
 
 }
 
