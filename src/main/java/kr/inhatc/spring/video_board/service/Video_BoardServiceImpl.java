@@ -194,6 +194,9 @@ public class Video_BoardServiceImpl implements Video_BoardService {
 		List<Video_BoardDto> searchLecture = video_BoardRepository.searchVideo(id);
 		return searchLecture;
 	}
+	
+
+
 
 
 }
