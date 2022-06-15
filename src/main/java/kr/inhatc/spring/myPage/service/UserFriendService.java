@@ -38,4 +38,9 @@ public class UserFriendService {
 		ufRepository.addFriend(id,UId);
 		
 	}
+
+	public void deleteFriend(int id, int uId) {
+		ufRepository.deleteFriend(id,uId);
+		
+	}
 }

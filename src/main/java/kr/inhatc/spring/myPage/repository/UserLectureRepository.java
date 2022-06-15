@@ -27,8 +27,8 @@ public interface UserLectureRepository extends JpaRepository<UserLecture, Intege
 
 	@Transactional
 	@Modifying(clearAutomatically = true)
-	@Query(value="INSERT INTO UserLecture (LPId,UId,ULUpload) values(?1,?2,now())" ,nativeQuery = true)
-	public void addLectrue(long id, int uId);
+	@Query(value="INSERT INTO UserLecture (LPId,UId,video_title,video_contents,ULUpload) values(?1,?2,?3,?4,?5)" ,nativeQuery = true)
+	public void addLectrue(long id, int uId,String vt,String vc,String up);
 
 	@Transactional
 	@Modifying(clearAutomatically = true)

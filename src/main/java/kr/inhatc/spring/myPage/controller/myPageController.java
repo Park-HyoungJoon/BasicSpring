@@ -58,7 +58,9 @@ public class myPageController{
 	UserService userService;
 	@Autowired
 	UserFriendService ufservice;
-	 
+
+	@Autowired
+	private Video_BoardService video_BoardService;
 
 	@RequestMapping("/mypage")
 	public String myPage(Model model) {
@@ -75,12 +77,13 @@ public class myPageController{
 	}
 
 	@RequestMapping(value = "/myLecture", method = RequestMethod.GET)
-	public String myLecture(Model model) {
+	public String myLecture(PageRequestDto pageRequestDto,Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String path = auth.getName();
 		int id = userService.findUserId(path);
 		List<UserLectureDTO> list = service.uLectureList(id);
 		model.addAttribute("list", list);
+		model.addAttribute("list2", video_BoardService.getList(pageRequestDto));
 		return "myPage/myLecture";
 	}
 
@@ -105,35 +108,35 @@ public class myPageController{
 	public String friendList(Model model) {
 
 		try {
+			//세션을 통해 현재 유저 정보 가져옴
 			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 			String path = auth.getName();
 			int id = userService.findUserId(path);
-//			String result = ufservice.findMyFriend(id);
 			
-			List<FriendDTO> list = ufservice.findMyFriend(id); 
-			System.out.println("list 테스트 !!!! " +list.get(0).getName());
-			ObjectMapper mapper = new ObjectMapper(); 
-			String jsonString = mapper.writeValueAsString(list);
-			System.out.println("스트링ㅇ느???"+jsonString);
+			/*result2는 자기 자신과 이미 친구추가된 사용자를 제외한 유저들을 가져온다.
+			 * result는 자기 자신 제외, 친구추가가 안된 사람들을 제외한 유저들을 가져온다.*/
 			List<UserDto> result2 = userService.findFriend(id);
+			List<UserDto> result = userService.findHaveFriend(id);
 			
-			JSONArray jsa = new JSONArray();
-			for (int i = 0; i < result2.size(); i++) {
-				String Nick = result2.get(i).getNick();
-				String self = result2.get(i).getSelf();
-				Long id2 = result2.get(i).getId();
-				String id3 = id2.toString();
+			JSONArray jsa = new JSONArray(); //JSONArray 객체생성
+			for (int i = 0; i < result.size(); i++) {
+				//해당 유저 정보들을 get(i)를 통해 하나씩 가져옴.
+				String Nick = result.get(i).getNick();
+				String self = result.get(i).getSelf();
+				Long id2 = result.get(i).getId();
+				
+				//<a>태그를 사용하여 deleteFriend URL로 이동하여 삭제하게끔 만든다.
+				String id3 = "<a href=\"deleteFriend/"+id2.toString()+"\" /> 친구삭제";
 				HashMap<String, String> tt = new HashMap<>();
-				tt.put("Nick",Nick);
-				tt.put("self", self);
+				tt.put("name",Nick);
+				tt.put("price", self);
 				tt.put("id", id3);
+				//tt를 통해 해당 정보를 넣고 넣어진 정보들을 JSONObject로 변환
 				JSONObject jt = new JSONObject(tt);
+				//넣어진 정보를 json 배열에 추가
 				jsa.add(jt);
 			}
-			System.out.println(jsa.toJSONString());
-//	  JSONParser parser = new JSONParser();
-//			  JSONObject jsonobj = (JSONObject) parser.parse(result); 
-//			  model.addAttribute("result",jsonobj);
+			  model.addAttribute("result",jsa);
 			model.addAttribute("AllFriend", result2);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -222,17 +225,32 @@ public class myPageController{
 		return redirect_url;
 	}
 
+	@GetMapping("/deleteFriend/{id}")
+	public String deleteFriend(@PathVariable("id") int id, Model model) throws Exception {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String path = auth.getName();
+		int UId = userService.findUserId(path);
+		ufservice.deleteFriend(id, UId);
+		String redirect_url = "redirect:/friendList";
+		return redirect_url;
+	}
+
+	//UId가 사용자 , id가 시청받은 강의
 	@GetMapping("/addLecture/{id}")
 	public String addLecture(@PathVariable("id") int id, Model model) throws Exception {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String path = auth.getName();
 		int UId = userService.findUserId(path);
-		service.addLecture(id, UId);		
+		System.out.println("id의 값은 ::::::: " +  id);
+		List<Video_BoardDto> searchLecture = video_BoardService.searchVideo(id);
+		service.addLecture(id, UId,searchLecture);
 		List<UserLectureDTO> list = service.uLectureList(id);
 		model.addAttribute("list", list);
 		String redirect_url = "redirect:/myLecture";
 		return redirect_url;
 	}
+	
+	
 	@PostMapping("/myPage/UVtoss")
 	public String videoToss(@RequestParam(value = "title", required = false) String title,
 			@RequestParam(value = "contents", required = false) String contents, Model model) {

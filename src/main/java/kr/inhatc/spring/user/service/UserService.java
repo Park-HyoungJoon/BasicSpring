@@ -44,6 +44,12 @@ public class UserService {
 		return list.stream().map(UserDto::new).collect(Collectors.toList());
 	}
 
+
+	public List<UserDto> findHaveFriend(int id) {
+		List<User> list = UserRepository.findHaveFriend(id);
+		return list.stream().map(UserDto::new).collect(Collectors.toList());
+	}
+
 	/**
 	 * 게시글 저장
 	 */

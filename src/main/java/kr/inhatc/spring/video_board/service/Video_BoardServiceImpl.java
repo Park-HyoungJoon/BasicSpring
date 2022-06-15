@@ -188,6 +188,11 @@ public class Video_BoardServiceImpl implements Video_BoardService {
 	public void videoDelete(Long id) {
 		video_BoardRepository.deleteById(id);
 	}
-
+	@Override
+	@Transactional
+	public List<Video_BoardDto> searchVideo(int id) {
+		List<Video_BoardDto> searchLecture = video_BoardRepository.searchVideo(id);
+		return searchLecture;
+	}
 
 }

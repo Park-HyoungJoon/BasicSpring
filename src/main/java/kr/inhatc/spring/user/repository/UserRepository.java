@@ -15,8 +15,12 @@ import kr.inhatc.spring.user.entity.User;
 public interface UserRepository extends JpaRepository<User, Long>{
 	
 	
+	//사용자 제외 , userFriend의 UId가 사용자 id와 겹치는 OtherUId 제외(이미 친구가 되어있는)
 	@Query(value="select * from User u where u.UId NOT IN (SELECT OtherUId from UserFriend uf where uf.UId =?1) and u.UId != ?1" ,nativeQuery=true)
 	List<User> findFriend(int id);
+	
+	@Query(value="select * from User u where u.UId IN (SELECT OtherUId from UserFriend uf where uf.UId =?1) and u.UId != ?1" ,nativeQuery=true)
+	List<User> findHaveFriend(int id);
 	
 	List<User> findAllByOrderByIdDesc();
 	
