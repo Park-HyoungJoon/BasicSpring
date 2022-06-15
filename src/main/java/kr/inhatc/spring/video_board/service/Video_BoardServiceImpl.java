@@ -107,7 +107,7 @@ public class Video_BoardServiceImpl implements Video_BoardService {
 		return booleanBuilder;
 
 	}
-
+ 
 	@Override
 	public PageResultDto<Video_BoardDto, Video_Board> getList(PageRequestDto requestDto) {
 
