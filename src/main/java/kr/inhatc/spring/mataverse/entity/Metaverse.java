@@ -17,7 +17,7 @@ public class Metaverse {
 	@Id  //PK Annotation
 	@GeneratedValue
 	@Column(name = "M_Id")
-	private int M_Id;
+	private Long M_Id;
 	
 	@Column(name = "UId")
 	private int UId;

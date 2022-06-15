@@ -24,7 +24,7 @@ public class MetaverseDTO {
 	private Date EndDate;
 	
 	public MetaverseDTO(Metaverse entity) {
-		this.MId = entity.getM_Id();
+		//this.MId = entity.getM_Id();
 		this.UId = entity.getUId();
 		this.Title = entity.getTitle();
 		this.StartDate = entity.getStartDate();
