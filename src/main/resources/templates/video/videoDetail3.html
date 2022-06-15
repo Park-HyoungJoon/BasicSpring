@@ -42,7 +42,29 @@
 						</td>
 					</tr>
 					<tr>
-						<td colspan="4" class="view_text" id="contents"  th:utext="${video.url1}" >
+						<td th:if="${num}==2"
+						colspan="4" class="view_text" id="contents"  th:utext="${video.url2}" >
+						</td>
+					</tr>
+					
+					<tr>
+						<td th:if="${num}==1"
+						colspan="4" class="view_text" id="contents"  th:utext="${video.url1}" >
+						</td>
+					</tr>
+					<tr>
+						<td th:if="${num}==3"
+						colspan="4" class="view_text" id="contents"  th:utext="${video.url3}" >
+						</td>
+					</tr>
+					<tr>
+						<td th:if="${num}==4"
+						colspan="4" class="view_text" id="contents"  th:utext="${video.url4}" >
+						</td>
+					</tr>
+					<tr>
+						<td th:if="${num}==5"
+						colspan="4" class="view_text" id="contents"  th:utext="${video.url5}" >
 						</td>
 					</tr>
 				</tbody>

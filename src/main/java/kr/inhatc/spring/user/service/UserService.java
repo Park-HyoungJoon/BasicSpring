@@ -101,6 +101,19 @@ public class UserService {
 		return user;
 		
 	}
+	
+	public String findUserNick(String email){
+		String nick = "";
+		try {
+		nick = UserRepository.findEmailtoNick(email);
+		}catch (Exception e) {
+			nick="";
+		}
+		return nick;
+		
+	}
+	
+	
 	public List<UserDto> findAllData(String path){
 		List<User> user = UserRepository.findAllData(path);
 		return user.stream().map(UserDto::new).collect(Collectors.toList());
