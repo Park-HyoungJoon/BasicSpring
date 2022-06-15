@@ -23,6 +23,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString
 public class Video_Board {
 	
 	@Id
@@ -47,6 +48,10 @@ public class Video_Board {
 	 
 	@Column(name = "video_type")
 	private String type;
+	
+	private String filename;
+	
+	private String filepath;
 	
 	//샘플! 나중에 수정할거야!
 	@Column(name = "video_url1", columnDefinition = "TEXT")

@@ -1,5 +1,7 @@
 package kr.inhatc.spring.video_board.service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,19 +9,18 @@ import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.inhatc.spring.user.dto.BasicDto;
 import kr.inhatc.spring.video_board.dto.Video_BoardDto;
-import kr.inhatc.spring.video_board.dto.Video_ImgDto;
 import kr.inhatc.spring.video_board.entity.Video_Board;
-import kr.inhatc.spring.video_board.entity.Video_Img;
 import kr.inhatc.spring.video_board.util.PageRequestDto;
 import kr.inhatc.spring.video_board.util.PageResultDto;
 
 public interface Video_BoardService {
 
 
-	void saveVideo(Video_BoardDto video);
+	void saveVideo(Video_BoardDto video, MultipartFile file) throws Exception;
 
 	Video_BoardDto videoDetail(Long id);
 
@@ -58,6 +59,8 @@ public interface Video_BoardService {
 				.uploadDate(entity.getUploadDate())
 				.creator(entity.getCreator())
 				.type(entity.getType())
+				.filename(entity.getFilename())
+				.filepath(entity.getFilepath())
 				.url1(entity.getUrl1())
 				.url2(entity.getUrl2())
 				.url3(entity.getUrl3())
@@ -67,6 +70,8 @@ public interface Video_BoardService {
 		
 		return dto;
 	}
+
+	PageResultDto<Video_BoardDto, Video_Board> getList2(PageRequestDto requestDto);
 	
 	public Long register(Video_BoardDto dto);
 	

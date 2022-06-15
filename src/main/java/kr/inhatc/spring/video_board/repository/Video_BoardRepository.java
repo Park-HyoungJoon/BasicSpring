@@ -12,6 +12,8 @@ import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.stereotype.Repository;
 
 import kr.inhatc.spring.video_board.dto.Video_BoardDto;
+import com.querydsl.core.BooleanBuilder;
+
 import kr.inhatc.spring.video_board.entity.Video_Board;
 
 @Repository
@@ -26,6 +28,8 @@ public interface Video_BoardRepository extends JpaRepository<Video_Board, Long>,
 	List<Video_BoardDto> searchVideo(int id);
 
 	
+	@Query(value="SELECT v.* from Video_Board v where video_type = '개발 · 프로그래밍'", nativeQuery = true)
+	Page<Video_Board> find(BooleanBuilder booleanBuilder, Pageable pageable);
 
 
 
