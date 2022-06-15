@@ -12,7 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 
 import kr.inhatc.spring.login.service.oauth.PrincipalOauth2UserService;
-
+ 
 
 @Configuration
 @EnableWebSecurity
