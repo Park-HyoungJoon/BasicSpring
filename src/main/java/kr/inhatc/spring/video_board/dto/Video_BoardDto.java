@@ -19,7 +19,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter @Setter
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -32,6 +32,8 @@ public class Video_BoardDto {
 	private String uploadDate;
 	private String creator;
 	private String type;
+	private String filename;
+	private String filepath;
 	//나중에 수정할거야!
 	private String url1;
 	private String url2;
@@ -39,8 +41,6 @@ public class Video_BoardDto {
 	private String url4;
 	private String url5;
 	
-	@Builder.Default
-	private List<Video_ImgDto> imageDtoList = new ArrayList<>();
 	
 	public Video_BoardDto(Video_Board entity) {
 		this.id = entity.getId();
@@ -50,6 +50,8 @@ public class Video_BoardDto {
 		this.uploadDate = entity.getUploadDate();
 		this.creator = entity.getCreator();
 		this.type = entity.getType();
+		this.filename = entity.getFilename();
+		this.filepath = entity.getFilepath();
 		//나중에 수정할거야!
 		this.url1 = entity.getUrl1();
 		this.url2 = entity.getUrl2();
@@ -68,8 +70,10 @@ public class Video_BoardDto {
 				.contents(contents)
 				.hitCnt(0)
 				.uploadDate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")))
-				.creator("admin")
+				.creator(creator)
 				.type(type)
+				.filename(filename)
+				.filepath(filepath)
 				.url1(url1)
 				.url2(url2)
 				.url3(url3)
@@ -77,4 +81,6 @@ public class Video_BoardDto {
 				.url5(url5)
 				.build();
 	}
+	
+	
 }

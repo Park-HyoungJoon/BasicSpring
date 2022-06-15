@@ -3,6 +3,8 @@ package kr.inhatc.spring.video_board.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.inhatc.spring.myPage.service.UserVideoService;
@@ -63,46 +66,47 @@ public class Video_BoardController {
 	
 	@GetMapping("/video/videoList")
 	public String videoList(PageRequestDto pageRequestDto, Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String path = auth.getName();
+		long UId = userService.findUserId(path);
+		model.addAttribute("check",UId);	
+		
 		model.addAttribute("list", video_BoardService.getList(pageRequestDto));
 		return "video/videoList";
 	}
 	
-//	@GetMapping("/video/videoInsert")
-//	public String videoWrite() {
-//		return "video/videoWrite";
-//	}
+	@GetMapping("/video/it-programming")
+	public String videoList2(PageRequestDto pageRequestDto, Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String path = auth.getName();
+		long UId = userService.findUserId(path);
+		model.addAttribute("check",UId);	
+		
+		model.addAttribute("list", video_BoardService.getList2(pageRequestDto));
+		return "video/videoList";
+	}
 	
-//	@PostMapping("/video/videoInsert")
-//	public String videoInsert(Video_BoardDto video) throws IOException {
-//		video_BoardService.saveVideo(video);
-//		return "redirect:/video/videoList";
-//	}
-//	
 	
-	@GetMapping("/video/register")
-	public String videoRegister() {
+	@GetMapping("/video/videoInsert")
+	public String videoWrite() {
 		return "video/videoWrite";
 	}
 	
-	@PostMapping("/video/register")
-	public String register(Video_BoardDto video_BoardDto, RedirectAttributes redirectAttributes) {
-		log.info("Video_BoardDto: " + video_BoardDto);
-		
-		Long id = video_BoardService.register(video_BoardDto);
-		
-		redirectAttributes.addFlashAttribute("msg",id);
-		
+	@PostMapping("/video/videoInsert")
+	public String videoInsert(Video_BoardDto video, MultipartFile file) throws Exception {
+		video_BoardService.saveVideo(video,file);
 		return "redirect:/video/videoList";
 	}
-	
 	
 	
 	@GetMapping("/video/videoDetail")
 	//  Rest방식 /user/Detail/13 이렇게 경로처럼 받으면 Pathvariable 써야함,,
 	//  그냥 일반 파라미터 값 /board/Detail?boardIdx=3 이런식으로 받으면 @RequestPram으로 쓰고
-	public String videoDetail(Long id, String url2,@ModelAttribute("requestDto") PageRequestDto requestDto, Model model) {
+	public String videoDetail(Long id,@RequestParam String num, Model model) {
 		Video_BoardDto video = video_BoardService.videoDetail(id);
 		model.addAttribute("video", video);
+		log.info("===================> num : " + num);
+		model.addAttribute("num", num); 
 		return "video/videoDetail3";
 	}
 	
@@ -113,7 +117,7 @@ public class Video_BoardController {
 	}
 	 
 	@GetMapping("/video/videoDetail2")
-	public String videoDetail2_test(Long id,@ModelAttribute("requestDto") PageRequestDto requestDto, Model model ) {
+	public String videoDetail2(Long id,@ModelAttribute("requestDto") PageRequestDto requestDto, Model model ) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String path = auth.getName();
 		long UId = userService.findUserId(path);
@@ -121,6 +125,9 @@ public class Video_BoardController {
 			int check = ulService.checkLecture(UId,id);
 			model.addAttribute("check",check);					
 		}
+		String nick = userService.findUserNick(path);
+		model.addAttribute("nick",nick);
+		
 		Video_BoardDto video = video_BoardService.videoDetail(id);
 		model.addAttribute("video", video);
 		return "video/videoDetail2";
