@@ -10,27 +10,27 @@ import kr.inhatc.spring.mataverse.dto.MetaverseDTO;
 import kr.inhatc.spring.mataverse.entity.Metaverse;
 import kr.inhatc.spring.mataverse.repository.MetaverseRepository;
 
-@Service
+//@Service
 //@Transactional(readOnly = true)
-public class MetaversServiceImpl implements MetaverseService {
+//public class MetaversServiceImpl implements MetaverseService {
 
-	@Autowired
-	MetaverseRepository metarRepository;
-	
+//	@Autowired
+//	MetaverseRepository metarverseRepository;
+//	
 
-	@Transactional
-	@Override
-	public Page<MetaverseDTO> metaverseList(Pageable pageable) {
-		
-		Page<Metaverse> page = metarRepository.findAll(pageable);
-		Page<MetaverseDTO> pageDto = page.map(MetaverseDTO::new);
-		return pageDto;
-	}
-	
+//	@Transactional
+//	@Override
+////	public Page<MetaverseDTO> metaverseList(Pageable pageable) {
+////		
+////		Page<Metaverse> page = metarverseRepository.findAll(pageable);
+////		Page<MetaverseDTO> pageDto = page.map(MetaverseDTO::new);
+////		return pageDto;
+//	}
+//	
+//
+// 
+//
 
- 
 
 
-
-
-}
+//}

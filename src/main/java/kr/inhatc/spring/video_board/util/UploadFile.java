@@ -48,7 +48,7 @@ public class UploadFile {
 		FileCopyUtils.copy(file.getBytes(), uploadFile);
 		
 		dto.setFilename(fileName);
-		dto.setFilepath(File.separator + "upload2" + dir + fileName);
+		dto.setFilepath(File.separator + "upload" + dir + fileName);
 		
 	}
 }
