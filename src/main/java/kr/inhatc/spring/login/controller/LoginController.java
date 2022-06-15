@@ -17,6 +17,7 @@ import kr.inhatc.spring.user.entity.User;
 
 @Controller
 public class LoginController {
+	
 	@Autowired
 	private BCryptPasswordEncoder bCryptPasswordEncoder;
 //	test

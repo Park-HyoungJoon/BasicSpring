@@ -1,5 +1,6 @@
 package kr.inhatc.spring.configuration;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -10,10 +11,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 
+import kr.inhatc.spring.login.service.oauth.PrincipalOauth2UserService;
+
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
+	
+	@Autowired
+	private PrincipalOauth2UserService oauth2UserService;
 	
 	@Bean
 	public BCryptPasswordEncoder encoderPwd() {
@@ -31,11 +37,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.anyRequest().permitAll()
 			.and()
 			.formLogin()
-
 			.loginPage("/")
 //			.usernameParameter("email")
 			.loginProcessingUrl("/login")
-			.defaultSuccessUrl("/");
+			.defaultSuccessUrl("/")
+			.and()
+			.oauth2Login()
+			.loginPage("/")
+			.userInfoEndpoint()
+			.userService(oauth2UserService);
 	}
 	
 	@Bean
