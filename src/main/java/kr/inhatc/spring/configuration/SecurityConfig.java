@@ -14,6 +14,7 @@ import org.thymeleaf.extras.springsecurity5.dialect.SpringSecurityDialect;
 import kr.inhatc.spring.login.service.oauth.PrincipalOauth2UserService;
 
 
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
@@ -34,6 +35,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http.authorizeHttpRequests()
 //			.antMatchers("/user/**").authenticated()
 			.antMatchers("/manager/**").authenticated()
+			.antMatchers("/video/**").authenticated()
+			.antMatchers("/metaverse/**").authenticated()
+			.antMatchers("/community/**").authenticated()
 			.anyRequest().permitAll()
 			.and()
 			.formLogin()
