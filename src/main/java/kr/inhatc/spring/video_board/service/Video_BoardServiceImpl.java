@@ -195,4 +195,5 @@ public class Video_BoardServiceImpl implements Video_BoardService {
 		return searchLecture;
 	}
 
+
 }
