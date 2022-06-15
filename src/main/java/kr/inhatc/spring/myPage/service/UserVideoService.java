@@ -68,8 +68,8 @@ public class UserVideoService {
 		}
 
 		@Transactional
-		public void addLecture(long id, int uId) {
-			uLRepository.addLectrue(id,uId);
+		public void addLecture(long id, int uId,List<Video_BoardDto> searchLecture) {
+			uLRepository.addLectrue(id,uId,searchLecture.get(0).getTitle(),searchLecture.get(0).getContents(),searchLecture.get(0).getUploadDate());
 			
 		}
 

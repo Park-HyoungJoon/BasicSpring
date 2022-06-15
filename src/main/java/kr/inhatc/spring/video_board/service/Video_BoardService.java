@@ -108,4 +108,6 @@ public interface Video_BoardService {
 		return entityMap;	
 		
 	}
+
+	List<Video_BoardDto> searchVideo(int id);
 }

@@ -24,4 +24,10 @@ public interface UserFriendRepository extends JpaRepository<UserFriend, Integer>
 	@Modifying(clearAutomatically = true)
 	@Query(value="INSERT INTO UserFriend (OtherUId,UId) values(?1,?2)" ,nativeQuery = true)
 	public void addFriend(int id, int uId);
+
+
+	@Transactional
+	@Modifying(clearAutomatically = true)
+	@Query(value="DELETE FROM UserFriend where OtherUId=?1 and UId=?2" ,nativeQuery = true)
+	public void deleteFriend(int id, int uId);
 }
