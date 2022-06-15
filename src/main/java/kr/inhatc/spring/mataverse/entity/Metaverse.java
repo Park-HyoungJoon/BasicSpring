@@ -5,7 +5,6 @@ import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import lombok.Data;
@@ -16,16 +15,20 @@ import lombok.Data;
 public class Metaverse {
 
 	@Id  //PK Annotation
-//	PK 자동 증가하게 해준다.(Auto increment)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue
+	@Column(name = "M_Id")
 	private int M_Id;
-	@Column
+	
+	@Column(name = "UId")
 	private int UId;
-	@Column
+	
+	@Column(name = "StartDate")
 	private Date StartDate;
-	@Column 
+	
+	@Column (name = "EndDate")
 	private Date EndDate;
-	@Column
+	
+	@Column(name = "Title")
 	private String Title;
 	
 

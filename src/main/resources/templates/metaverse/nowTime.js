@@ -33,5 +33,8 @@ var Now = new Date(); // 현재 날짜 및 시간
         }
     })
 
+
+    export default nowtime;
+
     
 
