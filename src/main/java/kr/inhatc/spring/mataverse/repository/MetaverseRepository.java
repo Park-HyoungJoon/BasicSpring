@@ -14,7 +14,7 @@ import kr.inhatc.spring.video_board.entity.Video_Board;
 @Repository
 public interface MetaverseRepository extends JpaRepository<Metaverse, Long>, QuerydslPredicateExecutor<Metaverse>{
 	
-	Page<Metaverse> findAllByOrderByIdDesc(Pageable pageable);
+//	Page<Metaverse> findAllByOrderByIdDesc(Pageable pageable);
 
 
 	

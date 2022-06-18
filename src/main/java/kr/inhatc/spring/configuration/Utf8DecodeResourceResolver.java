@@ -15,3 +15,4 @@ public class Utf8DecodeResourceResolver extends PathResourceResolver implements 
         return super.getResource(resourcePath, location);
     }
 }
+ 
