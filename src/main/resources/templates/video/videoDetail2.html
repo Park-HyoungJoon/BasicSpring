@@ -36,49 +36,63 @@
 				<article class="blog-post">
 					<h2 class="blog-post-title">강의 목록</h2>
 
-					<table class="table" >
+					<table class="table">
 						<thead>
 							<tr>
 								<th>목록</th>
-								
+
 							</tr>
 						</thead>
 						<tbody>
-							<tr th:if="${!video.url1.toString().equals('')}" >
+							<tr >
 								<td>Chapter1</td>
-
-								<td><a 
-									th:href="@{/video/videoDetail(id=${video.id}, num=1)}">
-										<button class="btn btn-primary">강의 시청</button>
+								<td ><a th:if="${!video.url1.toString().equals('')}"
+									th:href="@{/video/videoDetail(id=${video.id}, num=1)}" >
+										<button class="btn btn-primary" >강의 시청</button>
 								</a></td>
+								<td th:if="${video.url1.toString().equals('')}" th:text="영상이 업로드 되지 않았습니다."> 
+								</td>
 							</tr>
-							<tr th:if="${!video.url2.toString().equals('')}">
+							<tr >
 								<td>Chapter2</td>
-								<td><a
+								<td><a th:if="${!video.url2.toString().equals('')}"
 									th:href="@{/video/videoDetail(id=${video.id}, num=2)}">
 										<button class="btn btn-primary">강의 시청</button>
 								</a></td>
+								<td th:if="${video.url2.toString().equals('')}"> 
+									영상이 업로드 되지 않았습니다.</td>
 							</tr>
-							<tr th:if="${!video.url3.toString().equals('')}">
+							
+							<tr >
 								<td>Chapter3</td>
-								<td><a
+								<td><a th:if="${!video.url3.toString().equals('')}"
 									th:href="@{/video/videoDetail(id=${video.id}, num=3)}">
 										<button class="btn btn-primary">강의 시청</button>
-								</a></td>
+								</a>
+								<a th:if="${video.url3.toString().equals('')}">영상이 업로드 되지 않았습니다.
+								</a>
+								</td>
 							</tr>
-							<tr th:if="${!video.url4.toString().equals('')}">
+							
+							<tr >
 								<td>Chapter4</td>
-								<td><a
+								<td><a th:if="${!video.url4.toString().equals('')}"
 									th:href="@{/video/videoDetail(id=${video.id}, num=4)}">
 										<button class="btn btn-primary">강의 시청</button>
-								</a></td>
+								</a>
+								<a th:if="${video.url4.toString().equals('')}">영상이 업로드 되지 않았습니다.
+								</a>
+								</td>
 							</tr>
-							<tr th:if="${!video.url5.toString().equals('')}">
+							<tr >
 								<td>Chapter5</td>
-								<td><a
+								<td><a th:if="${!video.url5.toString().equals('')}"
 									th:href="@{/video/videoDetail(id=${video.id}, num=5)}">
 										<button class="btn btn-primary">강의 시청</button>
-								</a></td>
+								</a>
+								<a th:if="${video.url5.toString().equals('')}">영상이 업로드 되지 않았습니다.
+								</a>
+								</td>
 							</tr>
 						</tbody>
 						<tfoot>
@@ -93,7 +107,9 @@
 				<nav class="blog-pagination" aria-label="Pagination">
 					<a class="btn btn-outline-primary"
 						th:href="@{/video/videoList(page=${requestDto.page}, type=${requestDto.type}, keyword=${requestDto.keyword})}">목록으로</a>
-					<a th:if="${nick} == ${video.creator}" class="btn btn-outline-secondary" href="/video/videoDelete/" th:attrappend="href=${video.id}">삭제하기</a>
+					<a th:if="${nick} == ${video.creator}"
+						class="btn btn-outline-secondary" href="/video/videoDelete/"
+						th:attrappend="href=${video.id}">삭제하기</a>
 				</nav>
 			</div>
 
@@ -101,9 +117,9 @@
 				<div class="position-sticky" style="top: 2rem;">
 					<div class="p-4 mb-3 bg-light rounded d-grid gap-2">
 						<h4 class="fst-italic">강의</h4>
-						
-						<a th:if="${check}== 0" style="background-color: #00bc8c;" type="button"
-							class="btn btn-lg btn-secondary"
+
+						<a th:if="${check}== 0" style="background-color: #00bc8c;"
+							type="button" class="btn btn-lg btn-secondary"
 							th:href="@{/addLecture/{id}(id=${video.id})}">내 강의에 담기</a>
 						<button style="background-color: #8e8c84;" type="button"
 							class="btn btn-lg btn-secondary"
