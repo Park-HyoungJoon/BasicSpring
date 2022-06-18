@@ -50,8 +50,8 @@
 									th:href="@{/video/videoDetail(id=${video.id}, num=1)}" >
 										<button class="btn btn-primary" >강의 시청</button>
 								</a></td>
-								<td th:if="${video.url1.toString().equals('')}" th:text="영상이 업로드 되지 않았습니다."> 
-								</td>
+								<td th:if="${video.url1.toString().equals('')}"> 
+								영상이 업로드 되지 않았습니다.</td>
 							</tr>
 							<tr >
 								<td>Chapter2</td>
