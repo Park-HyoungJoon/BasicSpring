@@ -107,6 +107,7 @@
 							</tr>
 						</thead>
 					</table>
+					<!-- 1.hidden 타입 value에 json전달받은 값을 넣는다. -->
 					<input type="hidden" id="ress" th:value="${result}">
 					<div id="modal3" class="modal fade">
 						<div class="modal-dialog" role="document">
@@ -162,9 +163,10 @@
 		var $table = $('#table')
 
 		$(function() {
-			//JSONArray를 가져온다.
+			//아까 hidden에 넣은 value값인 JSONArray를 가져온다.
 			var op = document.getElementById('ress').value;
-			//op는 현재 string형태
+			//op는 현재 string형태 --->>>string 형태라면 json 형태가 아니라 json데이터 값을 사용하는 놈한테는 json 형태라도 타입이 string이면
+			//값이 안들어감.
 			console.log(typeof (op))
 
 			//JSON.parse를 통해 JSON화
