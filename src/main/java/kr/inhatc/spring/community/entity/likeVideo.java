@@ -22,6 +22,8 @@ import lombok.Setter;
 @Builder
 public class likeVideo {
 	@Id
+	int id;
+	@Column
 	int UId;
 	@Column
 	int UVId;

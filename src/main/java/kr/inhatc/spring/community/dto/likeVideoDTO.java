@@ -17,12 +17,14 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class likeVideoDTO {
+	int id;
 	int UId;
 	int UVId;
 	int likeV;
 	int subscribe;
 	
 	public likeVideoDTO(likeVideo entity) {
+		this.id = entity.getId();
 		this.UId = entity.getUId();
 		this.UVId = entity.getUVId();
 		this.likeV = entity.getLikeV();
@@ -31,6 +33,7 @@ public class likeVideoDTO {
 	
 	public static likeVideo toEntity(likeVideoDTO dto) {
 		return likeVideo.builder()
+				.id(dto.getId())
 				.UId(dto.getUId())
 				.UVId(dto.getUVId())
 				.likeV(dto.getLikeV())

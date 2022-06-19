@@ -51,6 +51,7 @@
 				</tbody>
 			</table>
 			<input type="hidden" id="id" th:value="${video.UVId}">
+			<input type="hidden" id="heart" th:value="${heart}">
 		</form>
 		
  
@@ -79,13 +80,22 @@
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script  type="text/javascript">
 $(document).ready(function(){
+	var heart = document.getElementById('heart').value;
+	var type = document.getElementById('test').className;
+	if(heart==1){
+		  document.getElementById('test').className='bi bi-suit-heart-fill';
+		
+	}else{
+		  document.getElementById('test').className='bi bi-suit-heart';
+		
+	}
 	
 });
 $('#btnTest').on('click', function(e){
 	var type = document.getElementById('test').className;
 	var id = document.getElementById('id').value;
 	if(type=='bi bi-suit-heart-fill'){
-		var heart = 1;
+		var heart = 0;
 		  document.getElementById('test').className='bi bi-suit-heart';
 			$.ajax({
 				url : "/community/comheart",
@@ -93,14 +103,10 @@ $('#btnTest').on('click', function(e){
 				data : {
 					id : id, 
 					heart : heart,
-				},success : function(){
-					alert('성공!')
-				},error:function(){
-					alert("실패!")
 				}
 			})
 	}else{
-		var heart = 0;
+		var heart = 1;
 	  document.getElementById('test').className='bi bi-suit-heart-fill';
 		$.ajax({
 			url : "/community/comheart",
@@ -108,10 +114,6 @@ $('#btnTest').on('click', function(e){
 			data : {
 				id : id, 
 				heart : heart,
-			},success : function(){
-				alert('성공!')
-			},error:function(){
-				alert("실패!")
 			}
 		})		 
 	}

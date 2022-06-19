@@ -50,10 +50,22 @@ public class CommunityController {
 	//  Rest방식 /user/Detail/13 이렇게 경로처럼 받으면 Pathvariable 써야함,,
 	//  그냥 일반 파라미터 값 /board/Detail?boardIdx=3 이런식으로 받으면 @RequestPram으로 쓰고
 	public String comDetail(int id, @ModelAttribute("requestDto") PageRequestDto requestDto, Model model) {
+		//세션을 통해 현재 유저 정보 가져옴
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String path = auth.getName();
+		int uId = userService.findUserId(path);
 		UserVideoDTO video = uvService.uvDetail(id);
+		try {
+		int heart = cService.findHeart(uId,id);//uId는 유저, id는 UVId
+		model.addAttribute("heart",heart);
+		}catch(Exception e){
+			
+		}finally {
 		model.addAttribute("video", video);
+		
 		return "community/comDetail";
-	}
+		}
+		}
 	
 	@PostMapping("/community/comheart")
 	//  Rest방식 /user/Detail/13 이렇게 경로처럼 받으면 Pathvariable 써야함,,
@@ -64,7 +76,7 @@ public class CommunityController {
 		String path = auth.getName();
 		int heart = data.getHeart();
 		int id = userService.findUserId(path);
-		int catchId = cService.findUser(id);
+		int catchId = cService.findUser(id,data.getId());
 		System.out.println("catchiD : : : : "+catchId);
 		
 		if(catchId>0) {
