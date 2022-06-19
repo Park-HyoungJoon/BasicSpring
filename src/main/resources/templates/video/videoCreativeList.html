@@ -171,15 +171,27 @@
 
 
 				</form>
+				<br><br>
+				<button th:if="${check}>0" style="background-color: #00bc8c; float: right;"
+						type="button" class="btn btn-secondary"
+						onclick="location.href='/video/videoInsert' ">강의등록</button>
+				
 
-				<br> <br> <br>
+				<br>
+				
 				<hr>
+				
+					
+
+				
+				<!-- 
 				<div>
 					<button th:if="${check}>0" style="background-color: #00bc8c; float: right;"
 						type="button" class="btn btn-secondary"
 						onclick="location.href='/video/videoInsert' ">강의등록</button>
 
 				</div>
+				 -->
 
 			 
 			<div class="row row-cols-1 row-cols-md-4 g-4"
