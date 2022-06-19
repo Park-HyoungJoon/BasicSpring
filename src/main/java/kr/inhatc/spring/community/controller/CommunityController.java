@@ -1,5 +1,7 @@
 package kr.inhatc.spring.community.controller;
 
+import java.util.concurrent.Future;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -10,7 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import kr.inhatc.spring.community.dto.data;
 import kr.inhatc.spring.community.service.CommunityService;
 import kr.inhatc.spring.myPage.dto.UserVideoDTO;
 import kr.inhatc.spring.myPage.service.UserVideoService;
@@ -51,22 +55,28 @@ public class CommunityController {
 		return "community/comDetail";
 	}
 	
-	@GetMapping("/community/comheart/{UVId}")
+	@PostMapping("/community/comheart")
 	//  Rest방식 /user/Detail/13 이렇게 경로처럼 받으면 Pathvariable 써야함,,
 	//  그냥 일반 파라미터 값 /board/Detail?boardIdx=3 이런식으로 받으면 @RequestPram으로 쓰고
-	public String comheart(@PathVariable("UVId") int UVId) {
+	public void comheart(data data) {
 		//세션을 통해 현재 유저 정보 가져옴
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String path = auth.getName();
+		int heart = data.getHeart();
 		int id = userService.findUserId(path);
 		int catchId = cService.findUser(id);
+		System.out.println("catchiD : : : : "+catchId);
 		
 		if(catchId>0) {
-			
+			if(heart==1) {
+				cService.updateHeart(id,data.getId(),heart);
+			}else {
+				heart=0;
+				cService.updateHeart(id,data.getId(),heart);
+			}
 		}
 		else {
-			cService.addfav(id,UVId);
+			cService.addfav(id,data.getId());
 		}
-		return "";	
 	}
 }

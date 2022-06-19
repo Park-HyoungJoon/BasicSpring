@@ -1,6 +1,8 @@
 package kr.inhatc.spring.community.service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.Future;
 import java.util.function.Function;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.stereotype.Service;
 
 import com.querydsl.core.BooleanBuilder;
@@ -100,11 +103,10 @@ public class CommunityService {
 		
 		return dto;
 	}
-	@Async
 	public int findUser(int id) {
 		try {
-		int optional = lvRepository.findUser(id);
-		int catchId = optional;
+		List<Integer> optional = lvRepository.findUser(id);
+		int catchId = optional.get(0);
 		System.out.println("catchcatch!! :: "+ catchId);
 		return catchId;
 		
@@ -112,9 +114,11 @@ public class CommunityService {
 			return 0;
 		}
 	}
-	@Async
 	public void addfav(int id, int uVId) {
 		lvRepository.addlikeVideo(id, uVId);
+	}
+	public void updateHeart(int id, int id2, int heart) {
+		lvRepository.updateHeart(id,id2,heart);
 	}
 
 }

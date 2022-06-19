@@ -26,7 +26,7 @@ public class likeVideo {
 	@Column
 	int UVId;
 	@Column
-	int like;
+	int likeV;
 	@Column
 	int subscribe;
 }

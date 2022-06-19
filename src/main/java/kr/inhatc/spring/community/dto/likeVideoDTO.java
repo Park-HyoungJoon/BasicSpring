@@ -19,13 +19,13 @@ import lombok.Setter;
 public class likeVideoDTO {
 	int UId;
 	int UVId;
-	int like;
+	int likeV;
 	int subscribe;
 	
 	public likeVideoDTO(likeVideo entity) {
 		this.UId = entity.getUId();
 		this.UVId = entity.getUVId();
-		this.like = entity.getLike();
+		this.likeV = entity.getLikeV();
 		this.subscribe = entity.getSubscribe();
 	}
 	
@@ -33,7 +33,7 @@ public class likeVideoDTO {
 		return likeVideo.builder()
 				.UId(dto.getUId())
 				.UVId(dto.getUVId())
-				.like(dto.getLike())
+				.likeV(dto.getLikeV())
 				.subscribe(dto.getSubscribe())
 				.build();
 	}
