@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 
+import kr.inhatc.spring.community.repository.likeVideoRepository;
 import kr.inhatc.spring.myPage.dto.UserVideoDTO;
 import kr.inhatc.spring.myPage.entity.QUserVideo;
 import kr.inhatc.spring.myPage.entity.UserVideo;
@@ -22,7 +23,10 @@ import kr.inhatc.spring.video_board.util.PageResultDto;
 public class CommunityService {
 
 	@Autowired
-	private UserVideoRepository uvRepository;	
+	private UserVideoRepository uvRepository;
+	
+	@Autowired
+	private likeVideoRepository lvRepository;
 	
 	public Page<UserVideoDTO> search(String keyword, Pageable pageable) {
 		Page<UserVideo> list = uvRepository.findByUVTitleContaining(keyword,pageable);
@@ -93,6 +97,13 @@ public class CommunityService {
 				.build();
 		
 		return dto;
+	}
+	public int findUser(int id) {
+		int catchId = lvRepository.findUser(id);
+		return catchId;
+	}
+	public void addfav(int id, int uVId) {
+		lvRepository.addlikeVideo(id, uVId);
 	}
 
 }

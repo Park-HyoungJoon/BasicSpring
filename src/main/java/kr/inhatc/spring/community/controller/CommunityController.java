@@ -1,6 +1,8 @@
 package kr.inhatc.spring.community.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,7 @@ import kr.inhatc.spring.video_board.util.PageRequestDto;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
+@EnableAsync
 @Controller
 public class CommunityController {
 	@Autowired
@@ -45,5 +48,24 @@ public class CommunityController {
 		UserVideoDTO video = uvService.uvDetail(id);
 		model.addAttribute("video", video);
 		return "community/comDetail";
+	}
+	@Async
+	@GetMapping("/community/comheart")
+	//  Rest방식 /user/Detail/13 이렇게 경로처럼 받으면 Pathvariable 써야함,,
+	//  그냥 일반 파라미터 값 /board/Detail?boardIdx=3 이런식으로 받으면 @RequestPram으로 쓰고
+	public void comheart(int UVId) {
+		//세션을 통해 현재 유저 정보 가져옴
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String path = auth.getName();
+		int id = userService.findUserId(path);
+		int catchId = cService.findUser(id);
+		
+		if(catchId>0) {
+			
+		}
+		else {
+			cService.addfav(id,UVId);
+		}
+		
 	}
 }
