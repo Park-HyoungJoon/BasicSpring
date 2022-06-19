@@ -80,17 +80,101 @@ public class Video_BoardController {
 		return "video/videoList";
 	}
 	
-	@GetMapping("/video/it-programming")
-	public String videoList2(PageRequestDto pageRequestDto, Model model) {
+	@GetMapping("/video/type/security")
+	public String videoList_security(PageRequestDto pageRequestDto, Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String path = auth.getName();
 		long UId = userService.findUserId(path);
 		model.addAttribute("check",UId);	
 		
-		model.addAttribute("list", video_BoardService.getList2(pageRequestDto));
+		String type = "보안 · 네트워크";
+		model.addAttribute("list", video_BoardService.getList2(pageRequestDto,type));
 		return "video/videoList";
 	}
 	
+	@GetMapping("/video/type/progamming")
+	public String videoList_progamming(PageRequestDto pageRequestDto, Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String path = auth.getName();
+		long UId = userService.findUserId(path);
+		model.addAttribute("check",UId);	
+		
+		String type = "개발 · 프로그래밍";
+		model.addAttribute("list", video_BoardService.getList2(pageRequestDto,type));
+		return "video/videoList";
+	}
+	
+	@GetMapping("/video/type/data")
+	public String videoList_data(PageRequestDto pageRequestDto, Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String path = auth.getName();
+		long UId = userService.findUserId(path);
+		model.addAttribute("check",UId);	
+		
+		String type = "데이터 사이언스";
+		model.addAttribute("list", video_BoardService.getList2(pageRequestDto,type));
+		return "video/videoList";
+	}
+	
+	@GetMapping("/video/type/creative")
+	public String videoList_creative(PageRequestDto pageRequestDto, Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String path = auth.getName();
+		long UId = userService.findUserId(path);
+		model.addAttribute("check",UId);	
+		
+		String type = "크리에이티브";
+		model.addAttribute("list", video_BoardService.getList2(pageRequestDto,type));
+		return "video/videoList";
+	}
+	
+	@GetMapping("/video/type/marketing")
+	public String videoList_marketing(PageRequestDto pageRequestDto, Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String path = auth.getName();
+		long UId = userService.findUserId(path);
+		model.addAttribute("check",UId);	
+		
+		String type = "직무 · 마케팅";
+		model.addAttribute("list", video_BoardService.getList2(pageRequestDto,type));
+		return "video/videoList";
+	}
+	
+	@GetMapping("/video/type/language")
+	public String videoList_language(PageRequestDto pageRequestDto, Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String path = auth.getName();
+		long UId = userService.findUserId(path);
+		model.addAttribute("check",UId);	
+		
+		String type = "학문 · 외국어";
+		model.addAttribute("list", video_BoardService.getList2(pageRequestDto,type));
+		return "video/videoList";
+	}
+	
+	@GetMapping("/video/type/career")
+	public String videoList_career(PageRequestDto pageRequestDto, Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String path = auth.getName();
+		long UId = userService.findUserId(path);
+		model.addAttribute("check",UId);	
+		
+		String type = "커리어";
+		model.addAttribute("list", video_BoardService.getList2(pageRequestDto,type));
+		return "video/videoList";
+	}
+	
+	@GetMapping("/video/type/refinement")
+	public String videoList_refinement(PageRequestDto pageRequestDto, Model model) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String path = auth.getName();
+		long UId = userService.findUserId(path);
+		model.addAttribute("check",UId);	
+		
+		String type = "교양";
+		model.addAttribute("list", video_BoardService.getList2(pageRequestDto,type));
+		return "video/videoList";
+	}
 	
 	/**
 	 * 
