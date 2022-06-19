@@ -35,6 +35,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+<<<<<<< HEAD
+=======
+//import kr.inhatc.spring.login.entity.Member;
+>>>>>>> master
 import kr.inhatc.spring.myPage.dto.FriendDTO;
 import kr.inhatc.spring.myPage.dto.UserLectureDTO;
 import kr.inhatc.spring.myPage.dto.UserVideoDTO;
