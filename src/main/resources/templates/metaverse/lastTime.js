@@ -1,4 +1,4 @@
-var Now = new Date(); // 현재 날짜 및 시간
+    var Now = new Date(); // 현재 날짜 및 시간
     var nowMonth = Now.getMonth() + 1; // 월
     var nowDay = Now.getDate(); // 일
     var nowHour = Now.getHours(); // 시
@@ -21,13 +21,13 @@ var Now = new Date(); // 현재 날짜 및 시간
     var nowtime = nowMonth + nowDay + nowHour + nowMins; // 월+일+시+분
 
 
-    var startdate = 06010000;
-    var enddate = 12310000;
+    var startdate = 04010000;
+    var enddate = 05310000;
 
     $(document).ready(()=>{
         if(eval(startdate) > eval(nowtime) || eval(enddate) < eval(nowtime) ){ //지금이 시작시간보다 작거나, 종료시간보다 크면 
             console.log("된 거?");
-            $("#nowGather").attr("disabled", true);
+            $("#lastGather").attr("disabled", true);
         }else{
             console.log("그럴 리가 ㅋ");
         }
