@@ -70,7 +70,7 @@ public interface Video_BoardService {
 		return dto;
 	}
 
-	PageResultDto<Video_BoardDto, Video_Board> getList2(PageRequestDto requestDto);
+	PageResultDto<Video_BoardDto, Video_Board> getList2(PageRequestDto requestDto, String type);
 	
 	
 

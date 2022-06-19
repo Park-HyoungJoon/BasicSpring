@@ -119,7 +119,7 @@ public class Video_BoardServiceImpl implements Video_BoardService {
 
 		// QuestDSL 사용 - 페이지 정보를 통한 페이지 결과 가져오기
 		Page<Video_Board> result = video_BoardRepository.findAll(booleanBuilder, pageable);
-
+		
 		// 엔티티를 DTO로 변환해주는 기능
 		Function<Video_Board, Video_BoardDto> fn = (entity -> entityToDto(entity));
 
@@ -127,7 +127,7 @@ public class Video_BoardServiceImpl implements Video_BoardService {
 	}
 	
 	@Override
-	public PageResultDto<Video_BoardDto, Video_Board> getList2(PageRequestDto requestDto) {
+	public PageResultDto<Video_BoardDto, Video_Board> getList2(PageRequestDto requestDto,String type) {
 
 		// 역순으로 페이지 정보 가져오기 (내림차순으로 페이지 출력하기)
 		Pageable pageable = requestDto.getPageable(Sort.by("id").descending());
@@ -136,7 +136,7 @@ public class Video_BoardServiceImpl implements Video_BoardService {
 		BooleanBuilder booleanBuilder = getSearch(requestDto);
 	 	
 		// QuestDSL 사용 - 페이지 정보를 통한 페이지 결과 가져오기
-		Page<Video_Board> result = video_BoardRepository.find(booleanBuilder, pageable);
+		Page<Video_Board> result = video_BoardRepository.findAllByType(type, pageable);
 
 		// 엔티티를 DTO로 변환해주는 기능
 		Function<Video_Board, Video_BoardDto> fn = (entity -> entityToDto(entity));

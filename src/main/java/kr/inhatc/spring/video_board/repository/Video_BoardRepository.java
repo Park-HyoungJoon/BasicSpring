@@ -21,15 +21,23 @@ public interface Video_BoardRepository extends JpaRepository<Video_Board, Long>,
 	
 	//Page<Video_Board> findAllByOrderByIdDesc(Pageable pageable);
 	Page<Video_Board> findByTitleContaining(String keyword, Pageable pageable);
-
+	
+	 
 	
 	@Transactional
 	@Query(value = "SELECT vb.* FROM Video_Board vb WHERE vb.video_id = ?1 ",nativeQuery=true)
 	List<Video_BoardDto> searchVideo(int id);
 
+
+
+	Page<Video_Board> findAllByType(String type, Pageable pageable);
+
 	
-	@Query(value="SELECT v.* from Video_Board v where video_type = '개발 · 프로그래밍'", nativeQuery = true)
-	Page<Video_Board> find(BooleanBuilder booleanBuilder, Pageable pageable);
+//	@Transactional
+//	@Query("select d from Video_Board d where d.type=:type")
+//	Page<Video_Board> findByType(String type,BooleanBuilder booleanBuilder, Pageable pageable);
+
+	
 
 
 
