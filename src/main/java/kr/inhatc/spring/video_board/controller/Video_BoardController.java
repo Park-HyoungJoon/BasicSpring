@@ -89,7 +89,7 @@ public class Video_BoardController {
 		
 		String type = "보안 · 네트워크";
 		model.addAttribute("list", video_BoardService.getList2(pageRequestDto,type));
-		return "video/videoList";
+		return "video/videoSecurityList";
 	}
 	
 	@GetMapping("/video/type/progamming")
@@ -101,7 +101,7 @@ public class Video_BoardController {
 		
 		String type = "개발 · 프로그래밍";
 		model.addAttribute("list", video_BoardService.getList2(pageRequestDto,type));
-		return "video/videoList";
+		return "video/videoProgammingList";
 	}
 	
 	@GetMapping("/video/type/data")
@@ -113,7 +113,7 @@ public class Video_BoardController {
 		
 		String type = "데이터 사이언스";
 		model.addAttribute("list", video_BoardService.getList2(pageRequestDto,type));
-		return "video/videoList";
+		return "video/videoDataList";
 	}
 	
 	@GetMapping("/video/type/creative")
@@ -125,7 +125,7 @@ public class Video_BoardController {
 		
 		String type = "크리에이티브";
 		model.addAttribute("list", video_BoardService.getList2(pageRequestDto,type));
-		return "video/videoList";
+		return "video/videoCreativeList";
 	}
 	
 	@GetMapping("/video/type/marketing")
@@ -137,7 +137,7 @@ public class Video_BoardController {
 		
 		String type = "직무 · 마케팅";
 		model.addAttribute("list", video_BoardService.getList2(pageRequestDto,type));
-		return "video/videoList";
+		return "video/videoMarketingList";
 	}
 	
 	@GetMapping("/video/type/language")
@@ -149,7 +149,7 @@ public class Video_BoardController {
 		
 		String type = "학문 · 외국어";
 		model.addAttribute("list", video_BoardService.getList2(pageRequestDto,type));
-		return "video/videoList";
+		return "video/videoLanguageList";
 	}
 	
 	@GetMapping("/video/type/career")
@@ -161,7 +161,7 @@ public class Video_BoardController {
 		
 		String type = "커리어";
 		model.addAttribute("list", video_BoardService.getList2(pageRequestDto,type));
-		return "video/videoList";
+		return "video/videoCareerList";
 	}
 	
 	@GetMapping("/video/type/refinement")
@@ -173,7 +173,7 @@ public class Video_BoardController {
 		
 		String type = "교양";
 		model.addAttribute("list", video_BoardService.getList2(pageRequestDto,type));
-		return "video/videoList";
+		return "video/videoRefinementList";
 	}
 	
 	/**

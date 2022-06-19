@@ -224,17 +224,17 @@ col-md-4
 
 					<li class="page-item"><a class="page-link"
 						th:if="${list.prev}"
-						th:href="@{/video/videoList(page= ${list.start -1}, type=${pageRequestDto.type}, keyword =${pageRequestDto.keyword})}"
+						th:href="@{/video/type/creative(page= ${list.start -1}, type=${pageRequestDto.type}, keyword =${pageRequestDto.keyword})}"
 						tabindex="-1">&laquo;</a></li>
 
 					<li class="page-item" th:each="page : ${list.pageList}"><a
 						class="page-link"
-						th:href="@{/video/videoList(page=${page}, type=${pageRequestDto.type}, keyword=${pageRequestDto.keyword})}"
+						th:href="@{/video/type/creative(page=${page}, type=${pageRequestDto.type}, keyword=${pageRequestDto.keyword})}"
 						th:text="${page}"></a></li>
 
 					<li class="page-item"><a class="page-link"
 						th:if="${list.next}"
-						th:href="@{/video/videoList(page=${list.end + 1}, type=${pageRequestDto.type},keyword=${pageRequestDto.keyword})}">&raquo;</a>
+						th:href="@{/video/type/creative(page=${list.end + 1}, type=${pageRequestDto.type},keyword=${pageRequestDto.keyword})}">&raquo;</a>
 					</li>
 				</ul>
 			</div>
