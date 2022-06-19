@@ -16,8 +16,8 @@ import kr.inhatc.spring.myPage.entity.UserVideo;
 @Repository
 public interface likeVideoRepository extends JpaRepository<likeVideo, Integer>{
 	@Modifying
-	@Query(value="Select u.UId from likeVideo u where u.UId=?1",nativeQuery = true)
-	List<Integer> findUser(int id);
+	@Query(value="Select u.UId from likeVideo u where u.UId=?1 and u.UVId=?2",nativeQuery = true)
+	List<Integer> findUser(int id,int UVId);
 	
 	@Transactional
 	@Modifying(clearAutomatically = true)
@@ -28,5 +28,10 @@ public interface likeVideoRepository extends JpaRepository<likeVideo, Integer>{
 	@Modifying(clearAutomatically = true)
 	@Query(value="Update likeVideo u set u.likeV=?3 where u.UId=?1 and u.UVId=?2", nativeQuery = true)
 	void updateHeart(int id, int id2, int heart);
+
+	
+
+	@Query(value="Select u.likeV from likeVideo u where u.UId=?1 and u.UVId=?2",nativeQuery = true)
+	int selectHeart(int uId, int uVId);
 
 }

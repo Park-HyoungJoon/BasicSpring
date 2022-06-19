@@ -103,9 +103,9 @@ public class CommunityService {
 		
 		return dto;
 	}
-	public int findUser(int id) {
+	public int findUser(int id,int UVId) {
 		try {
-		List<Integer> optional = lvRepository.findUser(id);
+		List<Integer> optional = lvRepository.findUser(id,UVId);
 		int catchId = optional.get(0);
 		System.out.println("catchcatch!! :: "+ catchId);
 		return catchId;
@@ -119,6 +119,10 @@ public class CommunityService {
 	}
 	public void updateHeart(int id, int id2, int heart) {
 		lvRepository.updateHeart(id,id2,heart);
+	}
+	public int findHeart(int uId, int UVId) {
+		int heart = lvRepository.selectHeart(uId,UVId);
+		return heart;
 	}
 
 }
