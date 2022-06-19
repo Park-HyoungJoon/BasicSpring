@@ -163,6 +163,21 @@ public class Video_BoardServiceImpl implements Video_BoardService {
 		video_BoardRepository.save(video.toEntity());
 	}
 	
+	@Override
+	public Long updateVideo(Video_BoardDto video, MultipartFile file) throws Exception  {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		String path = auth.getName();
+		String nick = userService.findUserNick(path);
+		video.setCreator(nick);
+		
+		if(file.isEmpty()) {
+			String img = "";
+			video.setFilepath(img);
+		} else {
+			uploadFile.fildUpload(video, file);
+		}
+		return video_BoardRepository.save(video.toEntity()).getId();
+	}
 	
 
 	/**

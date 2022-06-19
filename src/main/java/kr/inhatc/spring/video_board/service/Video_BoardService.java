@@ -76,4 +76,6 @@ public interface Video_BoardService {
 	
 
 	List<Video_BoardDto> searchVideo(int id);
+
+	Long updateVideo(Video_BoardDto video, MultipartFile file) throws Exception;
 }

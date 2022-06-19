@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -39,7 +40,7 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @Controller
 public class Video_BoardController {
-
+	
 	@Autowired
 	UserService userService;
 	
@@ -64,6 +65,12 @@ public class Video_BoardController {
 //		return "video/videoList";
 //	}
 	
+	
+	/**
+	 * 
+	 * 
+	 * 출력
+	 */
 	@GetMapping("/video/videoList")
 	public String videoList(PageRequestDto pageRequestDto, Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -87,6 +94,11 @@ public class Video_BoardController {
 	}
 	
 	
+	/**
+	 * 
+	 * 삽입
+	 */
+	
 	@GetMapping("/video/videoInsert")
 	public String videoWrite() {
 		return "video/videoWrite";
@@ -97,8 +109,30 @@ public class Video_BoardController {
 		video_BoardService.saveVideo(video,file);
 		return "redirect:/video/videoList";
 	}
+	/**
+	 * 
+	 * 
+	 * 수정
+	 */
+	@GetMapping("/video/videoUpdate/{id}")
+	public String videoWrite2(@PathVariable("id") Long id,Model model) {
+		Video_BoardDto video = video_BoardService.videoDetail(id);
+		model.addAttribute("video", video);
+		return "video/videoWrite2";
+	}
+	
+	@PostMapping("/video/videoUpdate/{id}")
+	public String videoUpdate(Video_BoardDto video, MultipartFile file) throws Exception {
+		video_BoardService.updateVideo(video, file);
+		return "redirect:/video/videoList";
+	}
 	
 	
+	/**
+	 * 
+	 * 
+	 * 상세보기
+	 */
 	@GetMapping("/video/videoDetail")
 	//  Rest방식 /user/Detail/13 이렇게 경로처럼 받으면 Pathvariable 써야함,,
 	//  그냥 일반 파라미터 값 /board/Detail?boardIdx=3 이런식으로 받으면 @RequestPram으로 쓰고

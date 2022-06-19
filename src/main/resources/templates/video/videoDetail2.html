@@ -107,6 +107,9 @@
 				<nav class="blog-pagination" aria-label="Pagination">
 					<a class="btn btn-outline-primary"
 						th:href="@{/video/videoList(page=${requestDto.page}, type=${requestDto.type}, keyword=${requestDto.keyword})}">목록으로</a>
+						<a th:if="${nick} == ${video.creator}"
+						class="btn btn-outline-secondary" href="/video/videoUpdate/"
+						th:attrappend="href=${video.id}">수정하기</a>
 					<a th:if="${nick} == ${video.creator}"
 						class="btn btn-outline-secondary" href="/video/videoDelete/"
 						th:attrappend="href=${video.id}">삭제하기</a>

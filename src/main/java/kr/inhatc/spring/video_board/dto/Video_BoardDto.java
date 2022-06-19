@@ -66,6 +66,7 @@ public class Video_BoardDto {
 	//createBoard()
 	public Video_Board toEntity() {
 		return Video_Board.builder()
+				.id(id)
 				.title(title)
 				.contents(contents)
 				.hitCnt(0)
