@@ -11,7 +11,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
 
-import kr.inhatc.spring.user.dto.BasicDto;
 import kr.inhatc.spring.video_board.dto.Video_BoardDto;
 import kr.inhatc.spring.video_board.entity.Video_Board;
 import kr.inhatc.spring.video_board.util.PageRequestDto;

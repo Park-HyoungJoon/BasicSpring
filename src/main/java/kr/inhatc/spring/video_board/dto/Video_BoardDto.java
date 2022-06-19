@@ -9,7 +9,6 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import kr.inhatc.spring.user.entity.Basic;
 import kr.inhatc.spring.video_board.constant.AttachmentType;
 import kr.inhatc.spring.video_board.entity.Video_Board;
 import lombok.AllArgsConstructor;

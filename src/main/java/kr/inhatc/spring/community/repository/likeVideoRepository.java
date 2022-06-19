@@ -1,6 +1,7 @@
 package kr.inhatc.spring.community.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -12,8 +13,8 @@ import kr.inhatc.spring.community.entity.likeVideo;
 import kr.inhatc.spring.myPage.entity.UserVideo;
 
 public interface likeVideoRepository extends JpaRepository<likeVideo, Integer>{
-	@Query(value="Select UId from likeVideo where UId=?1",nativeQuery = true)
-	public int findUser(int id);
+	@Query(value="Select u.UId from likeVideo u where UId=?1",nativeQuery = true)
+	int findUser(int id);
 	
 	@Transactional
 	@Modifying(clearAutomatically = true)
