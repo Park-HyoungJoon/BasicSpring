@@ -35,7 +35,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-
 import kr.inhatc.spring.myPage.dto.FriendDTO;
 import kr.inhatc.spring.myPage.dto.UserLectureDTO;
 import kr.inhatc.spring.myPage.dto.UserVideoDTO;
