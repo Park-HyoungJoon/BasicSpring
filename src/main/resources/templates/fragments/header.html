@@ -1,83 +1,96 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head> 
-	<meta charset="UTF-8">
-	    <link href="./css/sticky-footer-navbar.css" rel="stylesheet">
-	    <link rel="stylesheet" href="./css/style.css">
-	    <link rel="stylesheet" th:href="@{css/modals.css}">
-	    <link rel="stylesheet" href="css/login_modal.css" />
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-		<link rel="stylesheet" href="css/login_modal.css" />
-		<link href="/docs/5.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-		<link rel="apple-touch-icon" href="/docs/5.1/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-		<link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-		<link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-		<link rel="manifest" href="/docs/5.1/assets/img/favicons/manifest.json">
-		<link rel="mask-icon" href="/docs/5.1/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
-		<link rel="icon" href="/docs/5.1/assets/img/favicons/favicon.ico">
-		<link href="css/modals.css" rel="stylesheet">
-		
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"></script>
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
-		
+
+<head>
+  <meta charset="UTF-8">
+  <link href="./css/sticky-footer-navbar.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" th:href="@{css/modals.css}">
+  <link rel="stylesheet" href="css/login_modal.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/login_modal.css" />
+  <link href="/docs/5.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="apple-touch-icon" href="/docs/5.1/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+  <link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+  <link rel="manifest" href="/docs/5.1/assets/img/favicons/manifest.json">
+  <link rel="mask-icon" href="/docs/5.1/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
+  <link rel="icon" href="/docs/5.1/assets/img/favicons/favicon.ico">
+  <link href="css/modals.css" rel="stylesheet">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+
 </head>
+
 <body>
-<script type="text/javascript">
-     history.replaceState({}, null, location.pathname);
- 
-</script>
-<div th:fragment="fragment-nav">
-<!-- 필수 -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-<!-- 아이콘 -->
-<style type="text/css">
-.btt:active {
-	margin-left: 2px;
-	margin-top: 2px;
-	box-shadow: 2px 2px 2px #94EBA7;
-}
-</style>
-<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
-  <symbol id="github" viewBox="0 0 16 16">
-    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
-  </symbol>
+  <script type="text/javascript">
+    history.replaceState({}, null, location.pathname);
 
-  <symbol id="twitter" viewBox="0 0 16 16">
-    <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
-  </symbol>
+  </script>
+  <div th:fragment="fragment-nav">
+    <!-- 필수 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+      integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+      crossorigin="anonymous"></script>
+    <!-- 아이콘 -->
+    <style type="text/css">
+      .btt:active {
+        margin-left: 2px;
+        margin-top: 2px;
+        box-shadow: 2px 2px 2px #94EBA7;
+      }
+    </style>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <symbol id="github" viewBox="0 0 16 16">
+        <path
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+      </symbol>
 
-  <symbol id="facebook" viewBox="0 0 16 16">
-    <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
-  </symbol>
-</svg>
-<nav 
-class="navbar navbar-expand-lg navbar-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" th:href="@{/}">
-    <img th:src="@{/icon/logo.png}" height="100px" width="100px">
-    </a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" th:href="@{/video/videoList}" style="margin: auto auto auto 150px">강의</a>
-        </li>
-        <!-- <li class="nav-item">
+      <symbol id="twitter" viewBox="0 0 16 16">
+        <path
+          d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
+      </symbol>
+
+      <symbol id="facebook" viewBox="0 0 16 16">
+        <path
+          d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
+      </symbol>
+    </svg>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/}">
+          <img th:src="@{/icon/logo.png}" height="100px" width="100px">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" th:href="@{/video/videoList}"
+                style="margin: auto auto auto 150px">강의</a>
+            </li>
+            <!-- <li class="nav-item">
           <a class="nav-link" href="#" style="margin: auto auto auto 150px">채용정보</a>
         </li> -->
-          <li class="nav-item">
-          <a class="nav-link" th:href="@{/metaverseStudy}" style="margin: auto auto auto 150px">메타버스</a>
-        </li>
-        
-        <li class="nav-item">
-          <a class="nav-link" th:href="@{/community/comList}" style="margin: auto auto auto 150px">커뮤니티</a>
-        </li>
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/metaverseStudy}" style="margin: auto auto auto 150px">메타버스</a>
+            </li>
 
-        <!-- 
+            <li class="nav-item">
+              <a class="nav-link" th:href="@{/community/comList}" style="margin: auto auto auto 150px">커뮤니티</a>
+            </li>
+
+            <!-- 
         <li class="nav-item">
           <a class="nav-link" th:href="@{/mypage}" style="margin: auto auto auto 150px">마이페이지</a>
         </li>
@@ -85,107 +98,114 @@ class="navbar navbar-expand-lg navbar-light">
 
 
 
-      </ul>
-       <!-- ------------------------------------------------------------------------------------ -->
-        <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modal" style="width:100px; margin:0 0 0 5px;" 
-        sec:authorize="!isAuthenticated()">Login</button>
-       <!-- ------------------------------------------------------------------------------------ -->
-       <form sec:authorize="isAuthenticated()"> 
-        <div class="dropdown" >
-		  <button class="btn dropdown-toggle" type="button" id="drop" data-bs-toggle="dropdown" aria-expanded="false"
-		  style="color: #2E8E46; border-color: #2E8E46; margin: 0 0 0 10px">내 정보</button>
-		  <ul class="dropdown-menu" aria-labelledby="dropdown" >
-		    <li><a class="dropdown-item" th:href="@{/mypage}">마이페이지</a></li>
-		    <li><a class="dropdown-item" th:href="@{/logout}">로그아웃</a></li>
-		  </ul>
-		</div>
-		</form>
-		<!-- ------------------------------------------------------------------------------------ -->
-         	<form sec:authorize="isAuthenticated()">
-         		<span sec:authentication="principal.username" style="margin: 0 0 0 5px;">  </span>
-         	</form>
-   			
-        	<!-- axios -->
-    <!-- </form> -->
-    
-    </div>
-  </div>
-</nav>
-<!-- 모달 시작 
+          </ul>
+          <!-- ------------------------------------------------------------------------------------ -->
+          <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#modal"
+            style="width:100px; margin:0 0 0 5px;" sec:authorize="!isAuthenticated()">Login</button>
+          <!-- ------------------------------------------------------------------------------------ -->
+          <form sec:authorize="isAuthenticated()">
+            <div class="dropdown">
+              <button class="btn dropdown-toggle" type="button" id="drop" data-bs-toggle="dropdown"
+                aria-expanded="false" style="color: #2E8E46; border-color: #2E8E46; margin: 0 0 0 10px">내 정보</button>
+              <ul class="dropdown-menu" aria-labelledby="dropdown">
+                <li><a class="dropdown-item" th:href="@{/mypage}">마이페이지</a></li>
+                <li><a class="dropdown-item" th:href="@{/logout}">로그아웃</a></li>
+              </ul>
+            </div>
+          </form>
+          <!-- ------------------------------------------------------------------------------------ -->
+          <form sec:authorize="isAuthenticated()">
+            <span sec:authentication="principal.username" style="margin: 0 0 0 5px;"> </span>
+          </form>
+
+          <!-- axios -->
+          <!-- </form> -->
+
+        </div>
+      </div>
+    </nav>
+    <!-- 모달 시작 
 
 
  -->
- 
- <div id="modal" class="modal fade">
-   <div class="modal-dialog" role="document">
-    <div class="modal-content rounded-5 shadow">
-      <div class="modal-header p-5 pb-4 border-bottom-0">
-        <!-- <h5 class="modal-title">Modal title</h5> -->
-        <h2 class="fw-bold mb-0">로그인</h2>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
 
-      <div class="modal-body p-5 pt-0">
-        <form th:action="@{/login}" method="post">
-          <div class="form-floating mb-3">
-            <input type="email" class="form-control rounded-4" id="floatingInput" placeholder="name@example.com" name="username"
-            style="width: 400px; margin: -90px 0 0 -100px;">
-            <label for="floatingInput" style="margin: 0 0 0 -100px;">Email address</label>
+    <div id="modal" class="modal fade">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content rounded-5 shadow">
+          <div class="modal-header p-5 pb-4 border-bottom-0">
+            <!-- <h5 class="modal-title">Modal title</h5> -->
+            <h2 class="fw-bold mb-0">로그인</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="form-floating mb-3">
-            <input type="password" class="form-control rounded-4" id="floatingPassword" placeholder="Password" name="password"
-            style="width: 400px; margin: 0 0 0 -100px;">
-            <label for="floatingPassword" style="margin: 0 0 0 -100px;">Password</label>
-          </div>
-          <button class="w-100 mb-2 btn btn-lg rounded-4" type="submit"
-          style="color: #2E8E46; border-color: #2E8E46;">Sign in</button>
-          </form>
-          
-          <small class="text-muted"> <a href="/joinFrom">회원가입</a> | <a data-bs-toggle="modal" href="#modal2"  onclick="zz()">비밀번호 찾기</a></small>
-          <!-- <button data-bs-toggle="modal" data-bs-target="#modal2" data-bs-dismiss="modal">dddd</button> -->
-          <hr class="my-4">
-          <h2 class="fs-5 fw-bold mb-3">Or</h2>
-          <form method="get" th:action="@{/oauth2/authorization/google}">
-          <button class="w-100 py-2 mb-2 btn btn-outline-dark rounded-4" type="submit">
-           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-google" viewBox="0 0 16 16">
- 			<path d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z"/></svg>
-            Sign up with google
-          </button>
-          </form>
-          <button class="w-100 py-2 mb-2 btn btn-outline-primary rounded-4" type="submit">
-            <svg class="bi me-1" width="16" height="16"><use xlink:href="#facebook"/></svg>
-            Sign up with Facebook
-          </button>
-          <!-- <button class="w-100 py-2 mb-2 btn btn-outline-secondary rounded-4" type="submit">
+
+          <div class="modal-body p-5 pt-0">
+            <form th:action="@{/login}" method="post">
+              <div class="form-floating mb-3">
+                <input type="email" class="form-control rounded-4" id="floatingInput" placeholder="name@example.com"
+                  name="username" style="width: 400px; margin: -90px 0 0 -100px;">
+                <label for="floatingInput" style="margin: 0 0 0 -100px;">Email address</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control rounded-4" id="floatingPassword" placeholder="Password"
+                  name="password" style="width: 400px; margin: 0 0 0 -100px;">
+                <label for="floatingPassword" style="margin: 0 0 0 -100px;">Password</label>
+              </div>
+              <button class="w-100 mb-2 btn btn-lg rounded-4" type="submit"
+                style="color: #2E8E46; border-color: #2E8E46;">Sign in</button>
+            </form>
+
+            <small class="text-muted"> <a href="/joinFrom">회원가입</a> | <a data-bs-toggle="modal" href="#modal2"
+                onclick="zz()">비밀번호 찾기</a></small>
+            <!-- <button data-bs-toggle="modal" data-bs-target="#modal2" data-bs-dismiss="modal">dddd</button> -->
+            <hr class="my-4">
+            <h2 class="fs-5 fw-bold mb-3">Or</h2>
+            <form method="get" th:action="@{/oauth2/authorization/google}">
+              <button class="w-100 py-2 mb-2 btn btn-outline-dark rounded-4" type="submit">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-google"
+                  viewBox="0 0 16 16">
+                  <path
+                    d="M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8v-3.08h7.545z" />
+                </svg>
+                Sign up with google
+              </button>
+            </form>
+            <button class="w-100 py-2 mb-2 btn btn-outline-primary rounded-4" type="submit">
+              <svg class="bi me-1" width="16" height="16">
+                <use xlink:href="#facebook" />
+              </svg>
+              Sign up with Facebook
+            </button>
+            <!-- <button class="w-100 py-2 mb-2 btn btn-outline-secondary rounded-4" type="submit">
             <svg class="bi me-1" width="16" height="16"><use xlink:href="#github"/></svg>
             Sign up with GitHub
           </button>-->
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-<!-- 모달끝
+    <!-- 모달끝
 
 
  -->
- <div class="modal fade" id="modal2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1"  data-backdrop="static">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalToggleLabel2">비밀번호 변경</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <form th:action="@{/success}" method="post" onsubmit="return btnSubmit();">
-      <div class="modal-body">
-      
-      <!-- <form th:action="@{/sendemail}" method="post"> --> 
-          <div class="form-floating mb-3">
-            <input type="email" class="form-control rounded-4" id="sendmail" placeholder="name@example.com" name="sendmail"
-            style="width: 400px; margin: -15px 0 0 -100px;">
-            <label id="sendmail_text" for="floatingInput" style="margin: 0 0 0 -100px; display: flex;">Email address</label>
-            <input type="button" value="Check" class="btt" id="btt"
-              style="position: absolute;
+    <div class="modal fade" id="modal2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1"
+      data-backdrop="static">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalToggleLabel2">비밀번호 변경</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form th:action="@{/success}" method="post" onsubmit="return btnSubmit();">
+            <div class="modal-body">
+
+              <!-- <form th:action="@{/sendemail}" method="post"> -->
+              <div class="form-floating mb-3">
+                <input type="email" class="form-control rounded-4" id="sendmail" placeholder="name@example.com"
+                  name="sendmail" style="width: 400px; margin: -15px 0 0 -100px;">
+                <label id="sendmail_text" for="floatingInput" style="margin: 0 0 0 -100px; display: flex;">Email
+                  address</label>
+                <input type="button" value="Check" class="btt" id="btt" style="position: absolute;
 			  right: -50px;
 			  top:16px;
 			  padding : 10px;
@@ -193,164 +213,169 @@ class="navbar navbar-expand-lg navbar-light">
 			  border-radius: 5px;
 			  background-color: #FFFFFF; border-color: #94EBA7; color: #94EBA7; 
 			  width: 50px; padding: 3px; border: solid 1px;  font-size: 9pt;">
-		  
-          </div>
-          <div id="mes" style="margin: 8px 0 -5px 25px; display: none; color: #FA4F5A; display: none">이메일이 존재하지 않습니다.</div>
-          
-          <div class="form-floating mb-3">
-            <input type="text" class="form-control rounded-4" id="fild_1" placeholder="ppp" name="num"
-            style="width: 430px; margin: -10px 0 0 -100px; display: none;">
-            <label id="fild_1_text" for="floatingInput" style="margin: 0 0 0 -100px; display: none;">Authentication</label>
-          </div>
-          
-          <div class="form-floating mb-3">
-            <input type="password" class="form-control rounded-4" id="fild_2" placeholder="ppp" name="PW"
-            style="width: 430px; margin: -10px 0 0 -100px; display: none;">
-            <label id="fild_2_text" for="floatingInput" style="margin: 0 0 0 -100px; display: none;">Password</label>
-          </div>
-          
-          <div class="form-floating mb-3">
-            <input type="password" class="form-control rounded-4" id="fild_3" placeholder="ppp" name=""
-            style="width: 430px; margin: -10px 0 0 -100px; display: none;">
-            <label id="fild_3_text" for="floatingInput" style="margin: 0 0 0 -100px; display: none;">Password check</label>
-          </div>
-          
+
+              </div>
+              <div id="mes" style="margin: 8px 0 -5px 25px; display: none; color: #FA4F5A; display: none">이메일이 존재하지
+                않습니다.</div>
+
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control rounded-4" id="fild_1" placeholder="ppp" name="num"
+                  style="width: 430px; margin: -10px 0 0 -100px; display: none;">
+                <label id="fild_1_text" for="floatingInput"
+                  style="margin: 0 0 0 -100px; display: none;">Authentication</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control rounded-4" id="fild_2" placeholder="ppp" name="PW"
+                  style="width: 430px; margin: -10px 0 0 -100px; display: none;">
+                <label id="fild_2_text" for="floatingInput"
+                  style="margin: 0 0 0 -100px; display: none;">Password</label>
+              </div>
+
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control rounded-4" id="fild_3" placeholder="ppp" name=""
+                  style="width: 430px; margin: -10px 0 0 -100px; display: none;">
+                <label id="fild_3_text" for="floatingInput" style="margin: 0 0 0 -100px; display: none;">Password
+                  check</label>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button class="btn btn-primary" id="aa" type="submit">확인</button>
+            </div>
+          </form>
+        </div>
       </div>
-      <div class="modal-footer">
-        <button class="btn btn-primary" id="aa" type="submit">확인</button>
-      </div>
-     </form>
+
+      <script type="text/javascript">
+
+        var emailconfirm = document.getElementById("sendmail");
+        var sendmail_text = document.getElementById("sendmail_text");
+        var sendmailvar = document.getElementById('btt');
+        var btn = document.getElementById('aa');
+        var mes = document.getElementById("mes");
+
+        var fild1 = document.getElementById("fild_1");
+        var fild2 = document.getElementById("fild_2");
+        var fild3 = document.getElementById("fild_3");
+
+        var fild1_t = document.getElementById("fild_1_text");
+        var fild2_t = document.getElementById("fild_2_text");
+        var fild3_t = document.getElementById("fild_3_text");
+
+        function zz() {
+          mes.style.display = 'none';
+          sendmailvar.style.display = 'flex';
+          emailconfirm.style.display = 'flex';
+          sendmail_text.style.display = 'flex';
+
+          fild1.style.display = 'none';
+          fild1_t.style.display = 'none';
+
+          fild2.style.display = 'none';
+          fild2_t.style.display = 'none';
+
+          fild3.style.display = 'none';
+          fild3_t.style.display = 'none';
+        }
+
+
+
+        //var sendemaildata = { sendemail : $("#sendemail").val()};
+
+        sendmailvar.addEventListener('click', function () {
+          var xhr = new XMLHttpRequest();
+          var value = 'sendmail=' + emailconfirm.value;
+          console.log(value);
+          //alert("a");
+
+          xhr.open('POST', '/sendmail', true);
+          xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+          console.log(value);
+          xhr.send(value); /// ajax data부분
+          xhr.onload = function () {
+            if (xhr.status == 200) {
+              //alert(xhr.response);
+              if (xhr.response != 'false') {
+                mes.style.display = 'none';
+                sendmailvar.style.display = 'none';
+                emailconfirm.style.display = 'none';
+                sendmail_text.style.display = 'none';
+
+
+                fild1.style.display = 'flex';
+                fild1_t.style.display = 'flex';
+
+                fild2.style.display = 'flex';
+                fild2_t.style.display = 'flex';
+
+                fild3.style.display = 'flex';
+                fild3_t.style.display = 'flex';
+              } else {
+                mes.style.display = 'flex';
+              }
+            }
+          }
+        })
+
+        function btnSubmit() {
+          var xhr = new XMLHttpRequest();
+          var value = {
+            'email': emailconfirm.value,
+            'pass': fild_1.value,
+          };
+          var jsonString = JSON.stringify(value);
+
+          //alert("a");
+          xhr.open('POST', '/passchange', true);
+          xhr.setRequestHeader("Content-Type", "application/json");
+          xhr.send(jsonString); /// ajax data부분
+
+          xhr.onload = function () {
+            if (xhr.status == 200) {
+              //alert(xhr.response);
+              if (xhr.response == 'true') {
+                if (fild_2.value == fild_3.value) {
+                  //////////////////////////////////////////////////////////////
+                  var x = new XMLHttpRequest();
+                  var v = {
+                    'email': emailconfirm.value,
+                    'pw': fild_2.value,
+                  };
+
+                  var js = JSON.stringify(v);
+
+                  x.open('POST', '/pwchange', true);
+                  x.setRequestHeader("Content-Type", "application/json");
+                  x.send(js); /// ajax data부분
+                  if (x.status == 200) {
+                    if (x.response == true) {
+                      alert("ㅂㅂ");
+                      return true;
+                    }
+                    else {
+                      alert("실패");
+                      return false;
+                    }
+                  }
+
+                  ////////////////////////////////////////////////////////////////
+                }
+                else {
+                  alert("비밀번호가 다릅니다");
+                  return false;
+                }
+              } else {
+                alert("인증번호가 다릅니다");
+                return false;
+              }
+            }
+            return false;
+          }
+          return false;
+        }
+      </script>
     </div>
-  </div>
-
-<script type="text/javascript">
-
-var emailconfirm = document.getElementById("sendmail");
-var sendmail_text = document.getElementById("sendmail_text");
-var sendmailvar = document.getElementById('btt');
-var btn = document.getElementById('aa');
-var mes = document.getElementById("mes");
-
-var fild1 = document.getElementById("fild_1");
-var fild2 = document.getElementById("fild_2");
-var fild3 = document.getElementById("fild_3");
-
-var fild1_t = document.getElementById("fild_1_text");
-var fild2_t = document.getElementById("fild_2_text");
-var fild3_t = document.getElementById("fild_3_text");
-
-function zz() {
-	mes.style.display = 'none';
-	sendmailvar.style.display = 'flex';
-	emailconfirm.style.display = 'flex';
-	sendmail_text.style.display = 'flex';
-
-	fild1.style.display = 'none';
-	fild1_t.style.display = 'none';
-
-	fild2.style.display = 'none';
-	fild2_t.style.display = 'none';
-
-	fild3.style.display = 'none';
-	fild3_t.style.display = 'none';
-}
-
-
-
-//var sendemaildata = { sendemail : $("#sendemail").val()};
-
-sendmailvar.addEventListener('click',function(){
-	var xhr = new XMLHttpRequest();
-	var value='sendmail=' + emailconfirm.value;
-	console.log(value);
-	//alert("a");
-	
-	xhr.open('POST', '/sendmail',true);
-	xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-	console.log(value);
-	xhr.send(value); /// ajax data부분
-	xhr.onload = function() {
-		if(xhr.status==200) {
-			//alert(xhr.response);
-			if(xhr.response != 'false') {
-				mes.style.display = 'none';
-				sendmailvar.style.display = 'none';
-				emailconfirm.style.display = 'none';
-				sendmail_text.style.display = 'none';
-				
-				
-				fild1.style.display = 'flex';
-				fild1_t.style.display = 'flex';
-				
-				fild2.style.display = 'flex';
-				fild2_t.style.display = 'flex';
-				
-				fild3.style.display = 'flex';
-				fild3_t.style.display = 'flex';
-			} else {
-				mes.style.display = 'flex';
-			}
-		}
-	}
-})
-
-function btnSubmit() {
-	var xhr = new XMLHttpRequest();
-	var value={
-		'email':emailconfirm.value,
-		'pass':fild_1.value,
-	};
-	var jsonString = JSON.stringify(value);
-
-	//alert("a");
-	xhr.open('POST', '/passchange',true);
-	xhr.setRequestHeader("Content-Type","application/json");
-	xhr.send(jsonString); /// ajax data부분
-	
-	xhr.onload = function() {
-		if(xhr.status==200) {
-			//alert(xhr.response);
-			if(xhr.response == 'true') {
-				if(fild_2.value == fild_3.value) {
-					//////////////////////////////////////////////////////////////
-					var x = new XMLHttpRequest();
-					var v={
-							'email':emailconfirm.value,
-							'pw':fild_2.value,
-						};
-					
-					var js = JSON.stringify(v);
-					
-					x.open('POST', '/pwchange',true);
-					x.setRequestHeader("Content-Type","application/json");
-					x.send(js); /// ajax data부분
-					if(x.status==200) {
-						if(x.response == true) {
-							alert("ㅂㅂ");
-							return true;
-						}
-						else {
-							alert("실패");
-							return false;
-						}
-					}
-					
-					////////////////////////////////////////////////////////////////
-				}
-				else {
-					alert("비밀번호가 다릅니다");
-					return false;
-				}
-			} else {
-				alert("인증번호가 다릅니다");
-				return false;
-			}	
-		}
-		return false;
-	}
-	return false;
-}
- </script>
-</div>
 </body>
+
 </html>
