@@ -28,8 +28,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.inhatc.spring.myPage.service.UserVideoService;
-import kr.inhatc.spring.user.dto.BasicDto;
-import kr.inhatc.spring.user.service.BasicService;
 import kr.inhatc.spring.user.service.UserService;
 import kr.inhatc.spring.video_board.dto.Video_BoardDto;
 import kr.inhatc.spring.video_board.entity.Video_Board;
