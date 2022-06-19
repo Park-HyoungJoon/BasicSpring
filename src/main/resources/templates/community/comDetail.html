@@ -41,7 +41,7 @@
 						</td>
 					</tr>
 					<tr>
-					<td scope="row"><a href=""><i class="bi bi-suit-heart" id="test"></i></a></td>
+					<td scope="row"><a th:href="@{/community/comheart/{id}(id=${video.UVId})}" id="btnTest"><i class="bi bi-suit-heart" id="test"></i></a></td>
 					<td scope="row" >d</td>
 					</tr>
 					<tr>
@@ -55,6 +55,7 @@
 		
  
 		<a th:href="@{/community/comList(page=${requestDto.page}, type=${requestDto.type}, keyword=${requestDto.keyword})}">
+		<input type="hidden" id ="page" th:value="${requestDto.page}">
 		<button class="btn btn-primary">
 		목록으로
 		</button>
@@ -73,9 +74,21 @@
 	
 	
 </body>
-<script>
-$.ajax ({
-	
-})
+<script src="http://code.jquery.com/jquery-latest.js"></script> 
+ 
+<script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script  type="text/javascript">
+$('#btnTest').on('click', function(e){
+	var type = document.getElementById('test').className;
+	if(type=='bi bi-suit-heart-fill'){
+		  e.preventDefault();
+		  document.getElementById('test').className='bi bi-suit-heart';
+		
+	}else{
+	  e.preventDefault();
+	  document.getElementById('test').className='bi bi-suit-heart-fill';
+	}
+	});
 </script>
+
 </html>
