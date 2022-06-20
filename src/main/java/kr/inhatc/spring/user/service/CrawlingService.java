@@ -40,7 +40,7 @@ public class CrawlingService {
 				arrPrice.add(price1.text());
 			}
 			
-			List<CrawDTO> craw = new ArrayList<CrawDTO>();
+			List<CrawDTO> crawList = new ArrayList<CrawDTO>();
 			for (int i = 0; i < e1.size(); i++) {
 				
 				Element bookEle = e1.get(i);
@@ -56,10 +56,10 @@ public class CrawlingService {
 						.price(arrPrice.get(i))
 						.build();
 				
-				craw.add(crawdto);
+				crawList.add(crawdto);
 					
 		}
-			return craw;
+			return crawList;
 		}
 		
 
