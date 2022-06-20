@@ -45,6 +45,7 @@ import kr.inhatc.spring.user.entity.User;
 import kr.inhatc.spring.user.service.UserService;
 import kr.inhatc.spring.video_board.dto.Video_BoardDto;
 import kr.inhatc.spring.video_board.service.Video_BoardService;
+import kr.inhatc.spring.video_board.service.Video_BoardServiceImpl;
 import kr.inhatc.spring.video_board.util.PageRequestDto;
 import lombok.extern.log4j.Log4j2;
 

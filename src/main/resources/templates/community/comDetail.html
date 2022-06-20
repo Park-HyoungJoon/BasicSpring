@@ -78,7 +78,9 @@
 <script src="http://code.jquery.com/jquery-latest.js"></script> 
  
 <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
+
 <script  type="text/javascript">
+//ready(function)을 통해 시작 시  heart 값이 1이면 좋아요가 눌러진 상태, 0이면 좋아요가 안 눌러진 상태
 $(document).ready(function(){
 	var heart = document.getElementById('heart').value;
 	var type = document.getElementById('test').className;
@@ -91,12 +93,17 @@ $(document).ready(function(){
 	}
 	
 });
+
+//하트 버튼 클릭 시 
 $('#btnTest').on('click', function(e){
 	var type = document.getElementById('test').className;
 	var id = document.getElementById('id').value;
+	//좋아요가 눌러진 상태에서 한 번 더 누른다면
 	if(type=='bi bi-suit-heart-fill'){
 		var heart = 0;
+		//className을 bi bi-suit-heart로 변경 해 좋아요가 안눌러진 그림으로
 		  document.getElementById('test').className='bi bi-suit-heart';
+		//ajax 처리를 통해 communityController의 comheart 호출(좋아요 상태를 db에 전달)
 			$.ajax({
 				url : "/community/comheart",
 				type : "post",
