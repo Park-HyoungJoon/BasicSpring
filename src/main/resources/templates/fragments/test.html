@@ -13,7 +13,7 @@
 
     .col-md-4 {
       padding-bottom: 20px;
-     
+
     }
 
     .white {
@@ -69,16 +69,23 @@
       text-align: center;
       z-index: 4;
       padding: 20px;
-      min-height: 400px;
+
     }
 
     .item-box-blog-image {
       position: relative;
+      min-height: 150px;
+    }
+
+    .img {
+      min-height: 150px;
     }
 
     .item-box-blog-image figure img {
       width: 100%;
-      height: auto;
+      object-fit: contain;
+      height : 150px;
+      
     }
 
     .item-box-blog-date {
@@ -150,6 +157,13 @@
       box-shadow: 0px 5px 15px inset #4d5f77;
     }
   </style>
+
+  <!-- js파일 import -->
+<!-- 
+  <script src="../metaverse/lastTime.js"></script>
+  <script src="../metaverse/nowTime.js"></script>
+  <script src="./lastMonth.js"></script>
+  <script src="./nowMonth.js"></script> -->
 </head>
 
 <body>
@@ -434,8 +448,138 @@
 
   </script>
 
-  <script src="../metaverse/lastTime.js"></script>
-  <script src="../metaverse/nowTime.js"></script>
+  <script>
+
+
+    var Now = new Date(); // 현재 날짜 및 시간
+    var nowMonth = Now.getMonth() + 1; // 월
+    var nowDay = Now.getDate(); // 일
+    var nowHour = Now.getHours(); // 시
+    var nowMins = Now.getMinutes(); // 분
+
+    function pluszero(time) {
+      var time = time.toString(); // 시간을 숫자에서 문자로 바꿈
+      if (time.length < 2) { //2자리 보다 작다면
+        time = '0' + time; //숫자앞 0을 붙여줌
+        return time; //값을 내보냄
+      } else {
+        return time; //2자리라면 값을 내보냄
+      }
+    }
+    nowMonth = pluszero(nowMonth); //만들었던 함수 적용
+    nowDay = pluszero(nowDay);
+    nowHour = pluszero(nowHour);
+    nowMins = pluszero(nowMins);
+
+    var nowtime = nowMonth + nowDay + nowHour + nowMins; // 월+일+시+분
+
+
+    var startdate = 06010000;
+    var enddate = 12310000;
+
+    $(document).ready(() => {
+      if (eval(startdate) > eval(nowtime) || eval(enddate) < eval(nowtime)) { //지금이 시작시간보다 작거나, 종료시간보다 크면 
+        console.log("된 거?");
+        $("#nowGather").attr("disabled", true);
+      } else {
+        console.log("그럴 리가 ㅋ");
+      }
+    })
+
+
+  </script>
+
+  <script>
+
+
+    var Now = new Date(); // 현재 날짜 및 시간
+    var nowMonth = Now.getMonth() + 1; // 월
+    var nowDay = Now.getDate(); // 일
+    var nowHour = Now.getHours(); // 시
+    var nowMins = Now.getMinutes(); // 분
+
+    function pluszero(time) {
+      var time = time.toString(); // 시간을 숫자에서 문자로 바꿈
+      if (time.length < 2) { //2자리 보다 작다면
+        time = '0' + time; //숫자앞 0을 붙여줌
+        return time; //값을 내보냄
+      } else {
+        return time; //2자리라면 값을 내보냄
+      }
+    }
+    nowMonth = pluszero(nowMonth); //만들었던 함수 적용
+    nowDay = pluszero(nowDay);
+    nowHour = pluszero(nowHour);
+    nowMins = pluszero(nowMins);
+
+    var nowtime = nowMonth + nowDay + nowHour + nowMins; // 월+일+시+분
+
+
+    var startdate = 06010000;
+    var enddate = 12310000;
+
+    $(document).ready(() => {
+      if (eval(startdate) > eval(nowtime) || eval(enddate) < eval(nowtime)) { //지금이 시작시간보다 작거나, 종료시간보다 크면 
+        console.log("된 거?");
+        $("#nowGather").attr("disabled", true);
+      } else {
+        console.log("그럴 리가 ㅋ");
+      }
+    })
+
+
+
+
+
+  </script>
+
+  <script>
+
+
+
+    var Now = new Date(); // 현재 날짜 및 시간
+    var nowMonth = Now.getMonth() + 1; // 월
+    var nowDay = Now.getDate(); // 일
+    var nowHour = Now.getHours(); // 시
+    var nowMins = Now.getMinutes(); // 분
+
+    function pluszero(time) {
+      var time = time.toString(); // 시간을 숫자에서 문자로 바꿈
+      if (time.length < 2) { //2자리 보다 작다면
+        time = '0' + time; //숫자앞 0을 붙여줌
+        return time; //값을 내보냄
+      } else {
+        return time; //2자리라면 값을 내보냄
+      }
+    }
+    nowMonth = pluszero(nowMonth); //만들었던 함수 적용
+    nowDay = pluszero(nowDay);
+    nowHour = pluszero(nowHour);
+    nowMins = pluszero(nowMins);
+
+    var nowtime = nowMonth + nowDay + nowHour + nowMins; // 월+일+시+분
+
+
+    var startdate = 04010000;
+    var enddate = 05310000;
+
+    $(document).ready(() => {
+      if (eval(startdate) > eval(nowtime) || eval(enddate) < eval(nowtime)) { //지금이 시작시간보다 작거나, 종료시간보다 크면 
+        console.log("된 거?");
+        $("#lastGather").attr("disabled", true);
+      } else {
+        console.log("그럴 리가 ㅋ");
+      }
+    })
+
+
+    export default lasttime;
+
+
+
+
+  </script>
+
   <script>
     fetch('http://112.151.4.252:5000/test')
       .then((response) => response.json())
