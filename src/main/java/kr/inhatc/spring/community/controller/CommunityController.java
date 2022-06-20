@@ -68,8 +68,6 @@ public class CommunityController {
 		}
 	
 	@PostMapping("/community/comheart")
-	//  Rest방식 /user/Detail/13 이렇게 경로처럼 받으면 Pathvariable 써야함,,
-	//  그냥 일반 파라미터 값 /board/Detail?boardIdx=3 이런식으로 받으면 @RequestPram으로 쓰고
 	public void comheart(data data) {
 		//세션을 통해 현재 유저 정보 가져옴
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -77,16 +75,18 @@ public class CommunityController {
 		int heart = data.getHeart();
 		int id = userService.findUserId(path);
 		int catchId = cService.findUser(id,data.getId());
-		System.out.println("catchiD : : : : "+catchId);
-		
+		//DB에 해당 유저id와 비디오id값이 같이 있는 정보가 있는지 확인
 		if(catchId>0) {
+			//있고 heart값이 1(좋아요가 되어 있는 상태)이라면
 			if(heart==1) {
 				cService.updateHeart(id,data.getId(),heart);
 			}else {
+				//아니라면
 				heart=0;
 				cService.updateHeart(id,data.getId(),heart);
 			}
 		}
+		//없다면 해당 정보 생성
 		else {
 			cService.addfav(id,data.getId());
 		}

@@ -88,7 +88,7 @@
     <div class="row align-items-md-stretch">
       <div class="col-md-6"> -->
       <div th:if="${#lists.size(data[0])>0}">
-    <div class="container-fruid py-2 mb-4 border border-1  bg-white rounded-3" style="height:250px;position:relative;">
+    <div class="container-fruid py-2 mb-4 border border-1  bg-white rounded-3" style="height:300px;position:relative;">
         <div style="margin-left: 10px">
       <p class="fw-bold" th:text="${data[0].Nick}"></p><br>
         <!-- <h4 class="display-7 fw-bold">박형준님 프로필</h4> -->
@@ -98,19 +98,18 @@
         <button class="btn btn-outline-success"style="position:absolute; bottom:0; right:0; margin: 0px 5px 5px 0px" type="button" onclick="location.href='/myprofile'" >프로필 수정하기</button>
       </div>
       </div>
-</div>
-</div>
-    <div class="col">
-    <div class="container-fruid py-2 mb-4 border border-1  bg-white rounded-3" style="height:auto;position:relative;">
+      </div>
+      </div>
+      <div class="col">
+    <div class="container-fruid py-2 mb-4 border border-1  bg-white rounded-3" style="height:300px;position:relative;">
         <div style="margin-left: 10px">
         <p class="display-7 fw-bold">최근 구매 강의<p>
-					<div id="demo" class="carousel slide" data-ride="carousel">
+      					<div id="demo" class="carousel slide" data-ride="carousel">
 						<div class="row row-cols-1 row-cols-md-4 g-4"
-							style="max-width: 1200px;  float: none; margin: 0 auto;">
+							style="max-width: 900px; float: none; margin: 0 auto;">
 							<div class="col" th:if="${#lists.size(ulList)} > 0"
 								th:each="vo : ${ulList}">
-								<div class="card h-100" style="width:150px; height:100px;">
-									<img th:src="@{/img/java.png}" class="card-img-top" alt="...">
+								<div class="card h-100" style="width:500px;">
 									<div class="card-body">
 										<h5 class="title" th:text="${vo.ULPId}"></h5>
 										<p class="card-text">여기에는 간략한 소개</p>
@@ -124,12 +123,14 @@
 </div>
           <button class="btn btn-outline-success" type="button" style=" position:absolute; bottom:0; right:0; margin: 0px 5px 5px 0px"  onclick="location.href='/myLecture'">보러가기</button>
       </div>
-        </div>
       </div>
-    </div>
-      <div class="row">
+        </div>
+        
+        
+        
+        <div class="row">
       <div class="col">
-    <div class="container-fruid py-2 mb-4 border border-1  bg-white rounded-3" style="height:auto;position:relative;">
+    <div class="container-fruid py-2 mb-4 border border-1  bg-white rounded-3" style="height:300px;position:relative;">
         <div style="margin-left: 10px">
         <p class="display-7 fw-bold">최근 본 영상<p>
       					<div id="demo" class="carousel slide" data-ride="carousel">
@@ -137,18 +138,12 @@
 							style="max-width: 900px; float: none; margin: 0 auto;">
 							<div class="col" th:if="${#lists.size(uvList)} > 0"
 								th:each="vo : ${uvList}">
-								<div class="card h-100" style="width:150px;">
-									<img th:src="@{/img/java.png}" class="card-img-top" alt="...">
+								<div class="card h-100" style="width:500px;">
 									<div class="card-body">
-									<h5 class="title" th:text="${vo.UVTitle}"></h5>
+									<b class="title" style="font-size:1.2em;"th:text="${vo.UVTitle}"></b>
 									
 										<!-- @{/video/videoDetail(id=${vo.id},page=${list.page}, type=${pageRequestDto.type}, keyword=${pageRequestDto.keyword})} -->
-										<a
-											
-											class="btn btn-secondary" style="height:35px;width:90px;background-color: #00bc8c;">학습하기</a>
-									</div>
-									<div class="card-footer">
-										<small class="text-muted" th:text="${vo.UVUpload}"></small>
+										<a class="btn btn-secondary"  style="font-size:1em;float:right; height:35px;width:90px;background-color: #00bc8c;">학습하기</a>
 									</div>
 								</div>
 							</div>
@@ -159,19 +154,20 @@
         </div>
       </div>
       <div class="col">
-    <div class="container-fruid py-2 mb-4 border border-1  bg-white rounded-3" style="height:250px; position:relative;">
+    <div class="container-fruid py-2 mb-4 border border-1  bg-white rounded-3" style="height:300px; position:relative;">
         <div style="margin-left: 10px">
         <p class="display-7 fw-bold">내 친구<p>
           <button class="btn btn-outline-success " style="position:absolute; bottom:0; right:0; margin: 0px 5px 5px 0px" type="button" onclick="location.href='/friendList'">자세히 보기</button>
           </div>
         </div>
       </div>
-    </div>
-    </div>
+      </div>
 
 </main>
       </div>
   </div>
+</div>
+</div>
       <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="js/dashboard.js"></script>
   </body>
 </html>
