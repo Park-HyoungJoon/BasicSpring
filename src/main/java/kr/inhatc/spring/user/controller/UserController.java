@@ -1,6 +1,7 @@
 
 package kr.inhatc.spring.user.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,18 +13,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import kr.inhatc.spring.user.dto.CrawDTO;
 import kr.inhatc.spring.user.dto.UserDto;
+import kr.inhatc.spring.user.service.CrawlingService;
 import kr.inhatc.spring.user.service.UserService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
-
+@RequiredArgsConstructor
 @Controller
 public class UserController {
 
 	@Autowired
 	private UserService userService;
-
+	CrawlingService crawService;
 
 	// GET(read), POST(create), PUT(update), DELETE(delete)
 
@@ -61,5 +65,13 @@ public class UserController {
 		userService.userDelete(id);
 		return "redirect:/user/userList";
 	}
+	
+	 @GetMapping("/craw")
+	    public String crawing(Model model) throws IOException {
 
+	        List<CrawDTO> craw = crawService.getCraw();
+	        model.addAttribute("craw", craw);
+	        return "craw";
+	    }
+	
 }
